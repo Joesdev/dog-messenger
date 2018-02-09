@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddRankToUsers extends Migration
+class AddSelectionIdToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddRankToUsers extends Migration
      */
     public function up()
     {
-        //Added a rank column to users table, to signify free or paid user
+        //
         Schema::table('users', function($table){
-            $table->integer('rank')->after('id');
+            $table->integer('selection_id')->after('password');
         });
     }
 
@@ -26,9 +26,9 @@ class AddRankToUsers extends Migration
      */
     public function down()
     {
-        //Removes the rank column from the users table
+        //
         Schema::table('users', function($table){
-            $table->dropColumn('rank');
+           $table->dropColumn('selection_id');
         });
     }
 }
