@@ -13,7 +13,7 @@ class AddRankToUsers extends Migration
      */
     public function up()
     {
-        //Add a rank column to users table, to signify free or paid user
+        //Added a rank column to users table, to signify free or paid user
         Schema::table('users', function($table){
             $table->integer('rank')->after('id');
     });
