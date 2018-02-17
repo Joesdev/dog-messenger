@@ -1,0 +1,12 @@
+html, body {
+  height: 100%; 
+  }
+
+.bg-header {
+background: url(../images/header.jpg) no-repeat center center;
+  background-attachment: fixed;
+  background-size: cover;
+  min-width: 100%;
+  min-height: 100%;
+  margin-top: 0;
+}
