@@ -1,14 +1,10 @@
 @extends('partials.master')
 
 @section('content')
-<header class="container-fluid bg-header">
-  <div class="row">
-        <div class="col-xs-12 my-auto text-center">
-        <h1 class="animation-element fadeInUp title-main text-uppercase">Cassandra Amantite</h1>
-        <br/>
-        <h2 class="animation-element fadeInUp title-sub text-uppercase">Front-end Developer & Designer</h2>
+<header class="bg-header">
+    <div class="col-xs-12 col-md-7 col-lg-6 text-center">
+       <h1 class="animation-element fadeInUp title-main">Find Your<br> New <span style="color: #ff7615;">Best Friend</span></h1>
     </div>
-  </div>
 </header>
 
 @endsection

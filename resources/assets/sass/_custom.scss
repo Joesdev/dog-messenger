@@ -3,10 +3,35 @@ html, body {
   }
 
 .bg-header {
-background: url(../images/header.jpg) no-repeat center center;
+background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(255, 120, 42, 0.2)), url(../images/dog.jpg) no-repeat center center;
   background-attachment: fixed;
   background-size: cover;
   min-width: 100%;
   min-height: 100%;
   margin-top: 0;
+}
+  @media only screen and (min-width: 300px) {
+    .bg-header h1 {
+      font-size: 2.6em;
+      padding-top: 20%; } }
+  @media only screen and (min-width: 600px) {
+    .bg-header h1 {
+      font-size: 4em;
+      padding-top: 15%; } }
+  @media only screen and (min-width: 800px) {
+    .bg-header h1 {
+      padding-top: 55%; } }
+  @media only screen and (min-width: 1025px) {
+    .bg-header h1 {
+      padding-top: 35%; } }
+
+@media only screen and (max-width: 600px) {
+  .bg-header {
+    background-attachment: inherit; } 
+}
+
+h1 {
+	color: white;
+	font-family: 'Comfortaa', sans-serif;
+	font-weight: 700;
 }
