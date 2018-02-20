@@ -18,3 +18,4 @@ mix.options({
   processCssUrls: false // Process/optimize relative stylesheet url()'s. Set to false, if you don't want them touched.
 });
 
+mix.copy('node_modules/font-awesome/fonts', 'public/fonts');

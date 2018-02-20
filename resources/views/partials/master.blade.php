@@ -7,8 +7,7 @@
     <title>Dog Finder</title>
     <!--- CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700|Hammersmith+One" rel="stylesheet">
+    
 </head>
 <body>
 
@@ -23,6 +22,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/app.js"></script>
-
 </body>
 </html>
