@@ -41,9 +41,10 @@ class PetArrived extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->greeting('Hi User!')
+                    ->line('Two Akita puppies have arrived near you')
+                    ->action('Show Me', url('/'))
+                    ->line('Thank you for using PetNotifier!');
     }
 
     /**
