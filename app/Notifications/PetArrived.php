@@ -42,7 +42,7 @@ class PetArrived extends Notification
     {
         return (new MailMessage)
                     ->greeting('Hi User!')
-                    ->line('Two Akita puppies have arrived near you')
+                    ->line('A pet meeting your criteria has arrived as a shelter near you')
                     ->action('Show Me', url('/'))
                     ->line('Thank you for using PetNotifier!');
     }
