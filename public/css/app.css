@@ -7772,7 +7772,7 @@ h1, h2, h3 {
   font-family: 'Comfortaa', sans-serif;
 }
 
-h1 {
+.h1 {
   color: white;
   font-weight: 700;
 }
@@ -7787,9 +7787,57 @@ h1 {
   background-color: #B8DED7;
 }
 
+/*SPACING*/
 .padding-tb {
-  padding-top: 3em;
-  padding-bottom: 3em;
+  padding-top: 5em;
+  padding-bottom: 4em;
+}
+
+.padding-bottom {
+  padding-bottom: 4em;
+}
+
+.padding-bottom-sm {
+  padding-bottom: 1em;
+}
+
+.padding-lr {
+  padding-left: 3em;
+  padding-right: 3em;
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.border-0 {
+  border: none;
+}
+
+.btn-yellow {
+  background-color: #F3D030;
+  font-weight: 700;
+  color: white;
+  border: none;
+}
+
+/*paralax quote pic*/
+.paralax {
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(99, 107, 111, 0.478431)), to(rgba(119, 119, 119, 0.54902))), url(../images/dogs.jpg) no-repeat center center;
+  background: linear-gradient(rgba(99, 107, 111, 0.478431), rgba(119, 119, 119, 0.54902)), url(../images/dogs.jpg) no-repeat center center;
+  background-attachment: fixed;
+  background-size: cover;
+  min-width: 100%;
+  min-height: 100%;
+  margin-top: 0;
+  padding: 7em;
+}
+
+/*testimonials pic*/
+.test-pic {
+  width: 50%;
+  border-radius: 50%;
+  border: solid #b8ded8 7px;
 }
 
 /*!
