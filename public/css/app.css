@@ -7793,6 +7793,11 @@ h1, h2, h3 {
   padding-bottom: 4em;
 }
 
+.margin-tb {
+  margin-top: 5em;
+  margin-bottom: 4em;
+}
+
 .padding-bottom {
   padding-bottom: 4em;
 }
@@ -7838,6 +7843,16 @@ h1, h2, h3 {
   width: 50%;
   border-radius: 50%;
   border: solid #b8ded8 7px;
+}
+
+/*Search Bottom Section*/
+.search {
+  background-color: #ed7333;
+}
+
+.search-form {
+  padding: 1em;
+  width: 40em;
 }
 
 /*!

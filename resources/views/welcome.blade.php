@@ -95,4 +95,52 @@
         </div>
     </div>
 </section>
+
+<!-- Search at bottom -->
+
+<section>
+    <div class="container-fluid search margin-tb">
+        <div class="row">
+            <div class="col-xs-12 padding-tb">
+                  <h1 class="text-center h1">Find Your New Best Friend</h1>
+                  <br>
+                  <h2 class="text-center h3">What breed of dog are you looking for?</h2>
+                  <br>
+                <form>
+                    <input type="text" name="firstname" class="search-form center-block">
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @endsection
