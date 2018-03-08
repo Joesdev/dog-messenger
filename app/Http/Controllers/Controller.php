@@ -10,4 +10,10 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function getHomeView(){
+        $breedStatusController = new BreedStatusController();
+        $allBreeds = $breedStatusController->getAllBreeds();
+        return view('welcome')->with('allBreeds',$allBreeds);
+    }
 }
