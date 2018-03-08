@@ -12,24 +12,25 @@
         <div class="row padding-tb">
             <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0 text-center">
                 <i class="fa fa-paw fa-3x step-icons"></i>      
-                <h2 class="h3">Enter A Breed
+                <h2 class="h3 txt-black">Enter A Breed
                 <small class="text-muted"><br>Tell us what breed of dog you are looking for</small></h2>
             </div>
             <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0 text-center">
                 <i class="fa fa-map-marker fa-3x step-icons"></i>                            
-                <h2 class="h3">Enter a Location
+                <h2 class="h3 txt-black">Enter a Location
                 <small class="text-muted"><br>Tell us the area you are looking to adopt a dog</small></h2>               
             </div>
             <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0 text-center">   
                 <i class="fa fa-bell fa-3x step-icons"></i>           
-                <h2 class="h3">Get Notified
+                <h2 class="h3 txt-black">Get Notified
                 <small class="text-muted"><br>Receive a text and email alert when your new dog has entered a shelter</small></h2> 
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 padding-bottom">
-                 <button class="btn-lg center-block btn-yellow" type="button" aria-haspopup="true" aria-expanded="false">Start Now
-                </button>
+                 <a href="#search">
+                    <button class="btn-lg center-block btn-yellow" type="button" aria-haspopup="true" aria-expanded="false">Start Now </button>
+                </a>
             </div>
         </div>
     </div>   
@@ -46,10 +47,10 @@
 </section>
 <!-- testimonials -->
 <section>
-    <div class="container">
+    <div class="container margin-tb">
         <div class="row">
-            <div class="col-sm-12 padding-tb">
-                <h1 class="h2 text-center">What Do They Think?</h1>
+            <div class="col-sm-12 padding-bottom">
+                <h1 class="h2 text-center txt-black">What Do They Think?</h1>
             </div>
         </div>
         <div class="row">
@@ -61,8 +62,8 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 padding-lr">
-                        <p class="text-center h5"><strong>Keith M.</strong></p>
-                        <p class="text-center"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis velit omnis atque quaerat sed sunt sequi tempora odio fugiat quisquam dolorum nobis sapiente labore amet dignissimos aut, esse molestias facere.</p>
+                        <p class="text-center h5 txt-black"><strong>Keith M.</strong></p>
+                        <p class="text-center">  Thanks to dogfiner I was the first to find out as soon as a pug came into a shelter near me and I picked her up that day. Thank you! </p>
                     </div>
                 </div>
             </div>
@@ -74,8 +75,8 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 padding-lr">
-                        <p class="text-center h5"><strong>Potato Man</strong></p>
-                        <p class="text-center"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis velit omnis atque quaerat sed sunt sequi tempora odio fugiat quisquam dolorum nobis sapiente labore amet dignissimos aut, esse molestias facere.</p>
+                        <p class="text-center h5 txt-black"><strong>Person 2</strong></p>
+                        <p class="text-center"> I have been looking for a german shepard and a frisbee partner. Now, I have found the best of both. Thanks Dogfinder!</p>
                     </div>
                 </div>
             </div>
@@ -87,8 +88,8 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 padding-lr">
-                        <p class="text-center h5"><strong>Potato Man</strong></p>
-                        <p class="text-center"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis velit omnis atque quaerat sed sunt sequi tempora odio fugiat quisquam dolorum nobis sapiente labore amet dignissimos aut, esse molestias facere.</p>
+                        <p class="text-center h5 txt-black"><strong>Tiah J.</strong></p>
+                        <p class="text-center">We wanted to adopt a lab who needed some extra love and care and through Dogfinder we found out new family member. So happy!</p>
                     </div>
                 </div>
             </div>
@@ -99,17 +100,46 @@
 <!-- Search at bottom -->
 
 <section>
-    <div class="container-fluid search margin-tb">
+    <div class="container-fluid search" id="search">
         <div class="row">
-            <div class="col-xs-12 padding-tb">
-                  <h1 class="text-center h1">Find Your New Best Friend</h1>
+            <div class="col-xs-12">
+                <form id="regForm" action="">
+                    <h1 class="text-center h1">Find Your New Best Friend</h1>
                   <br>
-                  <h2 class="text-center h3">What breed of dog are you looking for?</h2>
-                  <br>
-                <form>
-                    <input type="text" name="firstname" class="search-form center-block">
-                    <br>
+                    <!-- One "tab" for each step in the form: -->
+                    <div class="tab text-center h3 txt-black">What breed of dog are you looking for? <br><br>
+                      <p><input placeholder="poodle..." type="text" oninput="this.className = ''"></p>
+                    </div>
+
+                    <div class="tab text-center h3 txt-black">Enter the zip code where you are looking<br><br>
+                      <p><input placeholder="95409..." type="number" oninput="this.className = ''"></p>
+                    </div>
+
+                    <div class="tab text-center h3 txt-black">How many miles from this zip code are you looking?<br><br>
+                      <p><input placeholder="30..." type="number" oninput="this.className = ''"></p>
+                    </div>
+
+                    <!-- <div class="tab text-center h3 txt-black">Login Info:<br><br>
+                      <p><input placeholder="Username..." oninput="this.className = ''"></p>
+                      <p><input placeholder="Password..." oninput="this.className = ''"></p>
+                    </div> -->
+
+                    <div style="overflow:auto;">
+                      <div style="float:right;">
+                        <button type="button" id="prevBtn" class="btn-lg" onclick="nextPrev(-1)">Previous</button>
+                        <button type="button" id="nextBtn" class="btn-lg" onclick="nextPrev(1)">Next</button>
+                      </div>
+                    </div>
+
+                    <!-- Circles which indicates the steps of the form: -->
+                    <div style="text-align:center;margin-top:40px;">
+                      <span class="step"></span>
+                      <span class="step"></span>
+                      <span class="step"></span>
+                      <span class="step"></span>
+                    </div>
                 </form>
+
             </div>
         </div>
     </div>
