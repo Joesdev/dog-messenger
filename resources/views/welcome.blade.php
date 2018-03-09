@@ -108,7 +108,11 @@
                   <br>
                     <!-- One "tab" for each step in the form: -->
                     <div class="tab text-center h3 txt-black">What breed of dog are you looking for? <br><br>
-                      <p><input placeholder="poodle..." type="text" oninput="this.className = ''"></p>
+                        <p>
+                            {{--<select id="tags" placeholder="This is a test" type="text" oninput="this.className = ''"></select>--}}
+                        <div class="ui-widget">   <label for="tags">Tags: </label>   <input id="tags"> </div>
+
+                        </p>
                     </div>
 
                     <div class="tab text-center h3 txt-black">Enter the zip code where you are looking<br><br>
