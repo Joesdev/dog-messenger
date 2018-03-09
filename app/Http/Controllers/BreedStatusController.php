@@ -18,4 +18,15 @@ class BreedStatusController extends Controller
         };
         return $breedArray;
     }
+
+    public function getZipCodesByDistance($focusZip, $mainZip)
+    {
+        //set an index for
+        //for each
+            //if - compare focusZip with the index of mainZip
+                //add to the returnable array
+            //else do nothing
+        //end for each
+        //return array of new zips
+    }
 }
