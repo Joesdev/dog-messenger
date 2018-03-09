@@ -109,9 +109,7 @@
                     <!-- One "tab" for each step in the form: -->
                     <div class="tab text-center h3 txt-black">What breed of dog are you looking for? <br><br>
                         <p>
-                            {{--<select id="tags" placeholder="This is a test" type="text" oninput="this.className = ''"></select>--}}
-                        <div class="ui-widget">   <label for="tags">Tags: </label>   <input id="tags"> </div>
-
+                            <select id="tags" placeholder="This is a test.." type="text" oninput="this.className = ''"></select>
                         </p>
                     </div>
 
