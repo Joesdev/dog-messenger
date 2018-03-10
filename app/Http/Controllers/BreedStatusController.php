@@ -28,21 +28,39 @@ class BreedStatusController extends Controller
         //return array of new zips
     }
     */
+
+    public function testFunction(){
+        $zipCodes = [
+            '91324',
+            '95401',
+            '91326'
+        ];
+
+        $maxMiles = 100;
+        $focusZip = '95492';
+        $var = $this->getMilesBetweenZipCodes($zipCodes, $maxMiles, $focusZip);
+    }
     public function getMilesBetweenZipCodes($zipCodes, $maxMiles, $focusZip)
     {
         $client = new \GuzzleHttp\Client();
         $zipDistanceArray = [];
         $zipString = '';
+        $index = 0;
         foreach($zipCodes as $zipCode){
-            $zipString += ', ' . $zipCode;
+            if($index == 0){
+                $zipString .= $zipCode;
+            }else{
+                $zipString .= ', ' . $zipCode;
+            }
+            $index++;
         }
-        dd($zipString);
-        //create string to Query Zip Codes API using both query string and maxMiles
-        $query = 'www.zipcodeapi.com/rest/' .  env('ZIP_API_KEY')  . '/multi-distance.json/' .
-                                '/'         .  $focusZip               . '/'                     .
-                           $zipString       .  '/mile'
+        $query = "https://www.zipcodeapi.com/rest/" .  env('ZIP_API_KEY')  . "/multi-distance.json" .
+                                "/"         .  $focusZip               . "/"                     .
+                           $zipString       .  "/mile"
         ;
-        //query, save to variable
+        dd($query);
+        $queryResponse = $client->request('GET', '$query');
+        dd($queryResponse);
         //format if necessary
         //return data
     }
