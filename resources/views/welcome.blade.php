@@ -107,10 +107,8 @@
                     <h1 class="text-center h1">Find Your New Best Friend</h1>
                   <br>
                     <!-- One "tab" for each step in the form: -->
-                    <div class="tab text-center h3 txt-black">What breed of dog are you looking for? <br><br>
-                        <p>
-                            <select id="tags" placeholder="This is a test.." type="text" oninput="this.className = ''"></select>
-                        </p>
+                    <div class="tab text-center h3 txt-black ui-widget">What breed of dog are you looking for? <br><br>
+                      <p><input placeholder="poodle..." type="text" id="tags" oninput="this.className = ''"></p>
                     </div>
 
                     <div class="tab text-center h3 txt-black">Enter the zip code where you are looking<br><br>

@@ -23,5 +23,8 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/app.js"></script>
 <script src="js/custom.js"></script>
+
+<!-- breed autofill test -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>
 </html>
