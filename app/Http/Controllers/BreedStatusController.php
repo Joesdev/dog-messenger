@@ -58,8 +58,7 @@ class BreedStatusController extends Controller
                                 "/"         .  $focusZip               . "/"                     .
                            $zipString       .  "/mile"
         ;
-        dd($query);
-        $queryResponse = $client->request('GET', '$query');
+        $queryResponse = $client->request('GET', $query);
         dd($queryResponse);
         //format if necessary
         //return data
