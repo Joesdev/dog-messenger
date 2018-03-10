@@ -74,8 +74,6 @@ function fixStepIndicator(n) {
 
 
 // SMOOTH SCROLL
-
-
 $(document).ready(function(){
 	$('a[href^="#"]').on('click',function (e) {
 	    e.preventDefault();
@@ -90,6 +88,38 @@ $(document).ready(function(){
 	    });
 	});
 });
+
+//breed form autofill
+
+$( function() {
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  } );
 
 
 
