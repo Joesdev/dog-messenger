@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Storage;
+use GuzzleHttp\Client;
 
 class BreedStatusController extends Controller
 {
@@ -13,9 +14,10 @@ class BreedStatusController extends Controller
         return $breedArray;
     }
 
-/*    public function getZipCodesByDistance($mainZip, $zipCodeArray)
+/*    public function getZipCodesByDistance(Request $request)
     {
         $index = 0;
+        //query for all zip codes
         foreach($zipCodeArray as $focusZip){
             if(compare focusZip with the index of mainZip){
                 //add to the returnable array
@@ -26,12 +28,20 @@ class BreedStatusController extends Controller
         //return array of new zips
     }
     */
-    public function getMilesBetweenZipCodes($zipCodes, $maxMiles)
+    public function getMilesBetweenZipCodes($zipCodes, $maxMiles, $focusZip)
     {
-        //create guzzle object
-        //create empty return array
-        //Concatenate zipCodes Array into a queryable string
+        $client = new \GuzzleHttp\Client();
+        $zipDistanceArray = [];
+        $zipString = '';
+        foreach($zipCodes as $zipCode){
+            $zipString += ', ' . $zipCode;
+        }
+        dd($zipString);
         //create string to Query Zip Codes API using both query string and maxMiles
+        $query = 'www.zipcodeapi.com/rest/' .  env('ZIP_API_KEY')  . '/multi-distance.json/' .
+                                '/'         .  $focusZip               . '/'                     .
+                           $zipString       .  '/mile'
+        ;
         //query, save to variable
         //format if necessary
         //return data

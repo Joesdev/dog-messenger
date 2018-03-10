@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'Controller@getHomeView');
+
+Route::get('/submit', 'BreedStatusController@getMilesBetweenZipCodes');
