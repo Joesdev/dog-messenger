@@ -26,9 +26,14 @@ class BreedStatusController extends Controller
         //return array of new zips
     }
     */
-    public function getMilesBetweenZipCodes($zip)
+    public function getMilesBetweenZipCodes($zipCodes, $maxMiles)
     {
         //create guzzle object
-
+        //create empty return array
+        //Concatenate zipCodes Array into a queryable string
+        //create string to Query Zip Codes API using both query string and maxMiles
+        //query, save to variable
+        //format if necessary
+        //return data
     }
 }
