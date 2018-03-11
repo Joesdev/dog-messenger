@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Selection;
 use Illuminate\Http\Request;
 use Storage;
 use GuzzleHttp\Client;
+use App\User;
 
 class BreedStatusController extends Controller
 {
@@ -27,6 +29,9 @@ class BreedStatusController extends Controller
             );
             $data = json_decode($response->getBody()->getContents(), true);
             $data = $data['petfinder']['pets']['pet'];
+            //Testing-----------------------------
+            $this->saveLargestBreedId($data);
+            //------------------------------------
             return $data;
     }
 
@@ -43,5 +48,25 @@ class BreedStatusController extends Controller
         };
         return 0;
     }
+
+    public function getLargestBreedId($breedsArray){
+        $max = 0;
+        foreach($breedsArray as $breed){
+            $id = $breed['id']['$t'];
+            if($id > $max){
+                $max = $id;
+            }
+        };
+    }
+
+    public function saveMaxBreedIdToSelectionsTable($email, $breedId)
+    {
+        $user = User::where('email',$email)->with('selection')->get(['selection_id']);
+        $selection_id = $user->pluck('selection_id');
+        Selection::where('id', $selection_id)->update([
+            'highest_breed_id' => $breedId
+        ]);
+    }
+
 
 }

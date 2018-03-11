@@ -12,4 +12,4 @@
 */
 
 Route::get('/', 'Controller@getHomeView');
-Route::get('/save', 'BreedStatusController@testFunction');
+Route::get('/save', 'BreedStatusController@saveMaxBreedIdToSelectionsTable');
