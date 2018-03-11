@@ -12,3 +12,6 @@
 */
 
 Route::get('/', 'Controller@getHomeView');
+
+Route::get('/save', 'BreedStatusController@isBreedDataUpdated');
+

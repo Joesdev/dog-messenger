@@ -75,9 +75,15 @@ class BreedStatusController extends Controller
         // else return
     }
 
-    public function isBreedDataUpdated($email){
-        //get user data from DB
-        User::
+    public function isBreedDataUpdated($email='bullshit0@gmail.com'){
+        $user = User::where('email', $email)->with('selection')->get();
+        $selectionId = $user->pluck('selection_id');
+        $selection = Selection::where('id', $selectionId)->get();
+        $subset = $selection->map(function ($selection) {
+            return collect($selection->toArray())->only(['highest_breed_id','breed_id', 'max_miles'])->all();
+        });
+        $this->getExternalDataForBreed()
+
         //query for 100 records
         //getLargestBreedId on 100 records save to variable
         // if(maxVarialbe > user db high_breed_id)
