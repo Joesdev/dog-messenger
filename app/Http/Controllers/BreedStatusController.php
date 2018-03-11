@@ -16,13 +16,13 @@ class BreedStatusController extends Controller
         return $breedArray;
     }
 
-    public function getExternalDataForBreed(Request $request)
+    public function getExternalDataForBreed($location, $breed)
     {
             $client = new \GuzzleHttp\Client();
             $response = $client->request('GET', 'api.petfinder.com/pet.find?' .
                 'key=' . env('API_KEY') . '&' .
-                'location=' . $request->location . '&' .
-                'breed=' . $request->breed . '&' .
+                'location=' . $location . '&' .
+                'breed=' . $breed . '&' .
                 'count=100' . '&' .
                 'format=json' . '&' .
                 'offset=0'
@@ -63,6 +63,11 @@ class BreedStatusController extends Controller
         Selection::where('id', $selection_id)->update([
             'highest_breed_id' => $breedId
         ]);
+    }
+
+    public function getUpdatedBreedDataForUser($email)
+    {
+
     }
 
 }

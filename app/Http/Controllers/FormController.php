@@ -28,4 +28,8 @@ class FormController extends Controller
 
         ]);
     }
+
+    /*public function storeUserSettings(){
+
+    }*/
 }
