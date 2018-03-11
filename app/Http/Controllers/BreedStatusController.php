@@ -55,7 +55,7 @@ class BreedStatusController extends Controller
             return $data;
     }
 
-    public function saveUserRecordToEmail(){
+    public function saveUserRecordToEmail($email, $miles, $breed){
         $selection =
             Selection::create([
                 'breed_id' => 3,
@@ -72,6 +72,20 @@ class BreedStatusController extends Controller
             'selection_id' => $selection->id,
 
         ]);
+    }
+
+    public function getBreedId($breedName){
+        $breedText = Storage::disk('local')->get('/data/breeds.json');
+        $breedArray = json_decode($breedText, true);
+        $index = 1;
+        foreach($breedArray as $breed){
+            if($breedName === $breed){
+                return $index;
+            } else{
+                $index++;
+            }
+        };
+        return 0;
     }
 
 }

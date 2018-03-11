@@ -12,4 +12,4 @@
 */
 
 Route::get('/', 'Controller@getHomeView');
-Route::get('/save', 'BreedStatusController@saveUserRecordToEmail');
+Route::get('/save', 'BreedStatusController@getBreedId');
