@@ -37,4 +37,20 @@ class BreedStatusController extends Controller
         return $zipDistanceArray['distances'];
     }
 
+    public function getExternalDataForBreed(Request $request)
+    {
+            $client = new \GuzzleHttp\Client();
+            $response = $client->request('GET', 'api.petfinder.com/pet.find?' .
+                'key=' . env('API_KEY') . '&' .
+                'location=' . $request->location . '&' .
+                'breed=' . $request->breed . '&' .
+                'count=100' . '&' .
+                'format=json' . '&' .
+                'offset=0'
+            );
+            $data = json_decode($response->getBody()->getContents(), true);
+            $data = $data['petfinder']['pets']['pet'];
+            return $data;
+    }
+
 }
