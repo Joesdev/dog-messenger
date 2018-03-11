@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Storage;
 use GuzzleHttp\Client;
+use App\Selection;
+use App\User;
 
 class BreedStatusController extends Controller
 {
@@ -53,8 +55,22 @@ class BreedStatusController extends Controller
             return $data;
     }
 
-    public function saveUserRecordToEmail($email, $zip, $breed){
-    //  Save the email to DB
+    public function saveUserRecordToEmail($miles, $email, $breed){
+        $selection =
+            Selection::create([
+                'highest_breed_id' => 0,
+                'max_miles' => '100',
+                'match'     => false
+            ])
+        ;
+
+        User::create([
+            'rank' => 0,
+            'name' => 'user',
+            'email' => 'thisIsATEST@gmail.com',
+            'selection_id' => $selection->id,
+
+        ]);
     //  Save Breed Preference to DB
     //  Save the largest petID to DB
     //  Save milage to DB
