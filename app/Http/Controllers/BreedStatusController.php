@@ -55,9 +55,10 @@ class BreedStatusController extends Controller
             return $data;
     }
 
-    public function saveUserRecordToEmail($miles, $email, $breed){
+    public function saveUserRecordToEmail(){
         $selection =
             Selection::create([
+                'breed_id' => 3,
                 'highest_breed_id' => 0,
                 'max_miles' => '100',
                 'match'     => false
@@ -71,9 +72,6 @@ class BreedStatusController extends Controller
             'selection_id' => $selection->id,
 
         ]);
-    //  Save Breed Preference to DB
-    //  Save the largest petID to DB
-    //  Save milage to DB
     }
 
 }
