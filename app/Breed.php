@@ -12,6 +12,6 @@ class Breed extends Model
     protected $fillable = ['breed'];
 
     public function selections(){
-        $this->hasMany('App\Selection', 'breed_id','id');
+        return $this->hasMany('App\Selection', 'breed_id','id');
     }
 }
