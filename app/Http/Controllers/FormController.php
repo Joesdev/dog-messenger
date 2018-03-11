@@ -9,7 +9,7 @@ use App\Http\Controllers\BreedStatusController;
 
 class FormController extends Controller
 {
-    public function saveUserRecordToEmail($email = 'batman@gmail.com', $miles = 50, $breed = 'Bloodhound'){
+    public function saveUserRecordToEmail($email, $miles, $breed){
         $breedController = new BreedStatusController();
         $selection =
             Selection::create([
