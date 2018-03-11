@@ -53,11 +53,11 @@ class BreedStatusController extends Controller
             return $data;
     }
 
-    //public function saveUserRecordToEmail{
+    public function saveUserRecordToEmail($email, $zip, $breed){
     //  Save the email to DB
     //  Save Breed Preference to DB
     //  Save the largest petID to DB
     //  Save milage to DB
-    //}
+    }
 
 }
