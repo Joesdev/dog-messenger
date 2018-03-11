@@ -54,6 +54,7 @@ class BreedStatusController extends Controller
                 $max = $id;
             }
         };
+        return $max;
     }
 
     public function saveMaxBreedIdToSelectionsTable($email, $breedId)
@@ -67,7 +68,21 @@ class BreedStatusController extends Controller
 
     public function getUpdatedBreedDataForUser($email)
     {
+        //query for breed of 100 records
+        //getLargestBreedId
+        // if greater than users highest_breed_id
+            //get an array of all ids larger than highest_breed_id
+        // else return
+    }
 
+    public function isBreedDataUpdated($email){
+        //get user data from DB
+        User::
+        //query for 100 records
+        //getLargestBreedId on 100 records save to variable
+        // if(maxVarialbe > user db high_breed_id)
+            //return true;
+        // else return false
     }
 
 }
