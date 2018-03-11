@@ -14,4 +14,8 @@ class Selection extends Model
     public function users(){
         $this->hasOne('App\User', 'selection_id','id');
     }
+
+    public function breed(){
+        $this->hasOne('App\Breed', 'id', 'breed_id');
+    }
 }
