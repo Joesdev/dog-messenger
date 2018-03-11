@@ -9,13 +9,15 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public $timestamps = true;
+    public $primaryKey = 'id';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'rank', 'name', 'email', 'selection_id', 'created_at', 'updated_at'
     ];
 
     /**
@@ -26,4 +28,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function selection(){
+        return $this->hasOne('App\Selection', 'id', 'selection_id');
+    }
 }

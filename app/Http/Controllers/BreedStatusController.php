@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Storage;
 use GuzzleHttp\Client;
+use App\Selection;
+use App\User;
 
 class BreedStatusController extends Controller
 {
@@ -53,11 +55,44 @@ class BreedStatusController extends Controller
             return $data;
     }
 
-    //public function saveUserRecordToEmail{
-    //  Save the email to DB
-    //  Save Breed Preference to DB
-    //  Save the largest petID to DB
-    //  Save milage to DB
-    //}
+    public function saveUserRecordToEmail($email, $miles, $breed){
+        $selection =
+            Selection::create([
+                'breed_id' => $this->getBreedIdForDatabase($breed),
+                'highest_breed_id' => 0,
+                'max_miles' => $miles,
+                'match'     => false
+            ])
+        ;
+
+        User::create([
+            'rank' => 0,
+            'name' => 'user',
+            'email' => $email,
+            'selection_id' => $selection->id,
+
+        ]);
+    }
+
+   /* public function testFunction(){
+        $email = 'joey4favre@gmail.com';
+        $miles = 75;
+        $breed = 'Pit Bull Terrier';
+        dd($this->saveUserRecordToEmail($email, $miles, $breed));
+    }*/
+
+    public function getBreedIdForDatabase($breedName){
+        $breedText = Storage::disk('local')->get('/data/breeds.json');
+        $breedArray = json_decode($breedText, true);
+        $index = 1;
+        foreach($breedArray as $breed){
+            if($breedName === $breed){
+                return $index;
+            } else{
+                $index++;
+            }
+        };
+        return 0;
+    }
 
 }
