@@ -29,9 +29,6 @@ class BreedStatusController extends Controller
             );
             $data = json_decode($response->getBody()->getContents(), true);
             $data = $data['petfinder']['pets']['pet'];
-            //Testing-----------------------------
-            $this->saveLargestBreedId($data);
-            //------------------------------------
             return $data;
     }
 
@@ -67,6 +64,5 @@ class BreedStatusController extends Controller
             'highest_breed_id' => $breedId
         ]);
     }
-
 
 }
