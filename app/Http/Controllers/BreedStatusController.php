@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Storage;
 use GuzzleHttp\Client;
-use App\Selection;
-use App\User;
 
 class BreedStatusController extends Controller
 {
