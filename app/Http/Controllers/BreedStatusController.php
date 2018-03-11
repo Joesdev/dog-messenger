@@ -74,7 +74,7 @@ class BreedStatusController extends Controller
         ]);
     }
 
-    public function getBreedId($breedName){
+    public function getBreedIdForDatabase($breedName){
         $breedText = Storage::disk('local')->get('/data/breeds.json');
         $breedArray = json_decode($breedText, true);
         $index = 1;
