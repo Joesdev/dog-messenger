@@ -12,5 +12,3 @@
 */
 
 Route::get('/', 'Controller@getHomeView');
-
-Route::get('/submit', 'BreedStatusController@getExternalDataForBreed');
