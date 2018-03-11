@@ -14,22 +14,7 @@ class BreedStatusController extends Controller
         return $breedArray;
     }
 
-/*    public function getZipCodesByDistance(Request $request)
-    {
-        $index = 0;
-        //query for all zip codes
-        foreach($zipCodeArray as $focusZip){
-            if(compare focusZip with the index of mainZip){
-                //add to the returnable array
-            }else{
-                //else do nothing
-            }
-        }
-        //return array of new zips
-    }
-    */
-
-    public function testFunction(){
+/*    public function testFunction(){
         $zipCodes = [
             '91324',
             '95401',
@@ -39,7 +24,7 @@ class BreedStatusController extends Controller
         $maxMiles = 100;
         $focusZip = '95492';
         $var = $this->getMilesBetweenZipCodes($zipCodes, $maxMiles, $focusZip);
-    }
+    }*/
     public function getMilesBetweenZipCodes($zipCodes, $maxMiles, $focusZip)
     {
         $client = new \GuzzleHttp\Client();
@@ -59,8 +44,9 @@ class BreedStatusController extends Controller
                            $zipString       .  "/mile"
         ;
         $queryResponse = $client->request('GET', $query);
-        dd($queryResponse);
-        //format if necessary
-        //return data
+        $zipDistanceArray = json_decode($queryResponse ->getBody()->getContents(), true);
+        return $zipDistanceArray['distances'];
     }
+
+
 }
