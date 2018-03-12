@@ -67,7 +67,7 @@ class BreedStatusController extends Controller
         ]);
     }
 
-    public function getUpdatedBreedArray($email='steve@gmail.com'){
+    public function getUpdatedBreedArray($email){
         //Retrieves selection values given an email address
         $user = User::where('email', $email)->with('selection')->get();
         $selectionId = $user->pluck('selection_id');
