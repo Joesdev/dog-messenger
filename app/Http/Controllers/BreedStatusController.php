@@ -11,6 +11,8 @@ use App\Breed;
 
 class BreedStatusController extends Controller
 {
+    private $selectionZipCode;
+    private $selectionMaxMiles;
     public function getAllBreeds(){
         $breedText = Storage::disk('local')->get('/data/breeds.json');
         $breedArray = json_decode($breedText, true);
@@ -78,8 +80,9 @@ class BreedStatusController extends Controller
         $breed_id = $subset->pluck('breed_id')->first();
         $usersMaxId = $subset->pluck('highest_breed_id')->first();
         $breedName = Breed::where('id', $breed_id)->get()->pluck('breed')->first();
-        $zip = $subset->pluck('zip')->first();
-        $breeds = $this->getExternalDataForBreed($zip, $breedName);
+        $this->selectionZipCode = $subset->pluck('zip')->first();
+        $this->selectionMaxMiles = $subset->pluck('max_miles')->first();
+        $breeds = $this->getExternalDataForBreed($this->selectionMaxMiles, $breedName);
         $latestMaxId = $this->getLargestBreedId($breeds);
 
         if($latestMaxId > $usersMaxId){
@@ -108,6 +111,11 @@ class BreedStatusController extends Controller
         }
         rsort($records);
         return $records;
+    }
+
+    public function isDistanceUnder($breedData)
+    {
+        if($breedData)
     }
 
 }
