@@ -9,11 +9,12 @@ use App\Http\Controllers\BreedStatusController;
 
 class FormController extends Controller
 {
-    public function saveUserRecordToEmail($email, $miles, $breed){
+    public function saveUserRecordToEmail($email='etha2@gmail.com', $miles=44, $breed='Bearded Collie', $zip = "91306"){
         $breedController = new BreedStatusController();
         $selection =
             Selection::create([
                 'breed_id' => $breedController->getBreedIdForDatabase($breed),
+                'zip' => $zip,
                 'highest_breed_id' => 0,
                 'max_miles' => $miles,
                 'match'     => false

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Storage;
 use GuzzleHttp\Client;
 use App\User;
+use App\Breed;
 
 class BreedStatusController extends Controller
 {
@@ -75,20 +76,49 @@ class BreedStatusController extends Controller
         // else return
     }
 
-    public function isBreedDataUpdated($email='bullshit0@gmail.com'){
+    public function getUpdatedBreedArray($email='steve@gmail.com'){
+        //Retrieves selection values given an email address
         $user = User::where('email', $email)->with('selection')->get();
         $selectionId = $user->pluck('selection_id');
         $selection = Selection::where('id', $selectionId)->get();
         $subset = $selection->map(function ($selection) {
-            return collect($selection->toArray())->only(['highest_breed_id','breed_id', 'max_miles'])->all();
+            return collect($selection->toArray())->only(['highest_breed_id','breed_id', 'max_miles', 'zip'])->all();
         });
-        $this->getExternalDataForBreed()
+        $breed_id = $subset->pluck('breed_id')->first();
+        $usersMaxId = $subset->pluck('highest_breed_id')->first();
+        $breedName = Breed::where('id', $breed_id)->get()->pluck('breed')->first();
+        $zip = $subset->pluck('zip')->first();
+        $breeds = $this->getExternalDataForBreed($zip, $breedName);
+        $latestMaxId = $this->getLargestBreedId($breeds);
+        //Testing
+        dd($this->sortRecordsIds($breeds));
+        //
+        if($latestMaxId > $usersMaxId){
+            return $updatedBreedArray = $this->getRecordsLargerThanBreedId($breeds, $usersMaxId);
+        }else{
+            return [];
+        }
+    }
 
-        //query for 100 records
-        //getLargestBreedId on 100 records save to variable
-        // if(maxVarialbe > user db high_breed_id)
-            //return true;
-        // else return false
+    public function getRecordsLargerThanBreedId($breedData, $breedId)
+    {
+        $recordsLargerThanBreedId = [];
+        foreach($breedData as $data)
+        {
+            if($data['id']['$t'] > $breedId){
+                $recordsLargerThanBreedId = $data['id']['$t'];
+            }
+        }
+        return $recordsLargerThanBreedId;
+    }
+
+    public function sortRecordsIds($breedData){
+        $records = [];
+        foreach($breedData as $data){
+            array_push($records,$data['id']['$t']);
+        }
+        rsort($records);
+        return $records;
     }
 
 }
