@@ -82,7 +82,7 @@ class BreedStatusController extends Controller
         $breedName = Breed::where('id', $breed_id)->get()->pluck('breed')->first();
         $this->selectionZipCode = $subset->pluck('zip')->first();
         $this->selectionMaxMiles = $subset->pluck('max_miles')->first();
-        $breeds = $this->getExternalDataForBreed($this->selectionMaxMiles, $breedName);
+        $breeds = $this->getExternalDataForBreed($this->selectionZipCode, $breedName);
         $latestMaxId = $this->getLargestBreedId($breeds);
 
         if($latestMaxId > $usersMaxId){
@@ -90,6 +90,12 @@ class BreedStatusController extends Controller
         }else{
             return [];
         }
+    }
+
+    public function testFunction()
+    {
+        $updatedArray = $this->getUpdatedBreedArray('steve@gmail.com');
+        $this->isDistanceUnder($updatedArray);
     }
 
     public function getRecordsLargerThanBreedId($breedData, $breedId)
@@ -113,9 +119,9 @@ class BreedStatusController extends Controller
         return $records;
     }
 
-    public function isDistanceUnder($breedData)
+    public function isDistanceUnder()
     {
-        if($breedData)
+
     }
 
 }
