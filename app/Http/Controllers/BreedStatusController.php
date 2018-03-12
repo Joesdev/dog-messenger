@@ -67,15 +67,6 @@ class BreedStatusController extends Controller
         ]);
     }
 
-    public function getUpdatedBreedDataForUser($email)
-    {
-        //query for breed of 100 records
-        //getLargestBreedId
-        // if greater than users highest_breed_id
-            //get an array of all ids larger than highest_breed_id
-        // else return
-    }
-
     public function getUpdatedBreedArray($email='steve@gmail.com'){
         //Retrieves selection values given an email address
         $user = User::where('email', $email)->with('selection')->get();
@@ -90,9 +81,7 @@ class BreedStatusController extends Controller
         $zip = $subset->pluck('zip')->first();
         $breeds = $this->getExternalDataForBreed($zip, $breedName);
         $latestMaxId = $this->getLargestBreedId($breeds);
-        //Testing
-        dd($this->sortRecordsIds($breeds));
-        //
+
         if($latestMaxId > $usersMaxId){
             return $updatedBreedArray = $this->getRecordsLargerThanBreedId($breeds, $usersMaxId);
         }else{
@@ -106,7 +95,7 @@ class BreedStatusController extends Controller
         foreach($breedData as $data)
         {
             if($data['id']['$t'] > $breedId){
-                $recordsLargerThanBreedId = $data['id']['$t'];
+                array_push($recordsLargerThanBreedId, $data['id']['$t']);
             }
         }
         return $recordsLargerThanBreedId;
