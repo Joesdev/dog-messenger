@@ -15,6 +15,6 @@ class Controller extends BaseController
     public function getHomeView(){
         $breedStatusController = new BreedStatusController();
         $allBreeds = $breedStatusController->getAllBreeds();
-        return view('welcome')->with('allBreeds',$allBreeds);
+        return view('welcome');
     }
 }
