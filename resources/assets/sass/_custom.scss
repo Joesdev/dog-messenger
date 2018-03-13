@@ -31,15 +31,14 @@ html, body {
     background-attachment: inherit; } 
 }
 
+/* TEXT */
 h1, h2, h3 {
 	 font-family: 'Comfortaa', sans-serif;
 }
-
 .h1 {
 	color: white;
 	font-weight: 700;
 }
-
 .txt-black {
   color: black;
 }
@@ -50,7 +49,7 @@ h1, h2, h3 {
 	height: 70px;
 	width: 70px;
 	color: white;
-	background-color: #B8DED7;
+	background-color: $main-blue;
 }
 
 /*SPACING*/
@@ -81,8 +80,9 @@ h1, h2, h3 {
 .border-0 {
   border: none;
 }
+/* BUTTON*/
 .btn-yellow {
-  background-color: #F3D030;
+  background-color: $main-yellow;
   font-weight: 700;
   color: white;
   border: none;
@@ -109,36 +109,24 @@ h1, h2, h3 {
 
 /*Search Bottom Section*/
 .search {
-  background-color: #ed7333;
+  background-color: $main-orange;
 }
 .search-form {
   padding: 1em;
   width: 40em;
   margin: 0 auto;
 }
-
 a:hover {
   text-decoration: none;
 }
 
-
-
-
-
-
-
-
-
 /* SEARCH FORM */
-
-/* Style the form */
 #regForm {
   margin: 100px auto;
   width: 70%;
   min-width: 300px;
 }
 
-/* Style the input fields */
 input {
   padding: 14px;
   width: 100%;
@@ -162,7 +150,7 @@ input.invalid {
   height: 15px;
   width: 15px;
   margin: 0 2px;
-  background-color: #bbbbbb;
+  background-color: $main-blue;
   border: none; 
   border-radius: 50%;
   display: inline-block;

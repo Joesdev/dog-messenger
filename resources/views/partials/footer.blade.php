@@ -1,5 +1,5 @@
-<div class="row">
+<footer class="row">
     <div class="col-sm-12 bg-inverse text-white">
-        <p class="text-center"><span class="align-baseline">@Copyright 2018 DOGFINDER</span></p>
+        <div class="text-center"><span class="align-baseline">@copyright 2018 Dogfinder</span></div>
     </div>
-</div>
+</footer>
