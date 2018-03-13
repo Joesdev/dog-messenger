@@ -8,6 +8,7 @@ use Storage;
 use GuzzleHttp\Client;
 use App\User;
 use App\Breed;
+use App\Http\Controllers\DistanceController;
 
 class BreedStatusController extends Controller
 {

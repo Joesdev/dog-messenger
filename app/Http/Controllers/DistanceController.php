@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 
 class DistanceController extends Controller
 {
-    public function getMilesBetweenZipCodes($zipCodes, $maxMiles, $focusZip)
+    public function getMilesBetweenZipCodes($zipCodes, $focusZip)
     {
         $client = new \GuzzleHttp\Client();
         $zipDistanceArray = [];
