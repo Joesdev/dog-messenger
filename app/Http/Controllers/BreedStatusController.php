@@ -93,19 +93,17 @@ class BreedStatusController extends Controller
         }
     }
 
-    public function testFunction()
-    {
-        $updatedArray = $this->getUpdatedBreedArray('steve@gmail.com');
-        $this->isDistanceUnder($updatedArray);
-    }
-
     public function getRecordsLargerThanBreedId($breedData, $breedId)
     {
         $recordsLargerThanBreedId = [];
         foreach($breedData as $data)
         {
             if($data['id']['$t'] > $breedId){
-                array_push($recordsLargerThanBreedId, $data['id']['$t']);
+                $item = array(
+                    'id' => $data['id']['$t'],
+                    'zip' => $data['contact']['zip']['$t']
+                );
+                $recordsLargerThanBreedId[] = $item;
             }
         }
         return $recordsLargerThanBreedId;
@@ -120,9 +118,26 @@ class BreedStatusController extends Controller
         return $records;
     }
 
-    public function isDistanceUnder()
+    public function testFunction()
     {
+        $updatedArray = $this->getUpdatedBreedArray('steve@gmail.com');
+        $this->getRecordsUnderMaxMiles($updatedArray);
+    }
 
+    public function getRecordsUnderMaxMiles($breedArray)
+    {
+        $index = 0;
+        $recordsUnderMaxMiles;
+        $distanceController = new DistanceController();
+        $distanceArray = $distanceController->getMilesBetweenZipCodes($breedArray, $this->selectionZipCode);
+        //Remove any breed data from array that is under max miles
+        foreach($breedArray as $breed){
+            $zip = $breed['zip'];
+            if($distanceArray[$zip] > $this->selectionMaxMiles){
+                unset($breedArray[$index]);
+            }
+            $index++;
+        }
     }
 
 }

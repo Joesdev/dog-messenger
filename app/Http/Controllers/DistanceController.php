@@ -15,9 +15,9 @@ class DistanceController extends Controller
         $index = 0;
         foreach($zipCodes as $zipCode){
             if($index == 0){
-                $zipString .= $zipCode;
+                $zipString .= $zipCode['zip'];
             }else{
-                $zipString .= ', ' . $zipCode;
+                $zipString .= ', ' . $zipCode['zip'];
             }
             $index++;
         }
