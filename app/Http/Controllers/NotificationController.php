@@ -12,7 +12,7 @@ class NotificationController extends Controller
 {
     use Notifiable;
 
-    public function notifyUsersEmailOfPetArrival(){
-        Notification::route('mail', 'joesilvpb4@gmail.com')->notify(new PetArrived());
+    public function notifyUsersEmailOfPetArrival($email){
+        Notification::route('mail', $email)->notify(new PetArrived());
     }
 }

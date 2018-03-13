@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 
 class DistanceController extends Controller
 {
-    public function getMilesBetweenZipCodes($zipCodes, $maxMiles, $focusZip)
+    public function getMilesBetweenZipCodes($zipCodes, $focusZip)
     {
         $client = new \GuzzleHttp\Client();
         $zipDistanceArray = [];
@@ -15,9 +15,9 @@ class DistanceController extends Controller
         $index = 0;
         foreach($zipCodes as $zipCode){
             if($index == 0){
-                $zipString .= $zipCode;
+                $zipString .= $zipCode['zip'];
             }else{
-                $zipString .= ', ' . $zipCode;
+                $zipString .= ', ' . $zipCode['zip'];
             }
             $index++;
         }

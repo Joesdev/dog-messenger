@@ -8,9 +8,12 @@ use Storage;
 use GuzzleHttp\Client;
 use App\User;
 use App\Breed;
+use App\Http\Controllers\DistanceController;
 
 class BreedStatusController extends Controller
 {
+    private $selectionZipCode;
+    private $selectionMaxMiles;
     public function getAllBreeds(){
         $breedText = Storage::disk('local')->get('/data/breeds.json');
         $breedArray = json_decode($breedText, true);
@@ -78,8 +81,9 @@ class BreedStatusController extends Controller
         $breed_id = $subset->pluck('breed_id')->first();
         $usersMaxId = $subset->pluck('highest_breed_id')->first();
         $breedName = Breed::where('id', $breed_id)->get()->pluck('breed')->first();
-        $zip = $subset->pluck('zip')->first();
-        $breeds = $this->getExternalDataForBreed($zip, $breedName);
+        $this->selectionZipCode = $subset->pluck('zip')->first();
+        $this->selectionMaxMiles = $subset->pluck('max_miles')->first();
+        $breeds = $this->getExternalDataForBreed($this->selectionZipCode, $breedName);
         $latestMaxId = $this->getLargestBreedId($breeds);
 
         if($latestMaxId > $usersMaxId){
@@ -95,7 +99,11 @@ class BreedStatusController extends Controller
         foreach($breedData as $data)
         {
             if($data['id']['$t'] > $breedId){
-                array_push($recordsLargerThanBreedId, $data['id']['$t']);
+                $item = array(
+                    'id' => $data['id']['$t'],
+                    'zip' => $data['contact']['zip']['$t']
+                );
+                $recordsLargerThanBreedId[] = $item;
             }
         }
         return $recordsLargerThanBreedId;
@@ -108,6 +116,36 @@ class BreedStatusController extends Controller
         }
         rsort($records);
         return $records;
+    }
+
+    public function testFunction($email)
+    {
+        $updatedArray = $this->getUpdatedBreedArray($email);
+        $filteredUpdatedArray = $this->getRecordsUnderMaxMiles($updatedArray);
+        if(empty($filteredUpdatedArray)){
+            return false;
+        } else{
+            //$notification = new NotificationController();
+            // send email
+            return true;
+        }
+    }
+
+    public function getRecordsUnderMaxMiles($breedArray)
+    {
+        $index = 0;
+        $distanceController = new DistanceController();
+        $distanceArray = $distanceController->getMilesBetweenZipCodes($breedArray, $this->selectionZipCode);
+        //Remove any breed data from array that is under max miles
+        foreach($breedArray as $breed){
+            $zip = $breed['zip'];
+            if($distanceArray[$zip] > $this->selectionMaxMiles){
+                unset($breedArray[$index]);
+            }
+            $index++;
+        }
+        return $breedArray;
+
     }
 
 }
