@@ -138,6 +138,8 @@ class BreedStatusController extends Controller
             }
             $index++;
         }
+        return $breedArray;
+
     }
 
 }
