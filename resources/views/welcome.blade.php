@@ -57,38 +57,38 @@
             <div class="col-sm-4">
                 <div class="row">
                     <div class="col-sm-12 padding-bottom-sm">
+                        <img class="test-pic center-block" src="images/tiah.jpg" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 padding-lr">
+                        <p class="text-center h5 txt-black"><strong>Tiah J.</strong></p>
+                        <p class="text-center"> I have been looking for a Rottweiler and a frisbee partner. Now, I have found the best of both. Thanks Dogfinder!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-12 padding-bottom-sm">
                         <img class="test-pic center-block" src="images/keith.jpg" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 padding-lr">
                         <p class="text-center h5 txt-black"><strong>Keith M.</strong></p>
-                        <p class="text-center">  Thanks to dogfiner I was the first to find out as soon as a pug came into a shelter near me and I picked her up that day. Thank you! </p>
+                        <p class="text-center">  Thanks to Dogfiner I was the first to find out as soon as a pug came into a shelter near me and I picked her up that day. Thank you! </p>
                     </div>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="row">
                     <div class="col-sm-12 padding-bottom-sm">
-                        <img class="test-pic center-block" src="images/dog1.jpg" />
+                        <img class="test-pic center-block" src="images/lexie.jpg" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 padding-lr">
-                        <p class="text-center h5 txt-black"><strong>Person 2</strong></p>
-                        <p class="text-center"> I have been looking for a german shepard and a frisbee partner. Now, I have found the best of both. Thanks Dogfinder!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="row">
-                    <div class="col-sm-12 padding-bottom-sm">
-                        <img class="test-pic center-block" src="images/dog1.jpg" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 padding-lr">
-                        <p class="text-center h5 txt-black"><strong>Tiah J.</strong></p>
+                        <p class="text-center h5 txt-black"><strong>Lexie D.</strong></p>
                         <p class="text-center">We wanted to adopt a lab who needed some extra love and care and through Dogfinder we found out new family member. So happy!</p>
                     </div>
                 </div>
@@ -119,11 +119,9 @@
                       <p><input placeholder="30..." type="number" oninput="this.className = ''"></p>
                     </div>
 
-                    <!-- <div class="tab text-center h3 txt-black">Login Info:<br><br>
-                      <p><input placeholder="Username..." oninput="this.className = ''"></p>
-                      <p><input placeholder="Password..." oninput="this.className = ''"></p>
-                    </div> -->
-
+                    <div class="tab text-center h3 txt-black">What is your email address?<br><br>
+                      <p><input placeholder="jake@gmail.com..." type="text" oninput="this.className = ''"></p>
+                    </div>
                     <div style="overflow:auto;">
                       <div style="float:right;">
                         <button type="button" id="prevBtn" class="btn-lg" onclick="nextPrev(-1)">Previous</button>
