@@ -118,16 +118,22 @@ class BreedStatusController extends Controller
         return $records;
     }
 
-    public function testFunction()
+    public function testFunction($email)
     {
-        $updatedArray = $this->getUpdatedBreedArray('steve@gmail.com');
-        $this->getRecordsUnderMaxMiles($updatedArray);
+        $updatedArray = $this->getUpdatedBreedArray($email);
+        $filteredUpdatedArray = $this->getRecordsUnderMaxMiles($updatedArray);
+        if(empty($filteredUpdatedArray)){
+            return false;
+        } else{
+            //$notification = new NotificationController();
+            // send email
+            return true;
+        }
     }
 
     public function getRecordsUnderMaxMiles($breedArray)
     {
         $index = 0;
-        $recordsUnderMaxMiles;
         $distanceController = new DistanceController();
         $distanceArray = $distanceController->getMilesBetweenZipCodes($breedArray, $this->selectionZipCode);
         //Remove any breed data from array that is under max miles
