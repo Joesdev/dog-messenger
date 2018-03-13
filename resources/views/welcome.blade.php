@@ -40,7 +40,7 @@
     <div class="container-fluid"> 
         <div class="row">
             <div class="col-xs-12 paralax">
-                <p class="h1 text-center">Your new best friend is waiting to meet <span style="color: #ff7615;">YOU</span></p>
+                <p class="h1 text-center">Your new best friend is waiting to meet <span style="color: $main-orange;">YOU</span></p>
             </div>
         </div>
     </div>
@@ -57,7 +57,7 @@
             <div class="col-sm-4">
                 <div class="row">
                     <div class="col-sm-12 padding-bottom-sm">
-                        <img class="test-pic center-block" src="images/tiah.jpg" />
+                        <img class="test-pic center-block" src="images/tiah.jpg" alt="Tiah"/>
                     </div>
                 </div>
                 <div class="row">
@@ -70,7 +70,7 @@
             <div class="col-sm-4">
                 <div class="row">
                     <div class="col-sm-12 padding-bottom-sm">
-                        <img class="test-pic center-block" src="images/keith.jpg" />
+                        <img class="test-pic center-block" src="images/keith.jpg" alt="Keith" />
                     </div>
                 </div>
                 <div class="row">
@@ -83,7 +83,7 @@
             <div class="col-sm-4">
                 <div class="row">
                     <div class="col-sm-12 padding-bottom-sm">
-                        <img class="test-pic center-block" src="images/lexie.jpg" />
+                        <img class="test-pic center-block" src="images/lexie.jpg" alt="Lexie" />
                     </div>
                 </div>
                 <div class="row">
@@ -107,21 +107,21 @@
                     <h1 class="text-center h1">Find Your New Best Friend</h1>
                   <br>
                     <!-- One "tab" for each step in the form: -->
-                    <div class="tab text-center h3 txt-black ui-widget">What breed of dog are you looking for? <br><br>
-                      <p><input placeholder="poodle..." type="text" id="tags" oninput="this.className = ''"></p>
-                    </div>
+                    <label class="tab text-center h3 txt-black ui-widget" for="breed">What breed of dog are you looking for? <br><br>
+                      <p><input placeholder="poodle..." type="text" id="breed"></p>
+                    </label>
 
-                    <div class="tab text-center h3 txt-black">Enter the zip code where you are looking<br><br>
-                      <p><input placeholder="95409..." type="number" oninput="this.className = ''"></p>
-                    </div>
+                    <label class="tab text-center h3 txt-black" for="zip">Enter the zip code where you are looking<br><br>
+                      <p><input placeholder="95409..." type="number" id="zip"></p>
+                    </label>
 
-                    <div class="tab text-center h3 txt-black">How many miles from this zip code are you looking?<br><br>
-                      <p><input placeholder="30..." type="number" oninput="this.className = ''"></p>
-                    </div>
+                    <label class="tab text-center h3 txt-black" for="miles">How many miles from this zip code are you looking?<br><br>
+                      <p><input placeholder="30..." type="number" id="miles"></p>
+                    </label>
 
-                    <div class="tab text-center h3 txt-black">What is your email address?<br><br>
-                      <p><input placeholder="jake@gmail.com..." type="text" oninput="this.className = ''"></p>
-                    </div>
+                    <label class="tab text-center h3 txt-black" for="email">What is your email address?<br><br>
+                      <p><input placeholder="jake@gmail.com..." type="text" id="email"></p>
+                    </label>
                     <div style="overflow:auto;">
                       <div style="float:right;">
                         <button type="button" id="prevBtn" class="btn-lg" onclick="nextPrev(-1)">Previous</button>

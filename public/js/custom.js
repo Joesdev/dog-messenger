@@ -1,3 +1,5 @@
+// BOTTOM SEARCH SECTION
+
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
 
@@ -73,7 +75,7 @@ function fixStepIndicator(n) {
 
 
 
-// SMOOTH SCROLL
+// SMOOTH SCROLL FOR YELLOW SEARCH BTN
 $(document).ready(function(){
 	$('a[href^="#"]').on('click',function (e) {
 	    e.preventDefault();

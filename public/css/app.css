@@ -7768,6 +7768,7 @@ html, body {
   }
 }
 
+/* TEXT */
 h1, h2, h3 {
   font-family: 'Comfortaa', sans-serif;
 }
@@ -7827,6 +7828,7 @@ h1, h2, h3 {
   border: none;
 }
 
+/* BUTTON*/
 .btn-yellow {
   background-color: #F3D030;
   font-weight: 700;
@@ -7869,14 +7871,12 @@ a:hover {
 }
 
 /* SEARCH FORM */
-/* Style the form */
 #regForm {
   margin: 100px auto;
   width: 70%;
   min-width: 300px;
 }
 
-/* Style the input fields */
 input {
   padding: 14px;
   width: 100%;
@@ -7900,7 +7900,7 @@ input.invalid {
   height: 15px;
   width: 15px;
   margin: 0 2px;
-  background-color: #bbbbbb;
+  background-color: #B8DED7;
   border: none;
   border-radius: 50%;
   display: inline-block;
