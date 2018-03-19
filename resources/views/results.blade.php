@@ -12,7 +12,6 @@
 		</div>
 	</div>
 </nav>
-
 <header>
 	<div class="container padding-bottom-md">
 		<div class="row">
@@ -22,7 +21,6 @@
 		</div>
 	</div>
 </header>
-
 <section>
 	<div class="container-fluid bg-blue padding-box">
 		<div class="row">
@@ -33,9 +31,9 @@
 					<div class="col-xs-12 col-sm-5">
 						<div class="row">
 							<div class="col-xs-12 p-0">
-								<img src="images/puppy.jpg" class="dog-pic-box img-responsive">
+								<img src="images/puppy.jpg" class="img-responsive">
 							</div>
-							<!-- LOCATION -->
+							<!-- CONTACT INFO-->
 							<div class="col-xs-12 padding-box-content">
 								<br>
 								<p class="txt-black"><strong>Contact</strong></p>
@@ -49,7 +47,7 @@
 							</div>
 						</div>
 					</div>
-
+					<!-- DOG INFO -->
 					<div class="col-xs-12 col-sm-7 padding-box-content">
 						<h2 class="h3 txt-black">Pogo</h2>
 						<p class="txt-black"><strong>Male - 6yrs</strong></p>

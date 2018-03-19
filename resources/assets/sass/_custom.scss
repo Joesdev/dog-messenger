@@ -172,7 +172,7 @@ input.invalid {
 
 
 
-/* RESULTS PAGE STYLES*/
+/* RESULTS PAGE ADDITIONAL STYLES*/
 .navbar-right {
   margin-right: 20px;
 }
@@ -191,34 +191,23 @@ input.invalid {
      padding: 2.5em;
      }
 }
-
 .padding-box-content {
   @media only screen and (min-width: 600px) {
      padding: 0 3em 3em 3em;
      }
 }
-
-
-.dog-pic-box {
- 
-}
-
 .text-orange {
   color: $main-orange;
 }
-
 .navbar-default .navbar-link {
   color: black;
 }
-
 .navbar-default .navbar-link:hover {
   color: $main-orange;
 }
-
 .navbar-default {
   border-color: black;
 }
-
 .padding-bottom-md {
   padding-bottom: 2em;
 }
