@@ -3,6 +3,8 @@ html, body {
   background-color: white;
   }
 
+/*WELCOME PAGE STYLES*/
+
 .bg-header {
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(255, 120, 42, 0.2)), url(../images/dog.jpg) no-repeat center center;
   background-attachment: fixed;
@@ -170,18 +172,42 @@ input.invalid {
 
 
 
+/* RESULTS PAGE ADDITIONAL STYLES*/
+.navbar-right {
+  margin-right: 20px;
+}
 
+.bg-blue {
+  background-color: $main-blue;
+}
 
+.bg-white {
+  background-color: white;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+.padding-box {
+  padding: 5em;
+  @media only screen and (max-width: 600px) {
+     padding: 2.5em;
+     }
+}
+.padding-box-content {
+  @media only screen and (min-width: 600px) {
+     padding: 0 3em 3em 3em;
+     }
+}
+.text-orange {
+  color: $main-orange;
+}
+.navbar-default .navbar-link {
+  color: black;
+}
+.navbar-default .navbar-link:hover {
+  color: $main-orange;
+}
+.navbar-default {
+  border-color: black;
+}
+.padding-bottom-md {
+  padding-bottom: 2em;
+}
