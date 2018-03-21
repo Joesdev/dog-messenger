@@ -9,6 +9,7 @@ use GuzzleHttp\Client;
 use App\User;
 use App\Breed;
 use App\Http\Controllers\DistanceController;
+use App\Http\Controllers\NotificationController;
 
 class BreedStatusController extends Controller
 {
@@ -118,16 +119,15 @@ class BreedStatusController extends Controller
         return $records;
     }
 
-    public function testFunction($email)
+    public function sendNotification($email='steve@gmail.com')
     {
         $updatedArray = $this->getUpdatedBreedArray($email);
         $filteredUpdatedArray = $this->getRecordsUnderMaxMiles($updatedArray);
         if(empty($filteredUpdatedArray)){
             return false;
-        } else{
-            //$notification = new NotificationController();
-            // send email
-            return true;
+        } else {
+            $notification = new NotificationController();
+            $notification->notifyUsersEmailOfPetArrival($email);
         }
     }
 
