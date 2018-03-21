@@ -13,6 +13,6 @@
 
 Route::get('/', 'Controller@getHomeView');
 
-Route::get('/save', 'BreedStatusController@sendNotification');
+Route::get('/save', 'BreedStatusController@notifyNextThreeEmails');
 
 Route::view('/results', 'results');

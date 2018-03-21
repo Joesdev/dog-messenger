@@ -119,7 +119,16 @@ class BreedStatusController extends Controller
         return $records;
     }
 
-    public function sendNotification($email='steve@gmail.com')
+    public function notifyNextThreeEmails()
+    {
+        $emails = User::where('rank', 1)->take(3)->get()->pluck('email')->toArray();
+       /* dd($emails);*/
+        foreach($emails as $email){
+            $this->sendNotification($email);
+        }
+    }
+
+    public function sendNotification($email)
     {
         $updatedArray = $this->getUpdatedBreedArray($email);
         $filteredUpdatedArray = $this->getRecordsUnderMaxMiles($updatedArray);
