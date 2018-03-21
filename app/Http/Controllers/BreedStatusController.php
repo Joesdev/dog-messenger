@@ -9,6 +9,7 @@ use GuzzleHttp\Client;
 use App\User;
 use App\Breed;
 use App\Http\Controllers\DistanceController;
+use App\Http\Controllers\NotificationController;
 
 class BreedStatusController extends Controller
 {
@@ -118,16 +119,27 @@ class BreedStatusController extends Controller
         return $records;
     }
 
-    public function testFunction($email)
+    public function notifyNextTwoEmails()
+    {
+        $emails = User::where('rank', 0)->take(1)->get()->pluck('email')->toArray();
+        if(empty($emails)){
+            return 'Complete';
+        }
+        foreach($emails as $email){
+            $this->sendNotification($email);
+            User::where('email', $email)->update(['rank' => 1]);
+        }
+    }
+
+    public function sendNotification($email)
     {
         $updatedArray = $this->getUpdatedBreedArray($email);
         $filteredUpdatedArray = $this->getRecordsUnderMaxMiles($updatedArray);
         if(empty($filteredUpdatedArray)){
             return false;
-        } else{
-            //$notification = new NotificationController();
-            // send email
-            return true;
+        } else {
+            $notification = new NotificationController();
+            $notification->notifyUsersEmailOfPetArrival($email);
         }
     }
 
@@ -135,6 +147,9 @@ class BreedStatusController extends Controller
     {
         $index = 0;
         $distanceController = new DistanceController();
+        if(empty($breedArray)){
+            return [];
+        }
         $distanceArray = $distanceController->getMilesBetweenZipCodes($breedArray, $this->selectionZipCode);
         //Remove any breed data from array that is under max miles
         foreach($breedArray as $breed){
