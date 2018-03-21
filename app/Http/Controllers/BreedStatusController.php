@@ -123,7 +123,7 @@ class BreedStatusController extends Controller
     {
         $emails = User::where('rank', 1)->take(4)->get()->pluck('email')->toArray();
         if(empty($emails)){
-            return 'Complete, no values left';
+            return 'Complete';
         }
         foreach($emails as $email){
             $this->sendNotification($email);
