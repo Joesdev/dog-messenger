@@ -121,7 +121,7 @@ class BreedStatusController extends Controller
 
     public function notifyNextThreeEmails()
     {
-        $emails = User::where('rank', 1)->take(3)->get()->pluck('email')->toArray();
+        $emails = User::where('rank', 1)->take(1)->get()->pluck('email')->toArray();
        /* dd($emails);*/
         foreach($emails as $email){
             $this->sendNotification($email);
@@ -144,6 +144,9 @@ class BreedStatusController extends Controller
     {
         $index = 0;
         $distanceController = new DistanceController();
+        if(empty($breedArray)){
+            return [];
+        }
         $distanceArray = $distanceController->getMilesBetweenZipCodes($breedArray, $this->selectionZipCode);
         //Remove any breed data from array that is under max miles
         foreach($breedArray as $breed){
