@@ -121,10 +121,13 @@ class BreedStatusController extends Controller
 
     public function notifyNextTwoEmails()
     {
-        $emails = User::where('rank', 1)->take(2)->get()->pluck('email')->toArray();
-       /* dd($emails);*/
+        $emails = User::where('rank', 1)->take(4)->get()->pluck('email')->toArray();
+        if(empty($emails)){
+            return 'Complete, no values left';
+        }
         foreach($emails as $email){
             $this->sendNotification($email);
+            User::where('email', $email)->update(['rank' => 0]);
         }
     }
 
