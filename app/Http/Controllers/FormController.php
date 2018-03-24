@@ -11,11 +11,12 @@ class FormController extends Controller
 {
     public function saveUserRecordToEmail($email='etha2@gmail.com', $miles=44, $breed='Bearded Collie', $zip = "91306"){
         $breedController = new BreedStatusController();
+        $breedArray = $breedController->getExternalDataForBreed($zip,$breed);
         $selection =
             Selection::create([
                 'breed_id' => $breedController->getBreedIdForDatabase($breed),
                 'zip' => $zip,
-                'highest_breed_id' => 0,
+                'highest_breed_id' => $breedController->getLargestBreedId($breedArray),
                 'max_miles' => $miles,
                 'match'     => false
             ])
@@ -30,7 +31,4 @@ class FormController extends Controller
         ]);
     }
 
-    /*public function storeUserSettings(){
-
-    }*/
 }
