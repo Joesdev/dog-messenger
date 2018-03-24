@@ -15,4 +15,9 @@ class NotificationController extends Controller
     public function notifyUsersEmailOfPetArrival($email){
         Notification::route('mail', $email)->notify(new PetArrived());
     }
+
+    public function getUserNotificationView($userEmail)
+    {
+        dd($userEmail);
+    }
 }

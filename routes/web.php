@@ -16,3 +16,5 @@ Route::get('/', 'Controller@getHomeView');
 Route::get('/save', 'FormController@saveUserRecordToEmail');
 
 Route::view('/results', 'results');
+
+Route::get('/dogs-found/{userEmail}', 'NotificationController@getUserNotificationView');
