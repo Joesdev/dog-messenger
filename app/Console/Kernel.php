@@ -24,8 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('route:call /save')
-                  ->everyFiveMinutes();
+         /*$schedule->command('route:call /save')
+                  ->everyFiveMinutes();*/
                   /*->appendOutputTo(storage_path('output.txt'));*/
     }
 

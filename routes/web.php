@@ -13,6 +13,8 @@
 
 Route::get('/', 'Controller@getHomeView');
 
-Route::get('/save', 'FormController@saveUserRecordToEmail');
+Route::get('/save', 'BreedStatusController@getCollectedArrayOfDogsView');
 
 Route::view('/results', 'results');
+
+Route::get('/results/{userEmail}', 'BreedStatusController@getCollectedArrayOfDogsView');
