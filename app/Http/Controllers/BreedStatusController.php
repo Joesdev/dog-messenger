@@ -10,6 +10,7 @@ use App\User;
 use App\Breed;
 use App\Http\Controllers\DistanceController;
 use App\Http\Controllers\NotificationController;
+use App\Found_Dog;
 
 class BreedStatusController extends Controller
 {
@@ -121,9 +122,8 @@ class BreedStatusController extends Controller
 
     public function notifyNextTwoEmails()
     {
-        $emails = User::where('rank', 0)->take(1)->get()->pluck('email')->toArray();
+        $emails = User::where('rank', 0)->take(2)->get()->pluck('email')->toArray();
         if(empty($emails)){
-            return 'Complete';
         }
         foreach($emails as $email){
             $this->sendNotification($email);
@@ -138,8 +138,19 @@ class BreedStatusController extends Controller
         if(empty($filteredUpdatedArray)){
             return false;
         } else {
-            $notification = new NotificationController();
-            $notification->notifyUsersEmailOfPetArrival($email);
+            $this->addDogsToFoundDogsTable($filteredUpdatedArray, $email);
+            //$notification = new NotificationController();
+            //$notification->notifyUsersEmailOfPetArrival($email);
+        }
+    }
+
+    public function addDogsToFoundDogsTable($dogData, $email){
+        foreach($dogData as $dog){
+            $found_dogs = new Found_Dog();
+            $found_dogs->email = $email;
+            $found_dogs->new_breed_id = $dog['id'];
+            $found_dogs->miles = $dog['distance'];
+            $found_dogs->save();
         }
     }
 
@@ -150,12 +161,23 @@ class BreedStatusController extends Controller
         if(empty($breedArray)){
             return [];
         }
-        $distanceArray = $distanceController->getMilesBetweenZipCodes($breedArray, $this->selectionZipCode);
+        //$distanceArray = $distanceController->getMilesBetweenZipCodes($breedArray, $this->selectionZipCode);
+        $distanceArray = [
+            '94566' => 80.556,
+            '95327' => 135.203,
+            '93401' => 258.049,
+            '90031' => 400.158,
+            '92585' => 456.437,
+            '92276' => 484.951,
+            '84032' => 627.894
+        ];
         //Remove any breed data from array that is under max miles
         foreach($breedArray as $breed){
             $zip = $breed['zip'];
             if($distanceArray[$zip] > $this->selectionMaxMiles){
                 unset($breedArray[$index]);
+            } else{
+                $breedArray[$index]['distance'] = $distanceArray[$zip];
             }
             $index++;
         }
