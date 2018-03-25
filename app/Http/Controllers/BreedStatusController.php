@@ -144,6 +144,21 @@ class BreedStatusController extends Controller
         }
     }
 
+    public function getExternalDataForSingleDog($petId=41240156)
+    {
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', 'api.petfinder.com/pet.get?' .
+            'key=' . env('API_KEY') . '&' .
+            'format=json' . '&' .
+            'id=' . $petId
+        );
+        $data = json_decode($response->getBody()->getContents(), true);
+        $data = $data['petfinder']['pet'];
+        return $data;
+    }
+
+
+
     public function addDogsToFoundDogsTable($dogData, $email){
         foreach($dogData as $dog){
             $found_dogs = new Found_Dog();
