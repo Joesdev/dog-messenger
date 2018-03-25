@@ -13,8 +13,8 @@
 
 Route::get('/', 'Controller@getHomeView');
 
-Route::get('/save', 'BreedStatusController@getExternalDataForSingleDog');
+Route::get('/save', 'BreedStatusController@getCollectedArrayOfDogsView');
 
 Route::view('/results', 'results');
 
-Route::get('/dogs-found/{userEmail}', 'NotificationController@getUserNotificationView');
+Route::get('/results/{userEmail}', 'BreedStatusController@getCollectedArrayOfDogsView');
