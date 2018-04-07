@@ -14,25 +14,6 @@ use App\Found_Dog;
 
 class BreedController extends Controller
 {
-    public function getAllBreeds(){
-        $breedText = Storage::disk('local')->get('/data/breeds.json');
-        $breedArray = json_decode($breedText, true);
-        return $breedArray;
-    }
-
-    public function getBreedId($breedName){
-        $breedText = Storage::disk('local')->get('/data/breeds.json');
-        $breedArray = json_decode($breedText, true);
-        $index = 1;
-        foreach($breedArray as $breed){
-            if($breedName === $breed){
-                return $index;
-            } else{
-                $index++;
-            }
-        };
-        return 0;
-    }
 
     public function showCollectedArrayOfDogsView($email)
     {

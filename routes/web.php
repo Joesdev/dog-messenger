@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', 'Controller@getHomeView');
+Route::view('/', 'welcome');
 
 Route::view('/results', 'results');
 
 Route::get('/results/{userEmail}', 'BreedController@showCollectedArrayOfDogsView');
+
