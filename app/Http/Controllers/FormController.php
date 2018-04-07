@@ -5,16 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Selection;
 use App\User;
-use App\Http\Controllers\BreedStatusController;
+use App\Http\Controllers\BreedController;
 
 class FormController extends Controller
 {
     public function saveUserRecordToEmail($email='etha2@gmail.com', $miles=44, $breed='Bearded Collie', $zip = "91306"){
-        $breedController = new BreedStatusController();
+        $breedController = new BreedController();
         $breedArray = $breedController->getExternalDataForBreed($zip,$breed);
         $selection =
             Selection::create([
-                'breed_id' => $breedController->getBreedIdForDatabase($breed),
+                'breed_id' => $breedController->getBreedId($breed),
                 'zip' => $zip,
                 'highest_breed_id' => $breedController->getLargestBreedId($breedArray),
                 'max_miles' => $miles,

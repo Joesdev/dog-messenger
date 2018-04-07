@@ -11,11 +11,6 @@ use App\Found_Dog;
 
 class NotificationController extends Controller
 {
-    use Notifiable;
-
-    public function notifyUsersEmailOfPetArrival($email){
-        Notification::route('mail', $email)->notify(new PetArrived());
-    }
 
     public function getUserNotificationView($userEmail)
     {
