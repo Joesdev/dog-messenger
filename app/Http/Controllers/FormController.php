@@ -7,7 +7,6 @@ use App\Services\ExternalApiService;
 use Illuminate\Http\Request;
 use App\Selection;
 use App\User;
-use App\Http\Controllers\BreedController;
 
 class FormController extends Controller
 {
@@ -19,14 +18,20 @@ class FormController extends Controller
         $this->dogDataService = $dogDataService;
     }
 
-    public function saveUserRecordToEmail($email='etha2@gmail.com', $miles=44, $breed='Bearded Collie', $zip = "91306"){
-        $breedArray = $externalApiService->getExternalDataForBreed($zip,$breed);
+    public function storeUserSelection(Request $request)
+    {
+        $zip = $request->zip;
+        $breedName = $request->breedName;
+        $maxMiles = $request->maxMiles;
+        $email = $request->email;
+
+        $breedArray = $this->externalApiService->getExternalDataForBreed($zip,$breedName);
         $selection =
             Selection::create([
-                'breed_id' => $dogDataService->getBreedId($breed),
+                'breed_id' => $this->dogDataService->getBreedId($breedName),
                 'zip' => $zip,
-                'highest_breed_id' => $dogDataService->getLargestBreedId($breedArray),
-                'max_miles' => $miles,
+                'highest_breed_id' => $this->dogDataService->getLargestBreedId($breedArray),
+                'max_miles' => $maxMiles,
                 'match'     => false
             ])
         ;
@@ -36,7 +41,6 @@ class FormController extends Controller
             'name' => 'user',
             'email' => $email,
             'selection_id' => $selection->id,
-
         ]);
     }
 

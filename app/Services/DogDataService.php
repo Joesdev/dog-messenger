@@ -1,6 +1,8 @@
 <?php
 namespace App\Services;
 
+use Storage;
+
 class DogDataService
 {
     private $selectionZipCode;

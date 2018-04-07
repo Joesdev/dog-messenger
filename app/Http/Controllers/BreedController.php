@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Selection;
 use Illuminate\Http\Request;
-use Storage;
 use GuzzleHttp\Client;
 use App\User;
 use App\Breed;
