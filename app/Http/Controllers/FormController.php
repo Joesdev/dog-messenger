@@ -7,6 +7,8 @@ use App\Services\ExternalApiService;
 use Illuminate\Http\Request;
 use App\Selection;
 use App\User;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class FormController extends Controller
 {
@@ -20,6 +22,16 @@ class FormController extends Controller
 
     public function storeUserSelection(Request $request)
     {
+        $this->validate($request, [
+            'email'     => 'required|email',
+            'maxMiles'  => 'required|integer|between:1,200',
+            'zip'       => 'required|regex:/\b\d{5}\b/',
+            'breedName' => [
+                'required',
+                Rule::in(json_decode(Storage::disk('local')->get('/data/breeds.json')))
+            ]
+        ]);
+
         $zip = $request->zip;
         $breedName = $request->breedName;
         $maxMiles = $request->maxMiles;

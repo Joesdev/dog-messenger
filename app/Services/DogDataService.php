@@ -120,6 +120,7 @@ class DogDataService
     public function getAllBreeds(){
         $breedText = Storage::disk('local')->get('/data/breeds.json');
         $breedArray = json_decode($breedText, true);
+        dd($breedArray);
         return $breedArray;
     }
 
