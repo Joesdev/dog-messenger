@@ -6,7 +6,7 @@ use App\Services\ExternalApiService;
 use App\User;
 use App\Breed;
 use App\Selection;
-
+use App\Found_Dog;
 class DogDataService
 {
     private $selectionZipCode;
@@ -109,13 +109,7 @@ class DogDataService
         }
         $distanceArray = $this->externalApiService->getMilesBetweenZipCodes($breedArray, $this->selectionZipCode);
         /*$distanceArray = [
-            '94566' => 80.556,
-            '95327' => 135.203,
-            '93401' => 258.049,
-            '90031' => 400.158,
             '92585' => 456.437,
-            '92276' => 484.951,
-            '84032' => 627.894
         ];*/
         //Remove any breed data from array that is under max miles
         foreach($breedArray as $breed){

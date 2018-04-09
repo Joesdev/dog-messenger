@@ -11,12 +11,12 @@ class NotificationService
 {
     public function notifyNextTwoEmails()
     {
-        $emails = User::where('rank', 1)->take(2)->get()->pluck('email')->toArray();
+        $emails = User::where('rank', 1)->take(1)->get()->pluck('email')->toArray();
         if(empty($emails)){
         }
         foreach($emails as $email){
             $this->sendNotification($email);
-            User::where('email', $email)->update(['rank' => 1]);
+            User::where('email', $email)->update(['rank' => 0]);
         }
     }
 
@@ -29,7 +29,7 @@ class NotificationService
         if(empty($filteredUpdatedArray)){
             return false;
         } else {
-            $this->addDogsToFoundDogsTable($filteredUpdatedArray, $email);
+            $dogDataService->addDogsToFoundDogsTable($filteredUpdatedArray, $email);
             //$notification = new NotificationController();
             //$notification->notifyUsersEmailOfPetArrival($email);
         }
