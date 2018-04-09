@@ -3,12 +3,15 @@
 
 namespace App\Services;
 use Notifiable;
+use App\User;
+use App\Services\DogDataService;
+use App\Services\ExternalApiService;
 
 class NotificationService
 {
     public function notifyNextTwoEmails()
     {
-        $emails = User::where('rank', 0)->take(2)->get()->pluck('email')->toArray();
+        $emails = User::where('rank', 1)->take(2)->get()->pluck('email')->toArray();
         if(empty($emails)){
         }
         foreach($emails as $email){
@@ -19,8 +22,10 @@ class NotificationService
 
     public function sendNotification($email)
     {
-        $updatedArray = $this->getUpdatedBreedArray($email);
-        $filteredUpdatedArray = $this->getRecordsUnderMaxMiles($updatedArray);
+        $externalApiService = new ExternalApiService();
+        $dogDataService = new DogDataService($externalApiService);
+        $updatedArray = $dogDataService->getUpdatedBreedArray($email);
+        $filteredUpdatedArray = $dogDataService->getRecordsUnderMaxMiles($updatedArray);
         if(empty($filteredUpdatedArray)){
             return false;
         } else {

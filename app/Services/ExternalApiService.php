@@ -21,6 +21,7 @@ class ExternalApiService
         $data = $data['petfinder']['pets']['pet'];
         return $data;
     }
+
     public function getExternalDataForSingleDog($petId)
     {
         $client = new \GuzzleHttp\Client();
@@ -32,6 +33,29 @@ class ExternalApiService
         $data = json_decode($response->getBody()->getContents(), true);
         $data = $data['petfinder']['pet'];
         return $data;
+    }
+
+    public function getMilesBetweenZipCodes($zipCodes, $focusZip)
+    {
+        $client = new \GuzzleHttp\Client();
+        $zipDistanceArray = [];
+        $zipString = '';
+        $index = 0;
+        foreach($zipCodes as $zipCode){
+            if($index == 0){
+                $zipString .= $zipCode['zip'];
+            }else{
+                $zipString .= ', ' . $zipCode['zip'];
+            }
+            $index++;
+        }
+        $query = "https://www.zipcodeapi.com/rest/" .  env('ZIP_API_KEY')  . "/multi-distance.json" .
+            "/"         .  $focusZip               . "/"                     .
+            $zipString       .  "/mile"
+        ;
+        $queryResponse = $client->request('GET', $query);
+        $zipDistanceArray = json_decode($queryResponse ->getBody()->getContents(), true);
+        return $zipDistanceArray['distances'];
     }
 
 }

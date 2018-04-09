@@ -11,6 +11,10 @@
 |
 */
 
+//Testing Classes
+use App\Services\NotificationService;
+use App\Services\DogDataService;
+
 Route::view('/', 'welcome');
 
 Route::view('/results', 'results');
@@ -21,4 +25,7 @@ Route::get('/results/{userEmail}', 'BreedController@showCollectedArrayOfDogsView
 Route::view('/user-selections', 'user-selections');
 Route::post('/user-selections', 'FormController@storeUserSelection')->name('user-selections.store');
 
-Route::get('/breeds', 'FormController@getAllBreeds');
+Route::get('/check', function(){
+    $notificationService = new NotificationService();
+    $notificationService->notifyNextTwoEmails();
+});

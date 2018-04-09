@@ -2,26 +2,41 @@
 namespace App\Services;
 
 use Storage;
+use App\Services\ExternalApiService;
+use App\User;
+use App\Breed;
+use App\Selection;
 
 class DogDataService
 {
     private $selectionZipCode;
     private $selectionMaxMiles;
 
+    protected $externalApiService;
+
+    public function __construct(ExternalApiService $externalApiService){
+        $this->externalApiService = $externalApiService;
+    }
+
     public function getUpdatedBreedArray($email){
-        //Retrieves selection values given an email address
+        //Get User matching email address
         $user = User::where('email', $email)->with('selection')->get();
         $selectionId = $user->pluck('selection_id');
+        //Get Selection based on User's Selection Id
         $selection = Selection::where('id', $selectionId)->get();
+        //Save four column values
         $subset = $selection->map(function ($selection) {
             return collect($selection->toArray())->only(['highest_breed_id','breed_id', 'max_miles', 'zip'])->all();
         });
+        //Pluck four column values,
         $breed_id = $subset->pluck('breed_id')->first();
         $usersMaxId = $subset->pluck('highest_breed_id')->first();
-        $breedName = Breed::where('id', $breed_id)->get()->pluck('breed')->first();
         $this->selectionZipCode = $subset->pluck('zip')->first();
         $this->selectionMaxMiles = $subset->pluck('max_miles')->first();
-        $breeds = $this->getExternalDataForBreed($this->selectionZipCode, $breedName);
+        //The reason for this pluck is that we must convert the breed_id to a string of breed name
+        $breedName = Breed::where('id', $breed_id)->get()->pluck('breed')->first();
+
+        $breeds = $this->externalApiService->getExternalDataForBreed($this->selectionZipCode, $breedName);
         $latestMaxId = $this->getLargestBreedId($breeds);
 
         if($latestMaxId > $usersMaxId){
@@ -89,12 +104,11 @@ class DogDataService
     public function getRecordsUnderMaxMiles($breedArray)
     {
         $index = 0;
-        $distanceController = new DistanceController();
         if(empty($breedArray)){
             return [];
         }
-        //$distanceArray = $distanceController->getMilesBetweenZipCodes($breedArray, $this->selectionZipCode);
-        $distanceArray = [
+        $distanceArray = $this->externalApiService->getMilesBetweenZipCodes($breedArray, $this->selectionZipCode);
+        /*$distanceArray = [
             '94566' => 80.556,
             '95327' => 135.203,
             '93401' => 258.049,
@@ -102,7 +116,7 @@ class DogDataService
             '92585' => 456.437,
             '92276' => 484.951,
             '84032' => 627.894
-        ];
+        ];*/
         //Remove any breed data from array that is under max miles
         foreach($breedArray as $breed){
             $zip = $breed['zip'];
@@ -120,7 +134,6 @@ class DogDataService
     public function getAllBreeds(){
         $breedText = Storage::disk('local')->get('/data/breeds.json');
         $breedArray = json_decode($breedText, true);
-        dd($breedArray);
         return $breedArray;
     }
 
