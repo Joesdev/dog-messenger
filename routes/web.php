@@ -11,10 +11,21 @@
 |
 */
 
-Route::get('/', 'Controller@getHomeView');
+//Testing Classes
+use App\Services\NotificationService;
+use App\Services\DogDataService;
 
-Route::get('/save', 'BreedStatusController@getCollectedArrayOfDogsView');
+Route::view('/', 'welcome');
 
 Route::view('/results', 'results');
 
-Route::get('/results/{userEmail}', 'BreedStatusController@getCollectedArrayOfDogsView');
+Route::get('/results/{userEmail}', 'BreedController@showCollectedArrayOfDogsView');
+
+// Testing--------------------------------------------------------------------------------------------------------------
+Route::view('/user-selections', 'user-selections');
+Route::post('/user-selections', 'FormController@storeUserSelection')->name('user-selections.store');
+
+Route::get('/check', function(){
+    $notificationService = new NotificationService();
+    $notificationService->notifyNextTwoEmails();
+});

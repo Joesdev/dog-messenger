@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        'App\Console\Commands\CallRoute'
+        'App\Console\Commands\NotifyUsers'
     ];
 
     /**
@@ -24,9 +24,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         /*$schedule->command('route:call /save')
-                  ->everyFiveMinutes();*/
-                  /*->appendOutputTo(storage_path('output.txt'));*/
+         $schedule->command('Notify:Users')
+                  ->everyMinute()
+                  ->appendOutputTo(storage_path('output.txt'));
     }
 
     /**

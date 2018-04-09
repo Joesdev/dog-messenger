@@ -4,21 +4,22 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Http\Request;
-class CallRoute extends Command
+use App\Services\NotificationService;
+class NotifyUsers extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'route:call {uri}';
+    protected $signature = 'Notify:Users';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Calls the route with the appended uri';
+    protected $description = 'Grabs Users Who Have Not Checked Their Breed Status Today, Notifies Them';
 
     /**
      * Create a new command instance.
@@ -37,7 +38,9 @@ class CallRoute extends Command
      */
     public function handle()
     {
-        $request = Request::create($this->argument('uri'), 'GET');
-        $this->info(app()->make(\Illuminate\Contracts\Http\Kernel::class)->handle($request));
+        $notificationService = new NotificationService();
+        $notificationService->notifyNextTwoEmails();
+       /* $request = Request::create($this->argument('uri'), 'GET');
+        $this->info(app()->make(\Illuminate\Contracts\Http\Kernel::class)->handle($request));*/
     }
 }

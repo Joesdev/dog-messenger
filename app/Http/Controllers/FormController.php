@@ -2,22 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\DogDataService;
+use App\Services\ExternalApiService;
 use Illuminate\Http\Request;
 use App\Selection;
 use App\User;
-use App\Http\Controllers\BreedStatusController;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class FormController extends Controller
 {
-    public function saveUserRecordToEmail($email='etha2@gmail.com', $miles=44, $breed='Bearded Collie', $zip = "91306"){
-        $breedController = new BreedStatusController();
-        $breedArray = $breedController->getExternalDataForBreed($zip,$breed);
+    protected $externalApiService;
+    protected $dogDataService;
+    public function __construct(ExternalApiService $externalApiService, DogDataService $dogDataService)
+    {
+        $this->externalApiService = $externalApiService;
+        $this->dogDataService = $dogDataService;
+    }
+
+    public function storeUserSelection(Request $request)
+    {
+        $this->validate($request, [
+            'email'     => 'required|email',
+            'maxMiles'  => 'required|integer|between:1,200',
+            'zip'       => 'required|regex:/\b\d{5}\b/',
+            'breedName' => [
+                'required',
+                Rule::in(json_decode(Storage::disk('local')->get('/data/breeds.json')))
+            ]
+        ]);
+
+        $zip = $request->zip;
+        $breedName = $request->breedName;
+        $maxMiles = $request->maxMiles;
+        $email = $request->email;
+
+        $breedArray = $this->externalApiService->getExternalDataForBreed($zip,$breedName);
         $selection =
             Selection::create([
-                'breed_id' => $breedController->getBreedIdForDatabase($breed),
+                'breed_id' => $this->dogDataService->getBreedId($breedName),
                 'zip' => $zip,
-                'highest_breed_id' => $breedController->getLargestBreedId($breedArray),
-                'max_miles' => $miles,
+                'highest_breed_id' => $this->dogDataService->getLargestBreedId($breedArray),
+                'max_miles' => $maxMiles,
                 'match'     => false
             ])
         ;
@@ -27,7 +53,6 @@ class FormController extends Controller
             'name' => 'user',
             'email' => $email,
             'selection_id' => $selection->id,
-
         ]);
     }
 
