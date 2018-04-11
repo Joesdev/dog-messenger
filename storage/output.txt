@@ -1,1 +1,19 @@
 
+
+In Macroable.php line 96:
+                               
+  Method save does not exist.  
+                               
+
+
+In Macroable.php line 96:
+                               
+  Method save does not exist.  
+                               
+
+
+In Macroable.php line 96:
+                               
+  Method save does not exist.  
+                               
+

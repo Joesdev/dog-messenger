@@ -51,7 +51,7 @@ class DogDataService
 
     public function updateHighestBreedId($selectionId, $maxId)
     {
-        $selection = Selection::find($selectionId);
+        $selection = Selection::where('id',$selectionId)->first();
         $selection->highest_breed_id = $maxId;
         $selection->save();
     }
