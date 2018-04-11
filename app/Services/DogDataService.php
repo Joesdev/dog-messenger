@@ -7,6 +7,7 @@ use App\User;
 use App\Breed;
 use App\Selection;
 use App\Found_Dog;
+
 class DogDataService
 {
     private $selectionZipCode;
@@ -39,11 +40,20 @@ class DogDataService
         $breeds = $this->externalApiService->getExternalDataForBreed($this->selectionZipCode, $breedName);
         $latestMaxId = $this->getLargestBreedId($breeds);
 
+        $this->updateHighestBreedId($selectionId, $latestMaxId);
+
         if($latestMaxId > $usersMaxId){
             return $updatedBreedArray = $this->getRecordsLargerThanBreedId($breeds, $usersMaxId);
         }else{
             return [];
         }
+    }
+
+    public function updateHighestBreedId($selectionId, $maxId)
+    {
+        $selection = Selection::find($selectionId);
+        $selection->highest_breed_id = $maxId;
+        $selection->save();
     }
 
     public function getLargestBreedId($breedsArray){
@@ -71,15 +81,6 @@ class DogDataService
             }
         }
         return $recordsLargerThanBreedId;
-    }
-
-    public function storeMaxBreedIdToSelectionsTable($email, $breedId)
-    {
-        $user = User::where('email',$email)->with('selection')->get(['selection_id']);
-        $selection_id = $user->pluck('selection_id');
-        Selection::where('id', $selection_id)->update([
-            'highest_breed_id' => $breedId
-        ]);
     }
 
     public function sortRecordsIds($breedData){
