@@ -2,24 +2,25 @@
 
 namespace App\Console\Commands;
 
+use App\Services\DogDataService;
+use App\Services\ExternalApiService;
 use Illuminate\Console\Command;
-use Illuminate\Http\Request;
-use App\Services\NotificationService;
-class NotifyUsers extends Command
+
+class ResetUserRank extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'Notify:Users';
+    protected $signature = 'Notify:Reset';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Grabs Users Who Have Not Checked Their Breed Status Today, Notifies Them';
+    protected $description = 'Resets All Subscribed Users to Allow Notifications and Dog Checking';
 
     /**
      * Create a new command instance.
@@ -38,7 +39,8 @@ class NotifyUsers extends Command
      */
     public function handle()
     {
-        $notificationService = new NotificationService();
-        $notificationService->notifyNextTwoEmails();
+        $externalApiService = new ExternalApiService();
+        $dogDataService = new DogDataService($externalApiService);
+        $dogDataService->resetUsersToRankOne();
     }
 }

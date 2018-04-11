@@ -7,6 +7,7 @@ use App\User;
 use App\Breed;
 use App\Selection;
 use App\Found_Dog;
+
 class DogDataService
 {
     private $selectionZipCode;
@@ -39,11 +40,20 @@ class DogDataService
         $breeds = $this->externalApiService->getExternalDataForBreed($this->selectionZipCode, $breedName);
         $latestMaxId = $this->getLargestBreedId($breeds);
 
+        $this->updateHighestBreedId($selectionId, $latestMaxId);
+
         if($latestMaxId > $usersMaxId){
             return $updatedBreedArray = $this->getRecordsLargerThanBreedId($breeds, $usersMaxId);
         }else{
             return [];
         }
+    }
+
+    public function updateHighestBreedId($selectionId, $maxId)
+    {
+        $selection = Selection::where('id',$selectionId)->first();
+        $selection->highest_breed_id = $maxId;
+        $selection->save();
     }
 
     public function getLargestBreedId($breedsArray){
@@ -71,15 +81,6 @@ class DogDataService
             }
         }
         return $recordsLargerThanBreedId;
-    }
-
-    public function storeMaxBreedIdToSelectionsTable($email, $breedId)
-    {
-        $user = User::where('email',$email)->with('selection')->get(['selection_id']);
-        $selection_id = $user->pluck('selection_id');
-        Selection::where('id', $selection_id)->update([
-            'highest_breed_id' => $breedId
-        ]);
     }
 
     public function sortRecordsIds($breedData){
@@ -144,5 +145,14 @@ class DogDataService
         };
         return 0;
     }
+
+    //This function resets all rows to rank 1, rank 1 allows a single row to be eligible
+    //for checking for news dogs and to be potentially notified if a new dog is found. Rank
+    //0 means a row is not eligible
+    public function resetUsersToRankOne(){
+        //For future use, check whether a user has issued a stop to notifications & checking
+        $users = User::where('rank', 0)->update(['rank' => 1]);
+    }
+
 
 }
