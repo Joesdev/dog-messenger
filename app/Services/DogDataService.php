@@ -151,11 +151,7 @@ class DogDataService
     //0 means a row is not eligible
     public function resetUsersToRankOne(){
         //For future use, check whether a user has issued a stop to notifications & checking
-        $users = Users::all();
-        foreach($users as $user){
-            $user->rank = 1;
-        }
-        $users->save();
+        $users = User::where('rank', 0)->update(['rank' => 1]);
     }
 
 
