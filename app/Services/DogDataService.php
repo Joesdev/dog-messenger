@@ -146,4 +146,17 @@ class DogDataService
         return 0;
     }
 
+    //This function resets all rows to rank 1, rank 1 allows a single row to be eligible
+    //for checking for news dogs and to be potentially notified if a new dog is found. Rank
+    //0 means a row is not eligible
+    public function resetUsersToRankOne(){
+        //For future use, check whether a user has issued a stop to notifications & checking
+        $users = Users::all();
+        foreach($users as $user){
+            $user->rank = 1;
+        }
+        $users->save();
+    }
+
+
 }
