@@ -30,7 +30,7 @@ class NotificationService
             return false;
         } else {
             $dogDataService->addDogsToFoundDogsTable($filteredUpdatedArray, $email);
-            //$notification = new NotificationController();
+            $notification = new NotificationController();
             //$notification->notifyUsersEmailOfPetArrival($email);
         }
     }
