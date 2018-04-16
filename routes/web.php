@@ -21,6 +21,8 @@ Route::view('/results', 'results');
 
 Route::get('/results/{userEmail}', 'BreedController@showCollectedArrayOfDogsView');
 
+Route::get('/results/{email}', 'BreedController@showCollectedArrayOfDogsView');
+
 // Testing--------------------------------------------------------------------------------------------------------------
 Route::view('/user-selections', 'user-selections');
 Route::post('/user-selections', 'FormController@storeUserSelection')->name('user-selections.store');

@@ -12,9 +12,9 @@ class NotificationService
     public function notifyNextTwoEmails()
     {
         $emails = User::where('rank', 1)->take(1)->get()->pluck('email')->toArray();
-        if(empty($emails)){
+        if (empty($emails)) {
         }
-        foreach($emails as $email){
+        foreach ($emails as $email) {
             $this->sendNotification($email);
             User::where('email', $email)->update(['rank' => 0]);
         }
@@ -26,13 +26,11 @@ class NotificationService
         $dogDataService = new DogDataService($externalApiService);
         $updatedArray = $dogDataService->getUpdatedBreedArray($email);
         $filteredUpdatedArray = $dogDataService->getRecordsUnderMaxMiles($updatedArray);
-        if(empty($filteredUpdatedArray)){
+        if (empty($filteredUpdatedArray)) {
             return false;
         } else {
             $dogDataService->addDogsToFoundDogsTable($filteredUpdatedArray, $email);
-            $notification = new NotificationController();
-            //$notification->notifyUsersEmailOfPetArrival($email);
         }
     }
-
 }
+
