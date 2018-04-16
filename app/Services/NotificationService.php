@@ -2,6 +2,7 @@
 
 
 namespace App\Services;
+use App\Notifications\PetArrived;
 use Notifiable;
 use App\User;
 use App\Services\DogDataService;
@@ -30,6 +31,8 @@ class NotificationService
             return false;
         } else {
             $dogDataService->addDogsToFoundDogsTable($filteredUpdatedArray, $email);
+            $user = User::where('email',$email)->first();
+            $user->notify(new PetArrived($user->name));
         }
     }
 }

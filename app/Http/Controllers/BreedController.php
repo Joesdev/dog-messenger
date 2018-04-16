@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use GuzzleHttp\Client;
-use App\Http\Controllers\DistanceController;
 use App\Http\Controllers\NotificationController;
 use App\Found_Dog;
 use App\Services\ExternalApiService;
+use App\Services\ValidationService;
 
 class BreedController extends Controller
 {
@@ -20,13 +18,15 @@ class BreedController extends Controller
         $index = 0;
         $found_dogs = Found_Dog::where('email', $email)->get();
         $found_dogs = $found_dogs->map(function ($dogs) {
-            return collect($dogs->toArray())->only(['new_breed_id','miles'])->all();
+            return $dogs->only(['new_breed_id','miles']);
         });
+
         foreach($found_dogs as $dog){
            $tmpDogData = $externalApiService->getExternalDataForSingleDog($dog['new_breed_id']);
             foreach($tmpDogData['media']['photos']['photo'] as $photo){
                 if(strpos($photo['$t'], 'width=500')){
                     array_push($media, $photo['$t']);
+                    break;
                 }
             };
 
@@ -35,7 +35,6 @@ class BreedController extends Controller
                'age'  => $tmpDogData['age']['$t'],
                'size'  => $tmpDogData['size']['$t'],
                'sex'  => $tmpDogData['sex']['$t'],
-               'bio'  => $tmpDogData['description']['$t'],
                'isMix' => $tmpDogData['mix']['$t'],
                'phone' => $tmpDogData['contact']['phone']['$t'],
                'email' => $tmpDogData['contact']['email']['$t'],
@@ -44,6 +43,13 @@ class BreedController extends Controller
                'distance' => $found_dogs[$index]['miles'] . ' miles',
                'media' => $media
            ];
+
+           if(empty($tmpDogData['description']['$t'])){
+               $masterArrayOfDogs[$index]['bio']  = 'Not Available';
+           } else {
+               $masterArrayOfDogs[$index]['bio'] = $tmpDogData['description']['$t'];
+           }
+
            $media = [];
            $index++;
         }

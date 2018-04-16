@@ -11,14 +11,15 @@ class PetArrived extends Notification
 {
     use Queueable;
 
+    protected $name;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($name)
     {
-        //
+        $this->name = $name;
     }
 
     /**
@@ -41,8 +42,8 @@ class PetArrived extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting('Hi User!')
-                    ->line('A pet meeting your criteria has arrived as a shelter near you')
+                    ->greeting('Hi ' . $this->name . ',')
+                    ->line('A dog has been dropped off at your local shelter, check it out below!')
                     ->action('Show Me', url('/results/joesilvpb4@gmail.com'))
                     ->line('Thank you for using PetNotifier!');
     }
