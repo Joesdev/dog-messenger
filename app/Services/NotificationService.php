@@ -6,7 +6,7 @@ use App\Notifications\PetArrived;
 use Notifiable;
 use App\User;
 use App\Services\DogDataService;
-use App\Services\ExternalApiService;
+use App\Services\ExternalPetApiService;
 
 class NotificationService
 {
@@ -23,8 +23,9 @@ class NotificationService
 
     public function sendNotification($email)
     {
-        $externalApiService = new ExternalApiService();
-        $dogDataService = new DogDataService($externalApiService);
+        $externalPetApiService = new ExternalPetApiService();
+        $externalZipApiService = new ExternalZipApiService();
+        $dogDataService = new DogDataService($externalApiService, $externalZipApiService);
         $updatedArray = $dogDataService->getUpdatedBreedArray($email);
         $filteredUpdatedArray = $dogDataService->getRecordsUnderMaxMiles($updatedArray);
         if (empty($filteredUpdatedArray)) {

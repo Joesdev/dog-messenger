@@ -1,12 +1,8 @@
 <?php
+namespace App\Services;
 
-namespace App\Http\Controllers;
+Class ExternalZipApiService {
 
-use Illuminate\Http\Request;
-use GuzzleHttp\Client;
-
-class DistanceController extends Controller
-{
     public function getMilesBetweenZipCodes($zipCodes, $focusZip)
     {
         $client = new \GuzzleHttp\Client();
@@ -29,5 +25,4 @@ class DistanceController extends Controller
         $zipDistanceArray = json_decode($queryResponse ->getBody()->getContents(), true);
         return $zipDistanceArray['distances'];
     }
-
 }
