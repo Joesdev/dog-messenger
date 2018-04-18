@@ -17,7 +17,7 @@ class DogDataService
 
     public function __construct(ExternalPetApiService $externalPetApiService, ExternalZipApiService $externalZipApiService){
         $this->externalPetApiService = $externalPetApiService;
-        $this->externalZipApiService - $externalZipApiService;
+        $this->externalZipApiService = $externalZipApiService;
     }
 
     public function getUpdatedBreedArray($email){

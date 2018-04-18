@@ -1,0 +1,6 @@
+
+In NotificationService.php line 28:
+                                          
+  Undefined variable: externalApiService  
+                                          
+

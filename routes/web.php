@@ -31,3 +31,5 @@ Route::get('/check', function(){
     $notificationService = new NotificationService();
     $notificationService->notifyNextTwoEmails();
 });
+
+Route::get('/test', 'FormController@testFunction');

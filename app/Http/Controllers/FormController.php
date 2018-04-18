@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\DogDataService;
 use App\Services\ExternalPetApiService;
+use App\Services\NotificationService;
 use Illuminate\Http\Request;
 use App\Selection;
 use App\User;
@@ -54,6 +55,11 @@ class FormController extends Controller
             'email' => $email,
             'selection_id' => $selection->id,
         ]);
+    }
+
+    public function testFunction(){
+        $notificationService = new NotificationService();
+        $notificationService->notifyNextTwoEmails();
     }
 
 }
