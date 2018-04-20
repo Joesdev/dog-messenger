@@ -45,7 +45,8 @@ class ExternalPetApiService
                 'name'        => $this->validateKey('name', $dogData),
                 'age'         => $this->validateKey('age', $dogData),
                 'size'        => $this->validateKey('size', $dogData),
-                'sex'         => $this->validateKey('sex', $dogData),
+                // Convert M/F to Male/Female if validation passes
+                'sex'         => $this->appendSexString($this->validateKey('sex', $dogData)),
                 'mix'         => $this->validateKey('mix', $dogData),
                 'description' => $this->validateKey('description', $dogData),
                 'phone'       => $this->validateContactKey('phone', $dogData),
@@ -95,6 +96,18 @@ class ExternalPetApiService
             };
         }
         return '#';
+    }
+
+    public function appendSexString($sex)
+    {
+        if($sex === 'Not Available'){
+            //Do Nothing
+        } else if(ucwords($sex) === 'F'){
+            $sex = 'Female';
+        } else {
+            $sex = 'Male';
+        }
+        return $sex;
     }
 
 }
