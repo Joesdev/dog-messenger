@@ -31,9 +31,12 @@ class ExternalPetApiService
             'id=' . $petId
         );
         $data = json_decode($response->getBody()->getContents(), true);
-        $data = $data['petfinder']['pet'];
-        $this->getSlimDogData($data);
-        return $data;
+        if(array_key_exists('pet' ,$data['petfinder'])){
+            return $data = $this->getSlimDogData($data['petfinder']['pet']);
+
+        } else{
+            return $data = [];
+        }
     }
 
     public function getSlimDogData($dogData)

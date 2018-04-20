@@ -21,36 +21,8 @@ class BreedController extends Controller
         });
 
         foreach($found_dogs as $dog){
-           $tmpDogData = collect($externalPetApiService->getExternalDataForSingleDog($dog['new_breed_id']));
-
-           /* $masterArrayOfDogs[$index] = [
-               'name' => $tmpDogData['name']['$t'],
-               'age'  => $tmpDogData['age']['$t'],
-               'size'  => $tmpDogData['size']['$t'],
-               'sex'  => $tmpDogData['sex']['$t'],
-               'isMix' => $tmpDogData['mix']['$t'],
-               'phone' => $tmpDogData['contact']['phone']['$t'],
-               'email' => $tmpDogData['contact']['email']['$t'],
-               'address' => $tmpDogData['contact']['address1']['$t'],
-               'city' => $city = $tmpDogData['contact']['city']['$t'],
-               'distance' => $found_dogs[$index]['miles'] . ' miles',
-           ];
-
-            if(empty($tmpDogData['description']['$t'])){
-                $masterArrayOfDogs[$index]['bio']  = 'Not Available';
-            } else {
-                $masterArrayOfDogs[$index]['bio'] = $tmpDogData['description']['$t'];
-            }
-
-            foreach($tmpDogData['media']['photos']['photo'] as $photo){
-                if(strpos($photo['$t'], 'width=500')){
-                    $masterArrayOfDogs[$index]['media'] = $photo['$t'];
-                    break;
-                }
-            };
-            dd($masterArrayOfDogs);
-
-            $index++;*/
+            $dogData = $externalPetApiService->getExternalDataForSingleDog($dog['new_breed_id']);
+            array_push($masterArrayOfDogs,$dogData);
         }
         return view('results')->with('dogData' ,$masterArrayOfDogs);
     }
