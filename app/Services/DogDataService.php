@@ -2,7 +2,7 @@
 namespace App\Services;
 
 use Storage;
-use App\Services\ExternalApiService;
+use App\Services\ExternalPetApiService;
 use App\User;
 use App\Breed;
 use App\Selection;
@@ -15,8 +15,9 @@ class DogDataService
 
     protected $externalApiService;
 
-    public function __construct(ExternalApiService $externalApiService){
-        $this->externalApiService = $externalApiService;
+    public function __construct(ExternalPetApiService $externalPetApiService, ExternalZipApiService $externalZipApiService){
+        $this->externalPetApiService = $externalPetApiService;
+        $this->externalZipApiService = $externalZipApiService;
     }
 
     public function getUpdatedBreedArray($email){
@@ -37,7 +38,7 @@ class DogDataService
         //The reason for this pluck is that we must convert the breed_id to a string of breed name
         $breedName = Breed::where('id', $breed_id)->get()->pluck('breed')->first();
 
-        $breeds = $this->externalApiService->getExternalDataForBreed($this->selectionZipCode, $breedName);
+        $breeds = $this->externalPetApiService->getExternalDataForBreed($this->selectionZipCode, $breedName);
         $latestMaxId = $this->getLargestBreedId($breeds);
 
         $this->updateHighestBreedId($selectionId, $latestMaxId);
@@ -108,7 +109,7 @@ class DogDataService
         if(empty($breedArray)){
             return [];
         }
-        $distanceArray = $this->externalApiService->getMilesBetweenZipCodes($breedArray, $this->selectionZipCode);
+        $distanceArray = $this->externalZipApiService->getMilesBetweenZipCodes($breedArray, $this->selectionZipCode);
         /*$distanceArray = [
             '92585' => 456.437,
         ];*/

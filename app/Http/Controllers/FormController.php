@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Services\DogDataService;
-use App\Services\ExternalApiService;
+use App\Services\ExternalPetApiService;
+use App\Services\NotificationService;
 use Illuminate\Http\Request;
 use App\Selection;
 use App\User;
@@ -12,11 +13,11 @@ use Illuminate\Validation\Rule;
 
 class FormController extends Controller
 {
-    protected $externalApiService;
+    protected $externalPetApiService;
     protected $dogDataService;
-    public function __construct(ExternalApiService $externalApiService, DogDataService $dogDataService)
+    public function __construct(ExternalPetApiService $externalPetApiService, DogDataService $dogDataService)
     {
-        $this->externalApiService = $externalApiService;
+        $this->externalPetApiService = $externalPetApiService;
         $this->dogDataService = $dogDataService;
     }
 
@@ -37,7 +38,7 @@ class FormController extends Controller
         $maxMiles = $request->maxMiles;
         $email = $request->email;
 
-        $breedArray = $this->externalApiService->getExternalDataForBreed($zip,$breedName);
+        $breedArray = $this->externalPetApiService->getExternalDataForBreed($zip,$breedName);
         $selection =
             Selection::create([
                 'breed_id' => $this->dogDataService->getBreedId($breedName),
@@ -54,6 +55,11 @@ class FormController extends Controller
             'email' => $email,
             'selection_id' => $selection->id,
         ]);
+    }
+
+    public function testFunction(){
+        $notificationService = new NotificationService();
+        $notificationService->notifyNextTwoEmails();
     }
 
 }

@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Services\DogDataService;
-use App\Services\ExternalApiService;
+use App\Services\ExternalPetApiService;
 use Illuminate\Console\Command;
 
 class ResetUserRank extends Command
@@ -39,7 +39,7 @@ class ResetUserRank extends Command
      */
     public function handle()
     {
-        $externalApiService = new ExternalApiService();
+        $externalApiService = new ExternalPetApiService();
         $dogDataService = new DogDataService($externalApiService);
         $dogDataService->resetUsersToRankOne();
     }
