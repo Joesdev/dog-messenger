@@ -3,7 +3,9 @@
 @section('content')
 <header class="bg-header">
     <div class="col-xs-12 col-md-7 col-lg-6 text-center">
-       <h1 class= "h1">Find Your<br> New <span style="color: #ff7615;">Best Friend</span></h1>
+       <h1 class= "h1">Get Alerts the Day <br>a <span style="color: #ff7615;">Dog You Love</span> <br>is Dropped Off <br>at a Local Shelter. 
+        <!-- <br> New <span style="color: #ff7615;">Best Friend</span> -->
+    </h1>
     </div>
 </header>
 <!-- 3 steps -->
@@ -23,7 +25,7 @@
             <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0 text-center">   
                 <i class="fa fa-bell fa-3x step-icons"></i>           
                 <h2 class="h3 txt-black">Get Notified
-                <small class="text-muted"><br>Receive a text and email alert when your new dog has entered a shelter</small></h2> 
+                <small class="text-muted"><br>Receive an email when your new dog has entered a shelter near you</small></h2> 
             </div>
         </div>
         <div class="row">
@@ -89,7 +91,7 @@
                 <div class="row">
                     <div class="col-sm-12 padding-lr">
                         <p class="text-center h5 txt-black"><strong>Lexie D.</strong></p>
-                        <p class="text-center">We wanted to adopt a lab who needed some extra love and care and through Dogfinder we found out new family member. So happy!</p>
+                        <p class="text-center">We wanted to adopt a dog who needed some extra love and care and through Dogfinder we found out new family member. So happy!</p>
                     </div>
                 </div>
             </div>

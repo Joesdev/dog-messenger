@@ -118,7 +118,7 @@ $( function() {
       "Scala",
       "Scheme"
     ];
-    $( "#tags" ).autocomplete({
+    $( "#breed" ).autocomplete({
       source: availableTags
     });
   } );
