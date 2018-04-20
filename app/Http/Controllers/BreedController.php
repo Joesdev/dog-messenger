@@ -27,4 +27,8 @@ class BreedController extends Controller
         return view('results')->with('dogData' ,$masterArrayOfDogs);
     }
 
+    public function getUsersBreed(){
+
+    }
+
 }
