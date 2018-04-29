@@ -33,18 +33,13 @@ class FormController extends Controller
             ]
         ]);
 
-        $zip = $request->zip;
-        $breedName = $request->breedName;
-        $maxMiles = $request->maxMiles;
-        $email = $request->email;
-
-        $breedArray = $this->externalPetApiService->getExternalDataForBreed($zip,$breedName);
+        $breedArray = $this->externalPetApiService->getExternalDataForBreed($request->zip,$request->breedName);
         $selection =
             Selection::create([
-                'breed_id' => $this->dogDataService->getBreedId($breedName),
-                'zip' => $zip,
+                'breed_id' => $this->dogDataService->getBreedId($request->breedName),
+                'zip' => $request->zip,
                 'highest_breed_id' => $this->dogDataService->getLargestBreedId($breedArray),
-                'max_miles' => $maxMiles,
+                'max_miles' => $request->maxMiles,
                 'match'     => false
             ])
         ;
@@ -52,7 +47,7 @@ class FormController extends Controller
         User::create([
             'rank' => 0,
             'name' => 'user',
-            'email' => $email,
+            'email' => $request->email,
             'selection_id' => $selection->id,
         ]);
     }
