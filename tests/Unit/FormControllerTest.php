@@ -5,7 +5,7 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ExampleTest extends TestCase
+class FormControllerTest extends TestCase
 {
 
     public function test_StoreUsersSelection_RequiresValidEmail()
@@ -33,6 +33,13 @@ class ExampleTest extends TestCase
     {
         $this->sendForm(['breedName' => 'notarealbreed'])->assertSessionHasErrors('breedName');
         $this->sendForm(['breedName' => ''])->assertSessionHasErrors('breedName');
+    }
+
+    public function test_StoreUsersSelection_StoresUser()
+    {
+        // Given - My database has two users
+        // When - I store another User
+        // Then - The user exists and count is 3
     }
     // --------------------------------- Helper Functions -------------------------------------------
     protected function sendForm($attributes = [])
