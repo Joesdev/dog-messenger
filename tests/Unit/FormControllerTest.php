@@ -4,9 +4,12 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\User;
+use App\Selection;
 
 class FormControllerTest extends TestCase
 {
+    use RefreshDatabase;
 
     public function test_StoreUsersSelection_RequiresValidEmail()
     {
@@ -37,9 +40,13 @@ class FormControllerTest extends TestCase
 
     public function test_StoreUsersSelection_StoresUser()
     {
-        // Given - My database has two users
-        // When - I store another User
-        // Then - The user exists and count is 3
+        factory(Selection::class, 3)->create()->each(function($selection){
+            $selection->users()->save(factory(User::class)->make([
+                'selection_id' => $selection->id
+            ]));
+        });
+        $this->sendForm();
+        $this->assertCount(4,User::all());
     }
     // --------------------------------- Helper Functions -------------------------------------------
     protected function sendForm($attributes = [])
