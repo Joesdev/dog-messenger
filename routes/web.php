@@ -11,7 +11,6 @@
 |
 */
 
-//Testing Classes
 use App\Services\NotificationService;
 use App\Services\DogDataService;
 
@@ -24,6 +23,9 @@ Route::get('/results/{userEmail}', 'BreedController@showCollectedArrayOfDogsView
 Route::get('/results/{email}', 'BreedController@showCollectedArrayOfDogsView');
 
 Route::post('/user-selections', 'FormController@storeUserSelection')->name('user-selections.store');
+
+//User
+Route::get('/user/{email}/zip', 'UserController@getUserZip');
 // Testing--------------------------------------------------------------------------------------------------------------
 Route::view('/user-selections', 'user-selections');
 

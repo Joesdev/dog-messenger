@@ -7,7 +7,7 @@ $factory->define(App\Selection::class, function (Faker $faker) {
         'breed_id'         => $faker->numberBetween(1,249),
         'zip'              => $faker->numberBetween(90001,96162),
         'highest_breed_id' => $faker->numberBetween(41509748, 41540000),
-        'max_miles'        => $faker->numberBetween(1,200),
+        'max_miles'        => $faker->numberBetween(1,150),
         'match'            => 0,
     ];
 });
