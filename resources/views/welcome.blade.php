@@ -4,7 +4,6 @@
 <header class="bg-header">
     <div class="col-xs-12 col-md-7 col-lg-6 text-center">
        <h1 class= "h1">Get Alerts the Day <br>a <span style="color: #ff7615;">Dog You Love</span> <br>is Dropped Off <br>at a Local Shelter. 
-        <!-- <br> New <span style="color: #ff7615;">Best Friend</span> -->
     </h1>
     </div>
 </header>
@@ -99,60 +98,46 @@
     </div>
 </section>
 
-<!-- Search at bottom -->
+<!-- forms at bottom -->
 
 <section>
     <div class="container-fluid search" id="search">
         <div class="row">
-            <div class="col-xs-12">
                 <form id="regForm" action="">
                     <h1 class="text-center h1">Find Your New Best Friend</h1>
-                  <br>
-                    <!-- One "tab" for each step in the form: -->
-                    <label class="tab text-center h3 txt-black ui-widget" for="breed">What breed of dog are you looking for? <br><br>
-                      <p><input placeholder="poodle..." type="text" id="breed"></p>
-                    </label>
-
-                    <label class="tab text-center h3 txt-black" for="zip">Enter the zip code where you are looking<br><br>
-                      <p><input placeholder="95409..." type="number" id="zip"></p>
-                    </label>
-
-                    <label class="tab text-center h3 txt-black" for="miles">How many miles from this zip code are you looking?<br><br>
-                      <p><input placeholder="30..." type="number" id="miles"></p>
-                    </label>
-
-                    <label class="tab text-center h3 txt-black" for="email">What is your email address?<br><br>
-                      <p><input placeholder="jake@gmail.com..." type="text" id="email"></p>
-                    </label>
-                    <div style="overflow:auto;">
-                      <div style="float:right;">
-                        <button type="button" id="prevBtn" class="btn-lg" onclick="nextPrev(-1)">Previous</button>
-                        <button type="button" id="nextBtn" class="btn-lg" onclick="nextPrev(1)">Next</button>
-                      </div>
+                    <br><br>
+                    <div class="row padding-bottom-sm">
+                        <div class="col-sm-4">
+                            <input placeholder="Breed..." type="text" id="breed">
+                        </div>
+                        <div class="col-sm-4">
+                            <input placeholder="Zip Code..." type="number" id="zip">
+                        </div>
+                        <div class="col-sm-4">
+                          <select name="miles...">
+                            <option value="" disabled selected>Miles...</option>
+                              <option value="volvo">25</option>
+                              <option value="saab">50</option>
+                              <option value="fiat">100</option>
+                              <option value="audi">150</option>
+                            </select>  
+                        </div> 
                     </div>
-
-                    <!-- Circles which indicates the steps of the form: -->
-                    <div style="text-align:center;margin-top:40px;">
-                      <span class="step"></span>
-                      <span class="step"></span>
-                      <span class="step"></span>
-                      <span class="step"></span>
+                    <div class="row padding-bottom-sm">
+                       <div class="col-xs-12">
+                            <input placeholder="Email Address..." type="email" id="email">
+                        </div> 
                     </div>
+                    <br>
+                   <div class="row">
+                    <div class="col-xs-12">
+                         <input type="submit" value="Submit" class="btn btn-blue btn-lg txt-black center-block">
+                    </div>
+                   </div>
                 </form>
-
-            </div>
         </div>
     </div>
 </section>
-
-
-
-
-
-
-
-
-
 
 
 

@@ -7837,6 +7837,10 @@ h1, h2, h3 {
   border: none;
 }
 
+.btn-blue {
+  background-color: #B8DED7;
+}
+
 /*paralax quote pic*/
 .paralax {
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(99, 107, 111, 0.478431)), to(rgba(119, 119, 119, 0.54902))), url(../images/dogs.jpg) no-repeat center center;
@@ -7878,44 +7882,23 @@ a:hover {
   min-width: 300px;
 }
 
-input {
-  padding: 14px;
+input, select, option {
+  padding: 10px;
   width: 100%;
   font-size: 17px;
   font-family: Raleway;
   border: 1px solid #aaaaaa;
 }
 
-/* Mark input boxes that gets an error on validation: */
-input.invalid {
-  background-color: #ffdddd;
+select, option {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 0;
 }
 
-/* Hide all steps by default: */
-.tab {
-  display: none;
-}
-
-/* Make circles that indicate the steps of the form: */
-.step {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #B8DED7;
-  border: none;
-  border-radius: 50%;
-  display: inline-block;
-  opacity: 0.5;
-}
-
-/* Mark the active step: */
-.step.active {
-  opacity: 1;
-}
-
-/* Mark the steps that are finished and valid: */
-.step.finish {
-  background-color: #00a3ff;
+input[type="submit"] {
+  width: 20%;
 }
 
 /* RESULTS PAGE ADDITIONAL STYLES*/
@@ -7967,6 +7950,7 @@ input.invalid {
   padding-bottom: 2em;
 }
 
+/*Automcomplete styles*/
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
