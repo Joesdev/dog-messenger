@@ -24,6 +24,7 @@ class BreedController extends Controller
             $dogData = $externalPetApiService->getExternalDataForSingleDog($dog['new_breed_id']);
             array_push($masterArrayOfDogs,$dogData);
         }
+        // dd($masterArrayOfDogs);
         return view('results')->with('dogData' ,$masterArrayOfDogs);
     }
 

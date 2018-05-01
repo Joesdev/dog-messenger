@@ -16,17 +16,17 @@ html, body {
   @media only screen and (min-width: 300px) {
     .bg-header h1 {
       font-size: 2.6em;
-      padding-top: 20%; } }
+      padding-top: 10%; } }
   @media only screen and (min-width: 600px) {
     .bg-header h1 {
-      font-size: 4em;
+      font-size: 3.6em;
       padding-top: 15%; } }
   @media only screen and (min-width: 800px) {
     .bg-header h1 {
-      padding-top: 55%; } }
+      padding-top: 5%; } }
   @media only screen and (min-width: 1025px) {
     .bg-header h1 {
-      padding-top: 35%; } }
+      padding-top: 15%; } }
 
 @media only screen and (max-width: 600px) {
   .bg-header {
@@ -90,6 +90,10 @@ h1, h2, h3 {
   border: none;
 }
 
+.btn-blue {
+  background-color: $main-blue;
+}
+
 /*paralax quote pic*/
 .paralax{
   background: linear-gradient(rgba(99, 107, 111, 0.47843137254901963), rgba(119, 119, 119, 0.54902)), url(../images/dogs.jpg) no-repeat center center;
@@ -129,48 +133,22 @@ a:hover {
   min-width: 300px;
 }
 
-input {
-  padding: 14px;
+input, select, option {
+  padding: 10px;
   width: 100%;
   font-size: 17px;
   font-family: Raleway;
   border: 1px solid #aaaaaa;
 }
 
-/* Mark input boxes that gets an error on validation: */
-input.invalid {
-  background-color: #ffdddd;
+ select, option{
+    appearance: none;
+    border-radius: 0;
+  }
+
+input[type="submit"] {
+  width: 20%;
 }
-
-/* Hide all steps by default: */
-.tab {
-  display: none;
-}
-
-/* Make circles that indicate the steps of the form: */
-.step {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: $main-blue;
-  border: none; 
-  border-radius: 50%;
-  display: inline-block;
-  opacity: 0.5;
-}
-
-/* Mark the active step: */
-.step.active {
-  opacity: 1;
-}
-
-/* Mark the steps that are finished and valid: */
-.step.finish {
-  background-color: #00a3ff;
-}
-
-
-
 
 /* RESULTS PAGE ADDITIONAL STYLES*/
 .navbar-right {
@@ -211,3 +189,9 @@ input.invalid {
 .padding-bottom-md {
   padding-bottom: 2em;
 }
+
+
+
+
+/*Automcomplete styles*/
+

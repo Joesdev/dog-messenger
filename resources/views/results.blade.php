@@ -22,6 +22,7 @@
 	</div>
 </header>
 <section>
+	@foreach ($dogData as $dog)
 	<div class="container-fluid bg-blue padding-box">
 		<div class="row">
 			<!-- PICTURE AND LOCATION INFO -->
@@ -31,7 +32,7 @@
 					<div class="col-xs-12 col-sm-5">
 						<div class="row">
 							<div class="col-xs-12 p-0">
-								<img src="images/puppy.jpg" class="img-responsive">
+								<img src="{{$dog['media']}}" class="img-responsive">
 							</div>
 							<!-- CONTACT INFO-->
 							<div class="col-xs-12 padding-box-content">
@@ -39,26 +40,26 @@
 								<p class="txt-black"><strong>Contact</strong></p>
 								<p><i class="fa fa-address-book text-orange"></i> Sonoma County Humane Society <br>
 								11845 Wicks St <br>
-								Sun Valley, CA <br>
+								{{$dog['city']}}, {{$dog['state']}} <br>
 								91352
 								</p>
-								<p><i class="fa fa-envelope text-orange"></i> email@email.com</p>
-								<p><i class="fa fa-phone text-orange"></i> 555-555-5555</p>
+    							<p><i class="fa fa-envelope text-orange"></i> {{$dog['email']}}</p>
+								<p><i class="fa fa-phone text-orange"></i> {{$dog['phone']}}</p>
 							</div>
 						</div>
 					</div>
 					<!-- DOG INFO -->
 					<div class="col-xs-12 col-sm-7 padding-box-content">
-						<h2 class="h3 txt-black">Pogo</h2>
-						<p class="txt-black"><strong>Male - 6yrs</strong></p>
-						<p ><strong class="txt-black">Health:</strong> Vaccinations up to date, spayed / neutered</p>
-						<p><strong class="txt-black">About:</strong> This dog is a courtesy listing and is not part of BCIN's program. If you are interested in Murphy, please contact Bonnie at bonnieeddy@msn.com or 951-813-1821. BCIN provides this service to help owners who must re-home their dog. Please be advised that BCIN has not evaluated nor tested the temperament of any of the dogs that are courtesy listed on our website. Murphy is a 9 year old purebred border collie that needs to find a good home. He is in good health and no known health concerns except he's a little hard of hearing. He walks on the leash, loves car rides, utd on shots, neutered, housebroken, has basically lived inside for the past few years. Has good manners. He does not like some little kids, and some dogs. I now have my hyperactive 5yr old grandson living with us and it's not a good mix. Murphy is a nice dog, and this is difficult, but it is best for him. 
+						<h2 class="h3 txt-black">{{$dog['name']}}</h2>
+						<p class="txt-black"><strong>{{$dog['sex']}} - {{$dog['age']}}</strong></p>
+						<p><strong class="txt-black">About:</strong> {{$dog['description']}}
 						</p>
 					</div>	
 				</div>
 			</div>
 		</div>				
 	</div>
+	@endforeach
 </section>
 
 @endsection
