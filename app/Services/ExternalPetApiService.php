@@ -56,7 +56,7 @@ class ExternalPetApiService
                 'media'       => $this->validateMediaKey(500, $dogData),
                 //'distance'   => $found_dogs[$index]['miles'] . ' miles',
             ];
-
+// dd($masterArrayOfDogs);
             return $masterArrayOfDogs;
 
     }

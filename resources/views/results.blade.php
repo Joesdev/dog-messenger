@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="colxs-12">
 				<div class="navbar navbar-default navbar-static-top">
-					<p class="navbar-text navbar-right"><a href="./" class="navbar-link txt-black">Home</a></p>
+					<p class="navbar-text navbar-right"><a href="../" class="navbar-link txt-black">Home</a></p>
 				</div>
 			</div>
 		</div>
@@ -29,10 +29,10 @@
 			<div class="col-sm-12 bg-white">
 				<div class="row">
 					<!-- DOG PIC -->
-					<div class="col-xs-12 col-sm-5">
+					<div class="col-xs-12 col-sm-5 padding-top">
 						<div class="row">
 							<div class="col-xs-12 p-0">
-								<img src="{{$dog['media']}}" class="img-responsive">
+								<div class="img img-responsive center-block" style="background-image:url('{{$dog['media']}}');"></div>
 							</div>
 							<!-- CONTACT INFO-->
 							<div class="col-xs-12 padding-box-content">
@@ -49,7 +49,7 @@
 						</div>
 					</div>
 					<!-- DOG INFO -->
-					<div class="col-xs-12 col-sm-7 padding-box-content">
+					<div class="col-xs-12 col-sm-7 padding-box-content pading-top">
 						<h2 class="h3 txt-black">{{$dog['name']}}</h2>
 						<p class="txt-black"><strong>{{$dog['sex']}} - {{$dog['age']}}</strong></p>
 						<p><strong class="txt-black">About:</strong> {{$dog['description']}}

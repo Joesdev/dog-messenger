@@ -44,6 +44,10 @@ h1, h2, h3 {
 .txt-black {
   color: black;
 }
+.txt-white {
+  color: white;
+}
+
 .step-icons { 
 	padding: 10px;
 	border: solid;
@@ -74,7 +78,7 @@ h1, h2, h3 {
   padding-right: 3em;
 }
 .padding-top {
-  padding: 20px;
+  padding: 3em;
 }
 .p-0 {
   padding: 0;
@@ -82,6 +86,8 @@ h1, h2, h3 {
 .border-0 {
   border: none;
 }
+
+
 /* BUTTON*/
 .btn-yellow {
   background-color: $main-yellow;
@@ -90,8 +96,14 @@ h1, h2, h3 {
   border: none;
 }
 
-.btn-blue {
+.orange-hov:hover {
+  background-color: $main-orange;
+  color: white;
+}
+
+.blue-hov:hover {
   background-color: $main-blue;
+  color: white;
 }
 
 /*paralax quote pic*/
@@ -147,7 +159,7 @@ input, select, option {
   }
 
 input[type="submit"] {
-  width: 20%;
+  width: 8em;
 }
 
 /* RESULTS PAGE ADDITIONAL STYLES*/
@@ -164,16 +176,28 @@ input[type="submit"] {
 }
 
 .padding-box {
-  padding: 5em;
+  padding: 2.1em 5em;
   @media only screen and (max-width: 600px) {
      padding: 2.5em;
      }
 }
 .padding-box-content {
   @media only screen and (min-width: 600px) {
-     padding: 0 3em 3em 3em;
+     padding: 2em 3em 3em 3em;
      }
 }
+
+.img {
+    position: relative;
+    width:  25em;
+    height: 25em;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+    border: solid $main-orange 3px;
+    border-radius: 3%;
+}
+
 .text-orange {
   color: $main-orange;
 }
@@ -189,9 +213,3 @@ input[type="submit"] {
 .padding-bottom-md {
   padding-bottom: 2em;
 }
-
-
-
-
-/*Automcomplete styles*/
-
