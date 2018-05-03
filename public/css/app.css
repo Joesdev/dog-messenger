@@ -7727,6 +7727,10 @@ html, body {
 }
 
 /*WELCOME PAGE STYLES*/
+p {
+  word-wrap: break-word;
+}
+
 .bg-header {
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.2)), to(rgba(255, 120, 42, 0.2))), url(../images/dog.jpg) no-repeat center center;
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(255, 120, 42, 0.2)), url(../images/dog.jpg) no-repeat center center;
@@ -7783,6 +7787,21 @@ h1, h2, h3 {
   color: black;
 }
 
+.txt-white {
+  color: white;
+}
+
+.txt-orange {
+  color: #ed7333;
+}
+
+@media only screen and (max-width: 766px) {
+  .txt-scroll {
+    max-height: 20em;
+    overflow: scroll;
+  }
+}
+
 .step-icons {
   padding: 10px;
   border: solid;
@@ -7812,13 +7831,13 @@ h1, h2, h3 {
   padding-bottom: 1em;
 }
 
+.padding-bottom-md {
+  padding-bottom: 2em;
+}
+
 .padding-lr {
   padding-left: 3em;
   padding-right: 3em;
-}
-
-.padding-top {
-  padding: 20px;
 }
 
 .p-0 {
@@ -7829,7 +7848,11 @@ h1, h2, h3 {
   border: none;
 }
 
-/* BUTTON*/
+.padding-nav-txt {
+  padding-left: 2em;
+}
+
+/* BUTTONS*/
 .btn-yellow {
   background-color: #F3D030;
   font-weight: 700;
@@ -7837,8 +7860,14 @@ h1, h2, h3 {
   border: none;
 }
 
-.btn-blue {
+.orange-hov:hover {
+  background-color: #ed7333;
+  color: white;
+}
+
+.blue-hov:hover {
   background-color: #B8DED7;
+  color: white;
 }
 
 /*paralax quote pic*/
@@ -7851,6 +7880,12 @@ h1, h2, h3 {
   min-height: 100%;
   margin-top: 0;
   padding: 7em;
+}
+
+@media only screen and (max-width: 320px) {
+  .paralax {
+    padding: 3em;
+  }
 }
 
 /*testimonials pic*/
@@ -7875,7 +7910,6 @@ a:hover {
   text-decoration: none;
 }
 
-/* SEARCH FORM */
 #regForm {
   margin: 100px auto;
   width: 70%;
@@ -7898,7 +7932,7 @@ select, option {
 }
 
 input[type="submit"] {
-  width: 20%;
+  width: 8em;
 }
 
 /* RESULTS PAGE ADDITIONAL STYLES*/
@@ -7915,23 +7949,68 @@ input[type="submit"] {
 }
 
 .padding-box {
-  padding: 5em;
+  padding: 2.1em 5em;
 }
 
 @media only screen and (max-width: 600px) {
   .padding-box {
-    padding: 2.5em;
+    padding: 2.5em 2.5em 1em 2.5em;
   }
+}
+
+.about-box {
+  padding: 1em;
 }
 
 @media only screen and (min-width: 600px) {
-  .padding-box-content {
-    padding: 0 3em 3em 3em;
+  .about-box {
+    padding: 1em 3em 3em 2em;
   }
 }
 
-.text-orange {
-  color: #ed7333;
+.contact-box {
+  padding-left: 1em;
+}
+
+@media only screen and (min-width: 600px) {
+  .contact-box {
+    padding: 1em 2em 1em 4em;
+  }
+}
+
+@media only screen and (min-width: 1143px) {
+  .contact-box {
+    padding: 1em 2em 1em 4em;
+  }
+}
+
+.img {
+  position: relative;
+  width: 25em;
+  height: 25em;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: solid #ed7333 3px;
+  border-radius: 3%;
+}
+
+@media only screen and (min-width: 600px) {
+  .img {
+    margin: 2em 0em 0em 2em;
+  }
+}
+
+@media only screen and (min-width: 375px) {
+  .img {
+    margin-top: 2em;
+  }
+}
+
+@media only screen and (max-width: 882px) {
+  .img {
+    width: 20em;
+  }
 }
 
 .navbar-default .navbar-link {
@@ -7946,11 +8025,6 @@ input[type="submit"] {
   border-color: black;
 }
 
-.padding-bottom-md {
-  padding-bottom: 2em;
-}
-
-/*Automcomplete styles*/
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)

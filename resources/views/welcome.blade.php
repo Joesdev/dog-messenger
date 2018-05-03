@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-xs-12 padding-bottom">
                  <a href="#search">
-                    <button class="btn-lg center-block btn-yellow" type="button" aria-haspopup="true" aria-expanded="false">Start Now </button>
+                    <button class="btn-lg center-block btn-yellow orange-hov" type="button" aria-haspopup="true" aria-expanded="false">Start Now </button>
                 </a>
             </div>
         </div>
@@ -115,11 +115,11 @@
                         </div>
                         <div class="col-sm-4">
                           <select name="miles...">
-                            <option value="" disabled selected>Miles...</option>
-                              <option value="volvo">25</option>
-                              <option value="saab">50</option>
-                              <option value="fiat">100</option>
-                              <option value="audi">150</option>
+                            <option value="" disabled selected>Miles Away...</option>
+                              <option value="volvo">25 Miles</option>
+                              <option value="saab">50 Miles</option>
+                              <option value="fiat">100 Miles</option>
+                              <option value="audi">150 Miles</option>
                             </select>  
                         </div> 
                     </div>
@@ -131,7 +131,7 @@
                     <br>
                    <div class="row">
                     <div class="col-xs-12">
-                         <input type="submit" value="Submit" class="btn btn-blue btn-lg txt-black center-block">
+                         <input type="submit" value="Submit" class="btn btn-yellow btn-lg center-block txt-white blue-hov">
                     </div>
                    </div>
                 </form>

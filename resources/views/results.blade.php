@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="colxs-12">
 				<div class="navbar navbar-default navbar-static-top">
-					<p class="navbar-text navbar-right"><a href="./" class="navbar-link txt-black">Home</a></p>
+					<p class="navbar-text navbar-right padding-nav-txt"><a href="../" class="navbar-link txt-black">Home</a></p>
 				</div>
 			</div>
 		</div>
@@ -29,30 +29,30 @@
 			<div class="col-sm-12 bg-white">
 				<div class="row">
 					<!-- DOG PIC -->
-					<div class="col-xs-12 col-sm-5">
+					<div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
 						<div class="row">
 							<div class="col-xs-12 p-0">
-								<img src="{{$dog['media']}}" class="img-responsive">
+								<div class="img img-responsive center-block" style="background-image:url('{{$dog['media']}}');"></div>
 							</div>
 							<!-- CONTACT INFO-->
-							<div class="col-xs-12 padding-box-content">
+							<div class="col-xs-12 contact-box">
 								<br>
 								<p class="txt-black"><strong>Contact</strong></p>
-								<p><i class="fa fa-address-book text-orange"></i> Sonoma County Humane Society <br>
+								<p><i class="fa fa-address-book txt-orange"></i> Sonoma County Humane Society <br>
 								11845 Wicks St <br>
 								{{$dog['city']}}, {{$dog['state']}} <br>
 								91352
 								</p>
-    							<p><i class="fa fa-envelope text-orange"></i> {{$dog['email']}}</p>
-								<p><i class="fa fa-phone text-orange"></i> {{$dog['phone']}}</p>
+    							<p><i class="fa fa-envelope txt-orange"></i> {{$dog['email']}}</p>
+								<p><i class="fa fa-phone txt-orange"></i> {{$dog['phone']}}</p>
 							</div>
 						</div>
 					</div>
 					<!-- DOG INFO -->
-					<div class="col-xs-12 col-sm-7 padding-box-content">
+					<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 about-box">
 						<h2 class="h3 txt-black">{{$dog['name']}}</h2>
 						<p class="txt-black"><strong>{{$dog['sex']}} - {{$dog['age']}}</strong></p>
-						<p><strong class="txt-black">About:</strong> {{$dog['description']}}
+						<p class="txt-black txt-scroll"><strong>About:</strong> {{$dog['description']}}
 						</p>
 					</div>	
 				</div>
