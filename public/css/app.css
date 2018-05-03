@@ -7727,6 +7727,10 @@ html, body {
 }
 
 /*WELCOME PAGE STYLES*/
+p {
+  word-wrap: break-word;
+}
+
 .bg-header {
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.2)), to(rgba(255, 120, 42, 0.2))), url(../images/dog.jpg) no-repeat center center;
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(255, 120, 42, 0.2)), url(../images/dog.jpg) no-repeat center center;
@@ -7787,6 +7791,17 @@ h1, h2, h3 {
   color: white;
 }
 
+.txt-orange {
+  color: #ed7333;
+}
+
+@media only screen and (max-width: 766px) {
+  .txt-scroll {
+    max-height: 20em;
+    overflow: scroll;
+  }
+}
+
 .step-icons {
   padding: 10px;
   border: solid;
@@ -7816,13 +7831,13 @@ h1, h2, h3 {
   padding-bottom: 1em;
 }
 
+.padding-bottom-md {
+  padding-bottom: 2em;
+}
+
 .padding-lr {
   padding-left: 3em;
   padding-right: 3em;
-}
-
-.padding-top {
-  padding: 3em;
 }
 
 .p-0 {
@@ -7833,7 +7848,11 @@ h1, h2, h3 {
   border: none;
 }
 
-/* BUTTON*/
+.padding-nav-txt {
+  padding-left: 2em;
+}
+
+/* BUTTONS*/
 .btn-yellow {
   background-color: #F3D030;
   font-weight: 700;
@@ -7863,6 +7882,12 @@ h1, h2, h3 {
   padding: 7em;
 }
 
+@media only screen and (max-width: 320px) {
+  .paralax {
+    padding: 3em;
+  }
+}
+
 /*testimonials pic*/
 .test-pic {
   width: 50%;
@@ -7885,7 +7910,6 @@ a:hover {
   text-decoration: none;
 }
 
-/* SEARCH FORM */
 #regForm {
   margin: 100px auto;
   width: 70%;
@@ -7930,13 +7954,33 @@ input[type="submit"] {
 
 @media only screen and (max-width: 600px) {
   .padding-box {
-    padding: 2.5em;
+    padding: 2.5em 2.5em 1em 2.5em;
   }
 }
 
+.about-box {
+  padding: 1em;
+}
+
 @media only screen and (min-width: 600px) {
-  .padding-box-content {
-    padding: 2em 3em 3em 3em;
+  .about-box {
+    padding: 1em 3em 3em 2em;
+  }
+}
+
+.contact-box {
+  padding-left: 1em;
+}
+
+@media only screen and (min-width: 600px) {
+  .contact-box {
+    padding: 1em 2em 1em 4em;
+  }
+}
+
+@media only screen and (min-width: 1143px) {
+  .contact-box {
+    padding: 1em 2em 1em 4em;
   }
 }
 
@@ -7951,8 +7995,22 @@ input[type="submit"] {
   border-radius: 3%;
 }
 
-.text-orange {
-  color: #ed7333;
+@media only screen and (min-width: 600px) {
+  .img {
+    margin: 2em 0em 0em 2em;
+  }
+}
+
+@media only screen and (min-width: 375px) {
+  .img {
+    margin-top: 2em;
+  }
+}
+
+@media only screen and (max-width: 882px) {
+  .img {
+    width: 20em;
+  }
 }
 
 .navbar-default .navbar-link {
@@ -7965,10 +8023,6 @@ input[type="submit"] {
 
 .navbar-default {
   border-color: black;
-}
-
-.padding-bottom-md {
-  padding-bottom: 2em;
 }
 
 /*!
