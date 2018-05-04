@@ -108,18 +108,24 @@
                     <br><br>
                     <div class="row padding-bottom-sm">
                         <div class="col-sm-4">
-                            <input placeholder="Breed..." type="text" id="breed">
+                            <select name="Breed...">
+                                <option value="" disabled selected>Breed...</option>
+                                <option value="Poodle">Poodle</option>
+                                <option value="Husky">Husky</option>
+                                <option value="Pug">Pug</option>
+                                <option value="Pitbul">Pitbul</option>
+                            </select>  
                         </div>
                         <div class="col-sm-4">
                             <input placeholder="Zip Code..." type="number" id="zip">
                         </div>
                         <div class="col-sm-4">
-                          <select name="miles...">
-                            <option value="" disabled selected>Miles Away...</option>
-                              <option value="volvo">25 Miles</option>
-                              <option value="saab">50 Miles</option>
-                              <option value="fiat">100 Miles</option>
-                              <option value="audi">150 Miles</option>
+                            <select name="miles...">
+                                <option value="" disabled selected>Miles Away...</option>
+                                <option value="25">25 Miles</option>
+                                <option value="50">50 Miles</option>
+                                <option value="100">100 Miles</option>
+                                <option value="150">150 Miles</option>
                             </select>  
                         </div> 
                     </div>
