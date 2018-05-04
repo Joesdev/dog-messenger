@@ -25,7 +25,8 @@ Route::get('/results/{email}', 'BreedController@showCollectedArrayOfDogsView');
 Route::post('/user-selections', 'FormController@storeUserSelection')->name('user-selections.store');
 
 //User
-Route::get('/user/{email}/zip', 'UserController@getUserZip');
+Route::get('/user/zip/{email}', 'UserController@getUserZip');
+Route::get('/user/breed/{email}', 'UserController@getUserBreed');
 // Testing--------------------------------------------------------------------------------------------------------------
 Route::view('/user-selections', 'user-selections');
 
