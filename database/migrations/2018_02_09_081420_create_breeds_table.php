@@ -15,6 +15,7 @@ class CreateBreedsTable extends Migration
     {
         Schema::create('breeds', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('breed_id');
             $table->string('breed');
             $table->timestamps();
         });
