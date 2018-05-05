@@ -17,6 +17,7 @@ class UserControllerTest extends TestCase
     public function setUp(){
         parent::setUp();
         $this->runFactories();
+        $this->seed('BreedsTableSeeder', ['database' =>'testing_mysql']);
     }
 
     public function runFactories()
@@ -24,9 +25,12 @@ class UserControllerTest extends TestCase
         factory(User::class,3)->create()->each(function ($u){
             $u->selection()->save(factory(Selection::class)->make());
         });
-        $this->selection = factory(Selection::class)->create();
-        $this->user = factory(User::class)->create(['selection_id' => $this->selection->id]);
-        $this->seed('BreedsTableSeeder', ['database' =>'testing_mysql']);
+        /*$connection = config('database.default');*/
+       /* dd(env('DB_DATABASE'));*/
+        dd(User::all());
+       /* $this->selection = factory(Selection::class)->create();*/
+        /*$this->user = factory(User::class)->create(['selection_id' => $this->selection->id])*/;
+        /*dd(Breed::get(['breed'])->toArray());*/
     }
 
     public function test_getUsersZip()
@@ -40,7 +44,6 @@ class UserControllerTest extends TestCase
     {
         dd(Breed::where('id',1)->first());
         $response = $this->json('GET', 'user/breed/'.$this->user->email);
-        dd($response);
         $response->assertStatus(200);
     }
 }
