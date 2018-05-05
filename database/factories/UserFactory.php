@@ -7,6 +7,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'rank'         => 0,
         'name'         => $faker->name(),
         'email'        => $faker->unique()->email(),
-        'selection_id' => $faker->numberBetween(1,100)
+        'selection_id' => factory(App\Selection::class)->create()->id
     ];
 });

@@ -17,7 +17,7 @@ class UserControllerTest extends TestCase
     public function setUp(){
         parent::setUp();
         $this->runFactories();
-        $this->seed('BreedsTableSeeder', ['database' =>'testing_mysql']);
+        $this->seed('breedsTableSeeder', ['database' =>'testing_mysql']);
     }
 
     public function runFactories()
