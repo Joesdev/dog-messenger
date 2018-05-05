@@ -17,16 +17,11 @@ class UserControllerTest extends TestCase
     public function setUp(){
         parent::setUp();
         $this->runFactories();
-        $this->seed('breedsTableSeeder', ['database' =>'testing_mysql']);
     }
 
     public function runFactories()
     {
-        factory(User::class,3)->create()->each(function ($u){
-            $u->selection()->save(factory(Selection::class)->make());
-        });
-        /*$connection = config('database.default');*/
-       /* dd(env('DB_DATABASE'));*/
+        $this->artisan('db:seed');
         dd(User::all());
        /* $this->selection = factory(Selection::class)->create();*/
         /*$this->user = factory(User::class)->create(['selection_id' => $this->selection->id])*/;

@@ -11,10 +11,6 @@ class found_dogsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Selection::class, 3)->create()->each(function($selection){
-            $selection->users()->save(factory(App\User::class)->make([
-                'selection_id' => $selection->id
-            ]));
-        });
+
     }
 }
