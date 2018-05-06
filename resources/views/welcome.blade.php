@@ -3,7 +3,8 @@
 @section('content')
 <header class="bg-header">
     <div class="col-xs-12 col-md-7 col-lg-6 text-center">
-       <h1 class= "h1">Find Your<br> New <span style="color: #ff7615;">Best Friend</span></h1>
+       <h1 class= "h1">Get Alerts the Day <br>a <span style="color: #ff7615;">Dog You Love</span> <br>is Dropped Off <br>at a Local Shelter. 
+    </h1>
     </div>
 </header>
 <!-- 3 steps -->
@@ -23,13 +24,13 @@
             <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0 text-center">   
                 <i class="fa fa-bell fa-3x step-icons"></i>           
                 <h2 class="h3 txt-black">Get Notified
-                <small class="text-muted"><br>Receive a text and email alert when your new dog has entered a shelter</small></h2> 
+                <small class="text-muted"><br>Receive an email when your new dog has entered a shelter near you</small></h2> 
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 padding-bottom">
                  <a href="#search">
-                    <button class="btn-lg center-block btn-yellow" type="button" aria-haspopup="true" aria-expanded="false">Start Now </button>
+                    <button class="btn-lg center-block btn-yellow orange-hov" type="button" aria-haspopup="true" aria-expanded="false">Start Now </button>
                 </a>
             </div>
         </div>
@@ -89,7 +90,7 @@
                 <div class="row">
                     <div class="col-sm-12 padding-lr">
                         <p class="text-center h5 txt-black"><strong>Lexie D.</strong></p>
-                        <p class="text-center">We wanted to adopt a lab who needed some extra love and care and through Dogfinder we found out new family member. So happy!</p>
+                        <p class="text-center">We wanted to adopt a dog who needed some extra love and care and through Dogfinder we found out new family member. So happy!</p>
                     </div>
                 </div>
             </div>
@@ -97,60 +98,52 @@
     </div>
 </section>
 
-<!-- Search at bottom -->
+<!-- forms at bottom -->
 
 <section>
     <div class="container-fluid search" id="search">
         <div class="row">
-            <div class="col-xs-12">
                 <form id="regForm" action="">
                     <h1 class="text-center h1">Find Your New Best Friend</h1>
-                  <br>
-                    <!-- One "tab" for each step in the form: -->
-                    <label class="tab text-center h3 txt-black ui-widget" for="breed">What breed of dog are you looking for? <br><br>
-                      <p><input placeholder="poodle..." type="text" id="breed"></p>
-                    </label>
-
-                    <label class="tab text-center h3 txt-black" for="zip">Enter the zip code where you are looking<br><br>
-                      <p><input placeholder="95409..." type="number" id="zip"></p>
-                    </label>
-
-                    <label class="tab text-center h3 txt-black" for="miles">How many miles from this zip code are you looking?<br><br>
-                      <p><input placeholder="30..." type="number" id="miles"></p>
-                    </label>
-
-                    <label class="tab text-center h3 txt-black" for="email">What is your email address?<br><br>
-                      <p><input placeholder="jake@gmail.com..." type="text" id="email"></p>
-                    </label>
-                    <div style="overflow:auto;">
-                      <div style="float:right;">
-                        <button type="button" id="prevBtn" class="btn-lg" onclick="nextPrev(-1)">Previous</button>
-                        <button type="button" id="nextBtn" class="btn-lg" onclick="nextPrev(1)">Next</button>
-                      </div>
+                    <br><br>
+                    <div class="row padding-bottom-sm">
+                        <div class="col-sm-4">
+                            <select name="Breed...">
+                                <option value="" disabled selected>Breed...</option>
+                                <option value="Poodle">Poodle</option>
+                                <option value="Husky">Husky</option>
+                                <option value="Pug">Pug</option>
+                                <option value="Pitbul">Pitbul</option>
+                            </select>  
+                        </div>
+                        <div class="col-sm-4">
+                            <input placeholder="Zip Code..." type="number" id="zip">
+                        </div>
+                        <div class="col-sm-4">
+                            <select name="miles...">
+                                <option value="" disabled selected>Miles Away...</option>
+                                <option value="25">25 Miles</option>
+                                <option value="50">50 Miles</option>
+                                <option value="100">100 Miles</option>
+                                <option value="150">150 Miles</option>
+                            </select>  
+                        </div> 
                     </div>
-
-                    <!-- Circles which indicates the steps of the form: -->
-                    <div style="text-align:center;margin-top:40px;">
-                      <span class="step"></span>
-                      <span class="step"></span>
-                      <span class="step"></span>
-                      <span class="step"></span>
+                    <div class="row padding-bottom-sm">
+                       <div class="col-xs-12">
+                            <input placeholder="Email Address..." type="email" id="email">
+                        </div> 
                     </div>
+                    <br>
+                   <div class="row">
+                    <div class="col-xs-12">
+                         <input type="submit" value="Submit" class="btn btn-yellow btn-lg center-block txt-white blue-hov">
+                    </div>
+                   </div>
                 </form>
-
-            </div>
         </div>
     </div>
 </section>
-
-
-
-
-
-
-
-
-
 
 
 

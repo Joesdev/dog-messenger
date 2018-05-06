@@ -4,6 +4,9 @@ html, body {
   }
 
 /*WELCOME PAGE STYLES*/
+p {
+  word-wrap: break-word;
+}
 
 .bg-header {
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(255, 120, 42, 0.2)), url(../images/dog.jpg) no-repeat center center;
@@ -16,17 +19,17 @@ html, body {
   @media only screen and (min-width: 300px) {
     .bg-header h1 {
       font-size: 2.6em;
-      padding-top: 20%; } }
+      padding-top: 10%; } }
   @media only screen and (min-width: 600px) {
     .bg-header h1 {
-      font-size: 4em;
+      font-size: 3.6em;
       padding-top: 15%; } }
   @media only screen and (min-width: 800px) {
     .bg-header h1 {
-      padding-top: 55%; } }
+      padding-top: 5%; } }
   @media only screen and (min-width: 1025px) {
     .bg-header h1 {
-      padding-top: 35%; } }
+      padding-top: 15%; } }
 
 @media only screen and (max-width: 600px) {
   .bg-header {
@@ -43,6 +46,18 @@ h1, h2, h3 {
 }
 .txt-black {
   color: black;
+}
+.txt-white {
+  color: white;
+}
+.txt-orange {
+  color: $main-orange;
+}
+.txt-scroll {
+  @media only screen and (max-width: 766px) {
+  max-height: 20em;
+  overflow: scroll;
+}
 }
 .step-icons { 
 	padding: 10px;
@@ -69,25 +84,40 @@ h1, h2, h3 {
 .padding-bottom-sm {
   padding-bottom: 1em;
 }
+.padding-bottom-md {
+  padding-bottom: 2em;
+}
 .padding-lr {
   padding-left: 3em;
   padding-right: 3em;
 }
-.padding-top {
-  padding: 20px;
-}
+
 .p-0 {
   padding: 0;
 }
 .border-0 {
   border: none;
 }
-/* BUTTON*/
+.padding-nav-txt {
+  padding-left: 2em;
+}
+
+/* BUTTONS*/
 .btn-yellow {
   background-color: $main-yellow;
   font-weight: 700;
   color: white;
   border: none;
+}
+
+.orange-hov:hover {
+  background-color: $main-orange;
+  color: white;
+}
+
+.blue-hov:hover {
+  background-color: $main-blue;
+  color: white;
 }
 
 /*paralax quote pic*/
@@ -99,6 +129,10 @@ h1, h2, h3 {
   min-height: 100%;
   margin-top: 0;
   padding: 7em;
+
+  @media only screen and (max-width: 320px) {
+    padding: 3em;
+  }
 
 }
 
@@ -122,55 +156,28 @@ a:hover {
   text-decoration: none;
 }
 
-/* SEARCH FORM */
 #regForm {
   margin: 100px auto;
   width: 70%;
   min-width: 300px;
 }
 
-input {
-  padding: 14px;
+input, select, option {
+  padding: 10px;
   width: 100%;
   font-size: 17px;
   font-family: Raleway;
   border: 1px solid #aaaaaa;
 }
 
-/* Mark input boxes that gets an error on validation: */
-input.invalid {
-  background-color: #ffdddd;
+ select, option{
+    appearance: none;
+    border-radius: 0;
+  }
+
+input[type="submit"] {
+  width: 8em;
 }
-
-/* Hide all steps by default: */
-.tab {
-  display: none;
-}
-
-/* Make circles that indicate the steps of the form: */
-.step {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: $main-blue;
-  border: none; 
-  border-radius: 50%;
-  display: inline-block;
-  opacity: 0.5;
-}
-
-/* Mark the active step: */
-.step.active {
-  opacity: 1;
-}
-
-/* Mark the steps that are finished and valid: */
-.step.finish {
-  background-color: #00a3ff;
-}
-
-
-
 
 /* RESULTS PAGE ADDITIONAL STYLES*/
 .navbar-right {
@@ -186,18 +193,46 @@ input.invalid {
 }
 
 .padding-box {
-  padding: 5em;
+  padding: 2.1em 5em;
   @media only screen and (max-width: 600px) {
-     padding: 2.5em;
+     padding: 2.5em 2.5em 1em 2.5em;
      }
 }
-.padding-box-content {
+.about-box {
+  padding: 1em;
   @media only screen and (min-width: 600px) {
-     padding: 0 3em 3em 3em;
+  padding: 1em 3em 3em 2em;
      }
 }
-.text-orange {
-  color: $main-orange;
+.contact-box {
+  padding-left: 1em;
+  @media only screen and (min-width: 600px) {
+  padding: 1em 2em 1em 4em;
+     }
+  @media only screen and (min-width: 1143px) {
+  padding: 1em 2em 1em 4em;
+     }
+}
+
+.img {
+    position: relative;
+    width: 25em;
+    height: 25em;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: solid $main-orange 3px;
+    border-radius: 3%;
+
+    @media only screen and (min-width: 600px) {
+     margin: 2em 0em 0em 2em;
+     }
+     @media only screen and (min-width: 375px) {
+     margin-top: 2em;
+     }
+     @media only screen and (max-width: 882px) {
+     width: 20em;
+     }
 }
 .navbar-default .navbar-link {
   color: black;
@@ -207,7 +242,4 @@ input.invalid {
 }
 .navbar-default {
   border-color: black;
-}
-.padding-bottom-md {
-  padding-bottom: 2em;
 }

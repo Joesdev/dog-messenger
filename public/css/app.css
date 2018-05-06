@@ -7727,6 +7727,10 @@ html, body {
 }
 
 /*WELCOME PAGE STYLES*/
+p {
+  word-wrap: break-word;
+}
+
 .bg-header {
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.2)), to(rgba(255, 120, 42, 0.2))), url(../images/dog.jpg) no-repeat center center;
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(255, 120, 42, 0.2)), url(../images/dog.jpg) no-repeat center center;
@@ -7740,26 +7744,26 @@ html, body {
 @media only screen and (min-width: 300px) {
   .bg-header h1 {
     font-size: 2.6em;
-    padding-top: 20%;
+    padding-top: 10%;
   }
 }
 
 @media only screen and (min-width: 600px) {
   .bg-header h1 {
-    font-size: 4em;
+    font-size: 3.6em;
     padding-top: 15%;
   }
 }
 
 @media only screen and (min-width: 800px) {
   .bg-header h1 {
-    padding-top: 55%;
+    padding-top: 5%;
   }
 }
 
 @media only screen and (min-width: 1025px) {
   .bg-header h1 {
-    padding-top: 35%;
+    padding-top: 15%;
   }
 }
 
@@ -7781,6 +7785,21 @@ h1, h2, h3 {
 
 .txt-black {
   color: black;
+}
+
+.txt-white {
+  color: white;
+}
+
+.txt-orange {
+  color: #ed7333;
+}
+
+@media only screen and (max-width: 766px) {
+  .txt-scroll {
+    max-height: 20em;
+    overflow: scroll;
+  }
 }
 
 .step-icons {
@@ -7812,13 +7831,13 @@ h1, h2, h3 {
   padding-bottom: 1em;
 }
 
+.padding-bottom-md {
+  padding-bottom: 2em;
+}
+
 .padding-lr {
   padding-left: 3em;
   padding-right: 3em;
-}
-
-.padding-top {
-  padding: 20px;
 }
 
 .p-0 {
@@ -7829,12 +7848,26 @@ h1, h2, h3 {
   border: none;
 }
 
-/* BUTTON*/
+.padding-nav-txt {
+  padding-left: 2em;
+}
+
+/* BUTTONS*/
 .btn-yellow {
   background-color: #F3D030;
   font-weight: 700;
   color: white;
   border: none;
+}
+
+.orange-hov:hover {
+  background-color: #ed7333;
+  color: white;
+}
+
+.blue-hov:hover {
+  background-color: #B8DED7;
+  color: white;
 }
 
 /*paralax quote pic*/
@@ -7847,6 +7880,12 @@ h1, h2, h3 {
   min-height: 100%;
   margin-top: 0;
   padding: 7em;
+}
+
+@media only screen and (max-width: 320px) {
+  .paralax {
+    padding: 3em;
+  }
 }
 
 /*testimonials pic*/
@@ -7871,51 +7910,29 @@ a:hover {
   text-decoration: none;
 }
 
-/* SEARCH FORM */
 #regForm {
   margin: 100px auto;
   width: 70%;
   min-width: 300px;
 }
 
-input {
-  padding: 14px;
+input, select, option {
+  padding: 10px;
   width: 100%;
   font-size: 17px;
   font-family: Raleway;
   border: 1px solid #aaaaaa;
 }
 
-/* Mark input boxes that gets an error on validation: */
-input.invalid {
-  background-color: #ffdddd;
+select, option {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 0;
 }
 
-/* Hide all steps by default: */
-.tab {
-  display: none;
-}
-
-/* Make circles that indicate the steps of the form: */
-.step {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #B8DED7;
-  border: none;
-  border-radius: 50%;
-  display: inline-block;
-  opacity: 0.5;
-}
-
-/* Mark the active step: */
-.step.active {
-  opacity: 1;
-}
-
-/* Mark the steps that are finished and valid: */
-.step.finish {
-  background-color: #00a3ff;
+input[type="submit"] {
+  width: 8em;
 }
 
 /* RESULTS PAGE ADDITIONAL STYLES*/
@@ -7932,23 +7949,68 @@ input.invalid {
 }
 
 .padding-box {
-  padding: 5em;
+  padding: 2.1em 5em;
 }
 
 @media only screen and (max-width: 600px) {
   .padding-box {
-    padding: 2.5em;
+    padding: 2.5em 2.5em 1em 2.5em;
   }
+}
+
+.about-box {
+  padding: 1em;
 }
 
 @media only screen and (min-width: 600px) {
-  .padding-box-content {
-    padding: 0 3em 3em 3em;
+  .about-box {
+    padding: 1em 3em 3em 2em;
   }
 }
 
-.text-orange {
-  color: #ed7333;
+.contact-box {
+  padding-left: 1em;
+}
+
+@media only screen and (min-width: 600px) {
+  .contact-box {
+    padding: 1em 2em 1em 4em;
+  }
+}
+
+@media only screen and (min-width: 1143px) {
+  .contact-box {
+    padding: 1em 2em 1em 4em;
+  }
+}
+
+.img {
+  position: relative;
+  width: 25em;
+  height: 25em;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: solid #ed7333 3px;
+  border-radius: 3%;
+}
+
+@media only screen and (min-width: 600px) {
+  .img {
+    margin: 2em 0em 0em 2em;
+  }
+}
+
+@media only screen and (min-width: 375px) {
+  .img {
+    margin-top: 2em;
+  }
+}
+
+@media only screen and (max-width: 882px) {
+  .img {
+    width: 20em;
+  }
 }
 
 .navbar-default .navbar-link {
@@ -7961,10 +8023,6 @@ input.invalid {
 
 .navbar-default {
   border-color: black;
-}
-
-.padding-bottom-md {
-  padding-bottom: 2em;
 }
 
 /*!
