@@ -10,6 +10,7 @@ use App\Selection;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
+use Psy\Exception\ErrorException;
 
 class FormController extends Controller
 {
@@ -22,7 +23,7 @@ class FormController extends Controller
         $this->dogDataService = $dogDataService;
     }
 
-    public function storeUserSelection(Request $request)
+    public function validateLandingForm(Request $request)
     {
         $this->validate($request, [
             'email'     => 'required|email',
@@ -33,8 +34,13 @@ class FormController extends Controller
                 Rule::in(json_decode(Storage::disk('local')->get('/data/breeds.json')))
             ]
         ]);
+    }
 
-        $breedArray = $this->externalPetApiService->getExternalDataForBreed($request->zip,$request->breedName);
+    public function storeUserSelection(Request $request)
+    {
+        $this->validateLandingForm($request);
+        $breedArray = $this->externalPetApiService->getExternalDataForBreed($request->zip, $request->breedName);
+
         $selection =
             Selection::create([
                 'breed_id' => $this->dogDataService->getBreedId($request->breedName),

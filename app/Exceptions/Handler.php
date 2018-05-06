@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Psy\Exception\ErrorException;
 
 class Handler extends ExceptionHandler
 {
@@ -48,6 +49,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if($exception instanceOf ErrorException){
+            return redirect('/');
+        }
         return parent::render($request, $exception);
     }
 }
