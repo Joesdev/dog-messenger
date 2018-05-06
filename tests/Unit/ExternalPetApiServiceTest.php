@@ -17,6 +17,8 @@ class ExternalPetApiServiceTest extends TestCase
     private $validBreed = 'Akita';
     private $invalidBreed = 'Huzzky';
 
+    private $indexException;
+
     public function setUp(){
         parent::setUp();
         $this->service = new ExternalPetApiService();
@@ -24,12 +26,21 @@ class ExternalPetApiServiceTest extends TestCase
         $this->validData = $this->getValidData();
         //API CALL
         $this->invalidData = $this->getInvalidData();
+        $this->indexException = IndexException::class;
     }
 
-    public function test_getExternalDataForBreed_ReturnsData(){
+    //API CALL
+    public function test_getExternalDataForBreed_ReturnsDataWhenSuccessful(){
+        $response = $this->service->getExternalDataForBreed($this->validZip,$this->validBreed);
+        $this->assertEquals($this->service->getCount(),count($response));
 
     }
-
+    //API CALL
+    public function test_getExternalDataForBreed_ReturnsExceptionWhenApiReturnsNoData(){
+        $this->expectException($this->indexException);
+        $this->service->getExternalDataForBreed($this->invalidZip,$this->invalidBreed);
+    }
+    //API CALL
     public function test_getRawDogApiData_ReturnsSucess()
     {
         $response = $this->service->getRawDogApiData($this->validZip, $this->validBreed);
@@ -45,7 +56,7 @@ class ExternalPetApiServiceTest extends TestCase
     }
 
     public function test_validateDogData_RedirectsIfNull(){
-        $this->expectException(IndexException::class);
+        $this->expectException($this->indexException);
         $this->service->validateDogData($this->invalidData);
 
     }
