@@ -12,7 +12,7 @@ class Selection extends Model
     protected $fillable = ['breed_id', 'zip','highest_breed_id', 'max_miles', 'match'];
 
     public function users(){
-        return $this->belongsTo('App\User', 'selection_id','id');
+        return $this->hasOne('App\User', 'selection_id','id');
     }
 
     public function breed(){

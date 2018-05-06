@@ -32,8 +32,8 @@ class ExternalPetApiService
         );
         $data = json_decode($response->getBody()->getContents(), true);
         if(array_key_exists('pet' ,$data['petfinder'])){
+            //dd($data['petfinder']['pet']);
             return $data = $this->getSlimDogData($data['petfinder']['pet']);
-
         } else{
             return $data = [];
         }
@@ -45,7 +45,8 @@ class ExternalPetApiService
                 'name'        => $this->validateKey('name', $dogData),
                 'age'         => $this->validateKey('age', $dogData),
                 'size'        => $this->validateKey('size', $dogData),
-                'sex'         => $this->validateKey('sex', $dogData),
+                // Convert M/F to Male/Female if validation passes
+                'sex'         => $this->appendSexString($this->validateKey('sex', $dogData)),
                 'mix'         => $this->validateKey('mix', $dogData),
                 'description' => $this->validateKey('description', $dogData),
                 'phone'       => $this->validateContactKey('phone', $dogData),
@@ -53,10 +54,10 @@ class ExternalPetApiService
                 'address'     => $this->validateContactKey('address1', $dogData),
                 'city'        => $this->validateContactKey('city', $dogData),
                 'state'       => $this->validateContactKey('state', $dogData),
-                'media'       => $this->validateMediaKey(500, $dogData),
+                'zip'         => $this->validateContactKey('zip', $dogData),
+                'media'       => $this->validateMediaKey(500, $dogData)
                 //'distance'   => $found_dogs[$index]['miles'] . ' miles',
             ];
-// dd($masterArrayOfDogs);
             return $masterArrayOfDogs;
 
     }
@@ -75,7 +76,7 @@ class ExternalPetApiService
 
     public function validateContactKey($key, $data)
     {
-        $accepted_keys = ['address1','city','email','phone', 'state'];
+        $accepted_keys = ['address1','city','email','phone', 'state', 'zip'];
         if(in_array($key, $accepted_keys, true)) {
             if(!empty($data['contact'][$key])){
                 return $data['contact'][$key]['$t'];
@@ -95,6 +96,18 @@ class ExternalPetApiService
             };
         }
         return '#';
+    }
+
+    public function appendSexString($sex)
+    {
+        if($sex === 'Not Available'){
+            //Do Nothing
+        } else if(ucwords($sex) === 'F'){
+            $sex = 'Female';
+        } else {
+            $sex = 'Male';
+        }
+        return $sex;
     }
 
 }
