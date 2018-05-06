@@ -5,40 +5,63 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
-use App\Selection;
-use App\Breed;
 
 class UserControllerTest extends TestCase
 {
     use RefreshDatabase;
+
     protected $user;
-    protected $selection;
 
     public function setUp(){
         parent::setUp();
-        $this->runFactories();
+        $this->fillData();
+        $this->setRandomUser();
     }
 
-    public function runFactories()
+    public function fillData()
     {
         $this->artisan('db:seed');
-        dd(User::all());
-       /* $this->selection = factory(Selection::class)->create();*/
-        /*$this->user = factory(User::class)->create(['selection_id' => $this->selection->id])*/;
-        /*dd(Breed::get(['breed'])->toArray());*/
     }
 
-    public function test_getUsersZip()
+    public function setRandomUser()
+    {
+        $this->user = User::where('id', random_int(1,User::count()))
+                            ->with('selection.breed')
+                            ->first();
+    }
+
+    public function test_getUserZip()
     {
         $response = $this->get('user/zip/'.$this->user->email);
-        $response->assertJson(['zip' => $this->selection->zip]);
         $response->assertStatus(200);
+        $response->assertJsonStructure([
+            'zip'
+        ]);
+        $response->assertJson(['zip' => $this->user->selection->zip]);
+
     }
 
     public function test_getUserBreedName()
     {
-        dd(Breed::where('id',1)->first());
-        $response = $this->json('GET', 'user/breed/'.$this->user->email);
+        $response = $this->get('user/breed/'.$this->user->email);
         $response->assertStatus(200);
+        $response->assertJsonStructure([
+            'name',
+        ]);
+        $response->assertJson([
+           'name' => $this->user->selection->breed->breed,
+        ]);
+    }
+
+    public function test_getUserMiles()
+    {
+        $response= $this->get('user/miles/'.$this->user->email);
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+           'miles',
+        ]);
+        $response->assertJson([
+            'miles' => $this->user->selection->max_miles,
+        ]);
     }
 }

@@ -38,16 +38,12 @@ class FormControllerTest extends TestCase
         $this->sendForm(['breedName' => ''])->assertSessionHasErrors('breedName');
     }
 
-    /*public function test_StoreUsersSelection_StoresUser()
+    public function test_StoreUsersSelection_StoresUser()
     {
-        factory(Selection::class, 3)->create()->each(function($selection){
-            $selection->users()->save(factory(User::class)->make([
-                'selection_id' => $selection->id
-            ]));
-        });
+        factory(User::class,3)->create();
         $this->sendForm();
         $this->assertCount(4,User::all());
-    }*/
+    }
     // --------------------------------- Helper Functions -------------------------------------------
     protected function sendForm($attributes = [])
     {

@@ -27,6 +27,7 @@ Route::post('/user-selections', 'FormController@storeUserSelection')->name('user
 //User
 Route::get('/user/zip/{email}', 'UserController@getUserZip');
 Route::get('/user/breed/{email}', 'UserController@getUserBreed');
+Route::get('/user/miles/{email}', 'UserController@getUserMiles');
 // Testing--------------------------------------------------------------------------------------------------------------
 Route::view('/user-selections', 'user-selections');
 

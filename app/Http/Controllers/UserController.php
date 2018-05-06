@@ -23,4 +23,12 @@ class UserController extends Controller
             'name' => $breedName,
         ];
     }
+
+    public function getUserMiles($email)
+    {
+        $user = User::whereEmail($email)->firstOrFail();
+        return [
+            'miles' => $user->selection->max_miles,
+        ];
+    }
 }
