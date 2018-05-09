@@ -15,6 +15,7 @@ use App\Services\NotificationService;
 use App\Services\DogDataService;
 
 Route::view('/', 'welcome');
+Route::post('/', 'FormController@storeUserSelection')->name('user.create');
 
 Route::view('/results', 'results');
 
@@ -28,6 +29,9 @@ Route::post('/user-selections', 'FormController@storeUserSelection')->name('user
 Route::get('/user/zip/{email}', 'UserController@getUserZip');
 Route::get('/user/breed/{email}', 'UserController@getUserBreed');
 Route::get('/user/miles/{email}', 'UserController@getUserMiles');
+
+//Selection
+Route::post('/selection/{breedName}/{zip}/{maxMiles}', 'FormController@storeSelection');
 // Testing--------------------------------------------------------------------------------------------------------------
 Route::view('/user-selections', 'user-selections');
 

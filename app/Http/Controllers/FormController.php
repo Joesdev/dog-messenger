@@ -23,6 +23,14 @@ class FormController extends Controller
         $this->dogDataService = $dogDataService;
     }
 
+    public function storeUserSelection(Request $request)
+    {
+        $this->validateLandingForm($request);
+        $selection =  $this->storeSelection($request);
+        $this->storeUser($request,$selection->id);
+        return view('welcome');
+    }
+
     public function validateLandingForm(Request $request)
     {
         $this->validate($request, [
@@ -36,26 +44,23 @@ class FormController extends Controller
         ]);
     }
 
-    public function storeUserSelection(Request $request)
-    {
-        $this->validateLandingForm($request);
+    public function storeSelection(Request $request){
         $breedArray = $this->externalPetApiService->getExternalDataForBreed($request->zip, $request->breedName);
+        return Selection::create([
+            'breed_id' => $this->dogDataService->getBreedId($request->breedName),
+            'zip' => $request->zip,
+            'highest_breed_id' => $this->dogDataService->getLargestBreedId($breedArray),
+            'max_miles' => $request->maxMiles,
+            'match'     => false
+        ]);
+    }
 
-        $selection =
-            Selection::create([
-                'breed_id' => $this->dogDataService->getBreedId($request->breedName),
-                'zip' => $request->zip,
-                'highest_breed_id' => $this->dogDataService->getLargestBreedId($breedArray),
-                'max_miles' => $request->maxMiles,
-                'match'     => false
-            ])
-        ;
-
-        User::create([
+    public function storeUser($request,$selectionId){
+        return User::create([
             'rank' => 0,
             'name' => 'user',
             'email' => $request->email,
-            'selection_id' => $selection->id,
+            'selection_id' => $selectionId,
         ]);
     }
 

@@ -92,6 +92,7 @@ class ExternalPetApiService
         }
     }
 
+
     public function validateContactKey($key, $data)
     {
         $accepted_keys = ['address1','city','email','phone', 'state', 'zip'];
