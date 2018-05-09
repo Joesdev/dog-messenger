@@ -2,14 +2,41 @@
 
 namespace Tests\Unit;
 
+use App\Selection;
+use App\Services\DogDataService;
+use App\Services\ExternalPetApiService;
+use App\Services\ExternalZipApiService;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
-use App\Selection;
+use App\Http\Controllers\FormController;
 
 class FormControllerTest extends TestCase
 {
     use RefreshDatabase;
+    //Data
+    private $url = "/";
+    private $numRows = 3;
+    private $form;
+    private $validBreedId;
+    private $validBreed = 'Akita';
+    private $validZip = '95402';
+    private $validMiles = 50;
+    //Services
+    private $petApiService;
+    private $zipApiService;
+    private $dogService;
+
+    public function setUp(){
+        parent::setUp();
+        //A user will automatically create a related selection row
+        factory(User::class,$this->numRows)->create();
+        $this->petApiService = new ExternalPetApiService();
+        $this->zipApiService = new ExternalZipApiService();
+        $this->dogService = new DogDataService($this->petApiService,$this->zipApiService);
+        $this->form = new FormController($this->petApiService,$this->dogService);
+        $this->validBreedId = $this->dogService->getBreedId($this->validBreed);
+    }
 
     public function test_StoreUsersSelection_RequiresValidEmail()
     {
@@ -40,15 +67,26 @@ class FormControllerTest extends TestCase
 
     public function test_StoreUsersSelection_StoresUser()
     {
-        factory(User::class,3)->create();
         $this->sendForm();
         $this->assertCount(4,User::all());
     }
+
+    public function test_storeSelection_stores_single_row_in_database(){
+        $this->post('/selection/'.$this->validBreed.'/'.$this->validZip.'/'.$this->validMiles);
+        $this->assertCount($this->numRows + 1,Selection::all());
+        $this->assertDatabaseHas('selections', [
+            'breed_id' => $this->validBreedId,
+            'zip'      => $this->validZip,
+            'max_miles' => $this->validMiles,
+            'match'    => 0
+        ]);
+    }
+
     // --------------------------------- Helper Functions -------------------------------------------
     protected function sendForm($attributes = [])
     {
         $this->withExceptionHandling();
-        return $this->post('/user-selections',$this->validFields($attributes));
+        return $this->post($this->url,$this->validFields($attributes));
     }
 
     protected function validFields($overrides = [])

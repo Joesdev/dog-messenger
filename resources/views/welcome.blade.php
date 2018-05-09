@@ -101,37 +101,45 @@
 <!-- forms at bottom -->
 
 <section>
+    @if($errors->any())
+        <ul id="errors">
+            @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    @endif
     <div class="container-fluid search" id="search">
         <div class="row">
-                <form id="regForm" action="">
+                <form id="regForm" action="{{route('user.create')}}" method="POST">
+                    {{ csrf_field() }}
                     <h1 class="text-center h1">Find Your New Best Friend</h1>
                     <br><br>
                     <div class="row padding-bottom-sm">
                         <div class="col-sm-4">
-                            <select name="Breed...">
+                            <select name="breedName">
                                 <option value="" disabled selected>Breed...</option>
-                                <option value="Poodle">Poodle</option>
+                                <option value="Akita">Akita</option>
                                 <option value="Husky">Husky</option>
                                 <option value="Pug">Pug</option>
                                 <option value="Pitbul">Pitbul</option>
                             </select>  
                         </div>
                         <div class="col-sm-4">
-                            <input placeholder="Zip Code..." type="number" id="zip">
+                            <input placeholder="Zip Code..." type="number" id="zip" name="zip">
                         </div>
                         <div class="col-sm-4">
-                            <select name="miles...">
+                            <select name="maxMiles" id="maxMiles">
                                 <option value="" disabled selected>Miles Away...</option>
-                                <option value="25">25 Miles</option>
-                                <option value="50">50 Miles</option>
-                                <option value="100">100 Miles</option>
-                                <option value="150">150 Miles</option>
+                                <option value=25>25 Miles</option>
+                                <option value=50>50 Miles</option>
+                                <option value=100>100 Miles</option>
+                                <option value=150>150 Miles</option>
                             </select>  
                         </div> 
                     </div>
                     <div class="row padding-bottom-sm">
                        <div class="col-xs-12">
-                            <input placeholder="Email Address..." type="email" id="email">
+                            <input placeholder="Email Address..." type="email" name="email">
                         </div> 
                     </div>
                     <br>

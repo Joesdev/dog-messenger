@@ -2,24 +2,43 @@
 
 
 namespace App\Services;
-
+use App\Exceptions\IndexException;
 
 class ExternalPetApiService
 {
+    private $count = 75;
+
     public function getExternalDataForBreed($location, $breed)
     {
+        $data = $this->getRawDogApiData($location, $breed);
+        $data = $this->validateDogData($data);
+        return $data;
+    }
+
+    public function getRawDogApiData($location, $breed){
         $client = new \GuzzleHttp\Client();
         $response = $client->request('GET', 'api.petfinder.com/pet.find?' .
             'key=' . env('API_KEY') . '&' .
             'location=' . $location . '&' .
             'breed=' . $breed . '&' .
-            'count=100' . '&' .
+            'count='.$this->count. '&' .
             'format=json' . '&' .
             'offset=0'
         );
         $data = json_decode($response->getBody()->getContents(), true);
-        $data = $data['petfinder']['pets']['pet'];
         return $data;
+    }
+
+    public function validateDogData($data){
+        if(isset($data['petfinder']['pets']['pet'])){
+            return $data['petfinder']['pets']['pet'];
+        }else{
+            throw new IndexException;
+        }
+    }
+
+    public function getCount(){
+        return $this->count;
     }
 
     public function getExternalDataForSingleDog($petId)
@@ -32,7 +51,6 @@ class ExternalPetApiService
         );
         $data = json_decode($response->getBody()->getContents(), true);
         if(array_key_exists('pet' ,$data['petfinder'])){
-            //dd($data['petfinder']['pet']);
             return $data = $this->getSlimDogData($data['petfinder']['pet']);
         } else{
             return $data = [];
@@ -73,6 +91,7 @@ class ExternalPetApiService
             }
         }
     }
+
 
     public function validateContactKey($key, $data)
     {
