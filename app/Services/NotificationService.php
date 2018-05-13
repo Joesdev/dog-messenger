@@ -23,16 +23,17 @@ class NotificationService
 
     public function sendNotification($email)
     {
+        $user = User::where('email', $email)->first();
+        $selection = $user->selection()->first();
         $externalPetApiService = new ExternalPetApiService();
         $externalZipApiService = new ExternalZipApiService();
         $dogDataService = new DogDataService($externalPetApiService, $externalZipApiService);
         $updatedArray = $dogDataService->getUpdatedBreedArray($email);
-        $filteredUpdatedArray = $dogDataService->getRecordsUnderMaxMiles($updatedArray);
+        $filteredUpdatedArray = $dogDataService->getRecordsUnderMaxMiles($updatedArray,$selection->miles,$selection->zip);
         if (empty($filteredUpdatedArray)) {
             return false;
         } else {
             $dogDataService->addDogsToFoundDogsTable($filteredUpdatedArray, $email);
-            $user = User::where('email',$email)->first();
             $user->notify(new PetArrived($user->name));
         }
     }

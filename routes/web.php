@@ -43,3 +43,8 @@ Route::get('getUpdate', function(){
    $dogDataService = new DogDataService($petApiService, $zipApiService);
    $dogDataService->getUpdatedBreedArray('joesilvpb4@gmail.com');
 });
+
+Route::get('/sendNotification', function(){
+   $service = new NotificationService();
+   $service->sendNotification('joesilvpb4@gmail.com');
+});

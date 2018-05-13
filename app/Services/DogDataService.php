@@ -1,8 +1,6 @@
 <?php
 namespace App\Services;
 
-use Storage;
-use App\Services\ExternalPetApiService;
 use App\User;
 use App\Breed;
 use App\Selection;
@@ -10,10 +8,8 @@ use App\Found_Dog;
 
 class DogDataService
 {
-    private $selectionZipCode;
-    private $selectionMaxMiles;
-
     protected $externalApiService;
+    protected $externalPetApiService;
 
     public function __construct(ExternalPetApiService $externalPetApiService, ExternalZipApiService $externalZipApiService){
         $this->externalPetApiService = $externalPetApiService;
@@ -88,20 +84,22 @@ class DogDataService
         }
     }
 
-    public function getRecordsUnderMaxMiles($breedArray)
+    public function getRecordsUnderMaxMiles($breedArray,$maxMiles, $zipCode)
     {
         $index = 0;
         if(empty($breedArray)){
             return [];
         }
-        $distanceArray = $this->externalZipApiService->getMilesBetweenZipCodes($breedArray, $this->selectionZipCode);
+        $distanceArray = $this->externalZipApiService->getMilesBetweenZipCodes($breedArray, $zipCode);
         /*$distanceArray = [
-            '92585' => 456.437,
+            '95422' => 25.92,
+            '95423' => 18.45,
+            '91324' => 427.54
         ];*/
         //Remove any breed data from array that is under max miles
         foreach($breedArray as $breed){
             $zip = $breed['zip'];
-            if($distanceArray[$zip] > $this->selectionMaxMiles){
+            if($distanceArray[$zip] > $maxMiles){
                 unset($breedArray[$index]);
             } else{
                 $breedArray[$index]['distance'] = $distanceArray[$zip];
@@ -112,33 +110,10 @@ class DogDataService
 
     }
 
-    public function getAllBreeds(){
-        $breedText = Storage::disk('local')->get('/data/breeds.json');
-        $breedArray = json_decode($breedText, true);
-        return $breedArray;
-    }
-
-    public function getBreedId($breedName){
-        $breedText = Storage::disk('local')->get('/data/breeds.json');
-        $breedArray = json_decode($breedText, true);
-        $index = 1;
-        foreach($breedArray as $breed){
-            if($breedName === $breed){
-                return $index;
-            } else{
-                $index++;
-            }
-        };
-        return 0;
-    }
-
     //This function resets all rows to rank 1, rank 1 allows a single row to be eligible
     //for checking for news dogs and to be potentially notified if a new dog is found. Rank
     //0 means a row is not eligible
     public function resetUsersToRankOne(){
-        //For future use, check whether a user has issued a stop to notifications & checking
         $users = User::where('rank', 0)->update(['rank' => 1]);
     }
-
-
 }
