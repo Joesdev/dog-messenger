@@ -71,6 +71,13 @@ class DogDataServiceTest extends TestCase
         $this->assertEquals(3, count($recordsAboveMax));
     }
 
+    public function test_sortRecordsIds_returns_flattened_array_in__desc_order(){
+        $dogData = $this->create_mock_dog_data();
+        $sortedIds = $this->dogDataService->sortRecordsIds($dogData);
+        $isSorted = $this->isIdArraySortedByDesc($sortedIds);
+        $this->assertEquals(true,$isSorted);
+    }
+
     public function create_mock_dog_data(){
         $dogArray = [];
         for($i=0;$i<50;$i++){
@@ -80,6 +87,17 @@ class DogDataServiceTest extends TestCase
         return $dogArray;
     }
 
-
-
+    public function isIdArraySortedByDesc($idArray){
+        $flag = true;
+        $lastVal = $idArray[0];
+        foreach($idArray as $value){
+            if($value > $lastVal) {
+                $flag = false;
+                break;
+            } else{
+                $lastVal = $value;
+            }
+        }
+        return $flag;
+    }
 }
