@@ -21,30 +21,15 @@ class DogDataService
     }
 
     public function getUpdatedBreedArray($email){
-        //Get User matching email address
-        $user = User::where('email', $email)->with('selection')->get();
-        $selectionId = $user->pluck('selection_id');
-        //Get Selection based on User's Selection Id
-        $selection = Selection::where('id', $selectionId)->get();
-        //Save four column values
-        $subset = $selection->map(function ($selection) {
-            return collect($selection->toArray())->only(['highest_breed_id','breed_id', 'max_miles', 'zip'])->all();
-        });
-        //Pluck four column values,
-        $breed_id = $subset->pluck('breed_id')->first();
-        $usersMaxId = $subset->pluck('highest_breed_id')->first();
-        $this->selectionZipCode = $subset->pluck('zip')->first();
-        $this->selectionMaxMiles = $subset->pluck('max_miles')->first();
-        //The reason for this pluck is that we must convert the breed_id to a string of breed name
-        $breedName = Breed::where('id', $breed_id)->get()->pluck('breed')->first();
-
-        $breeds = $this->externalPetApiService->getExternalDataForBreed($this->selectionZipCode, $breedName);
+        $selection = User::whereEmail($email)->with('selection')->firstOrFail()->selection;
+        $breedName = Breed::find($selection->breed_id)->breed;
+        $breeds = $this->externalPetApiService->getExternalDataForBreed($selection->zip, $breedName);
         $latestMaxId = $this->getLargestBreedId($breeds);
 
-        $this->updateHighestBreedId($selectionId, $latestMaxId);
+        $this->updateHighestBreedId($selection->id, $latestMaxId);
 
-        if($latestMaxId > $usersMaxId){
-            return $updatedBreedArray = $this->getRecordsLargerThanBreedId($breeds, $usersMaxId);
+        if($latestMaxId > $selection->highest_breed_id){
+            return $updatedBreedArray = $this->getRecordsLargerThanBreedId($breeds, $selection->highest_breed_id);
         }else{
             return [];
         }

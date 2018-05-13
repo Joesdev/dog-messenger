@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Services
+use App\Services\ExternalZipApiService;
+use App\Services\ExternalPetApiService;
 
 use App\Services\NotificationService;
 use App\Services\DogDataService;
@@ -33,11 +36,10 @@ Route::get('/user/miles/{email}', 'UserController@getUserMiles');
 //Selection
 Route::post('/selection/{breedName}/{zip}/{maxMiles}', 'FormController@storeSelection');
 // Testing--------------------------------------------------------------------------------------------------------------
-Route::view('/user-selections', 'user-selections');
 
-Route::get('/check', function(){
-    $notificationService = new NotificationService();
-    $notificationService->notifyNextTwoEmails();
+Route::get('getUpdate', function(){
+   $petApiService = new ExternalPetApiService();
+   $zipApiService = new ExternalZipApiService();
+   $dogDataService = new DogDataService($petApiService, $zipApiService);
+   $dogDataService->getUpdatedBreedArray('joesilvpb4@gmail.com');
 });
-
-Route::get('/test', 'FormController@testFunction');
