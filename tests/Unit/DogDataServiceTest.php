@@ -90,6 +90,10 @@ class DogDataServiceTest extends TestCase
         };
     }
 
+    /*public function test_getRecordsUnderMaxMiles_returns_only_arrays_with_distance_under_max_miles(){
+
+    }*/
+
     public function create_mock_updated_dog_data($includeDistance=true){
         $zips = ['95422','95423','91324'];
         $ids = [41612837,41619827,41615837];

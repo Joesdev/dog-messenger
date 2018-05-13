@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Http\Controllers\UserController;
 use Storage;
 use App\Services\ExternalPetApiService;
 use App\User;
@@ -14,6 +15,7 @@ class DogDataService
     private $selectionMaxMiles;
 
     protected $externalApiService;
+    protected $externalPetApiService;
 
     public function __construct(ExternalPetApiService $externalPetApiService, ExternalZipApiService $externalZipApiService){
         $this->externalPetApiService = $externalPetApiService;
@@ -88,13 +90,13 @@ class DogDataService
         }
     }
 
-    public function getRecordsUnderMaxMiles($breedArray)
+    public function getRecordsUnderMaxMiles($breedArray,$maxMiles)
     {
         $index = 0;
         if(empty($breedArray)){
             return [];
         }
-        //$distanceArray = $this->externalZipApiService->getMilesBetweenZipCodes($breedArray, $this->selectionZipCode);
+        //$distanceArray = $this->externalZipApiService->getMilesBetweenZipCodes($breedArray, $maxMiles);
         $distanceArray = [
             '95422' => 25.92,
             '95423' => 18.45,
@@ -103,7 +105,7 @@ class DogDataService
         //Remove any breed data from array that is under max miles
         foreach($breedArray as $breed){
             $zip = $breed['zip'];
-            if($distanceArray[$zip] > $this->selectionMaxMiles){
+            if($distanceArray[$zip] > $maxMiles){
                 unset($breedArray[$index]);
             } else{
                 $breedArray[$index]['distance'] = $distanceArray[$zip];
@@ -113,6 +115,8 @@ class DogDataService
         return $breedArray;
 
     }
+
+
 
     public function getAllBreeds(){
         $breedText = Storage::disk('local')->get('/data/breeds.json');
