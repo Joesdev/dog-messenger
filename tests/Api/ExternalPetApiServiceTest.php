@@ -66,8 +66,21 @@ class ExternalPetApiServiceTest extends TestCase
         $actual = $this->service->getCount();
         $this->assertSame($expected, $actual);
     }*/
+    public function test_validateContactKey_returns_Not_Available_for_empty_keys(){
+        //When Key has a value
+        $data = $this->mock_contact_key('phone', '123-456-789');
+        $output = $this->service->validateContactKey('phone',$data);
+        $this->assertEquals('123-456-789', $output[0]);
+
+        //When Key has empty value
+        $data = $this->mock_contact_key('phone', 'nothing');
+        $data['contact']['phone'] = [];
+        $output = $this->service->validateContactKey('phone',$data);
+        $this->assertEquals('Not Available', $output);
+    }
+
     //API CALL
-    public function test_validateMediaKey_returns_a_url_or_a_hashtag(){
+    /*public function test_validateMediaKey_returns_a_url_or_a_hashtag(){
         $picWidth = '500';
         $dogData = $this->mock_pet_api_data_for_single_dog();
         $returnedString = $this->service->validateMediaKey($picWidth,$dogData);
@@ -89,7 +102,7 @@ class ExternalPetApiServiceTest extends TestCase
         $this->assertEquals('Male',$output);
         $output = $this->service->appendSexString('Not Available');
         $this->assertEquals('Not Available',$output);
-    }
+    }*/
 
 
 
@@ -109,5 +122,17 @@ class ExternalPetApiServiceTest extends TestCase
         $response = json_decode($response->getBody()->getContents(),true);
         $data = $response['petfinder']['pet'];
         return $data;
+    }
+
+    public function mock_contact_key($key, $value){
+        return [
+            'contact' => [
+                $key => [
+                    '$t' =>[
+                        $value
+                    ]
+                ]
+            ]
+        ];
     }
 }
