@@ -52,18 +52,23 @@ class DogDataServiceTest extends TestCase
     }
 
     public function test_getLargestBreedId_returns_largest_id(){
-        $dogArray = [];
         $highestValue = 100000;
         //Create an array which has random id values, insert a max into a random index
-        for($i=0;$i<=50;$i++){
-            $dogArray[$i]['id']['$t'] = rand(10000,99999);
-        }
+        $dogArray = $this->create_mock_dog_data(50);
+        dd($dogArray);
         $dogArray[rand(1,50)]['id']['$t'] = $highestValue;
         $returnedMax = $this->dogDataService->getLargestBreedId($dogArray);
         $this->assertEquals($highestValue,$returnedMax);
     }
 
-
+    public function create_mock_dog_data($length){
+        $dogArray = [];
+        for($i=0;$i<=$length;$i++){
+            $dogArray[$i]['id']['$t'] = rand(10000,99999);
+            $dogArray[$i]['contact']['zip']['$t'] = rand(91111, 98000);
+        }
+        return $dogArray;
+    }
 
 
 
