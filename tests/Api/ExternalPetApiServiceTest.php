@@ -23,13 +23,13 @@ class ExternalPetApiServiceTest extends TestCase
         parent::setUp();
         $this->service = new ExternalPetApiService();
         //API CALL
-        $this->validData = $this->getValidData();
+        /**//*$this->validData = $this->getValidData();*/
         //API CALL
-        $this->invalidData = $this->getInvalidData();
-        $this->indexException = IndexException::class;
+        /*$this->invalidData = $this->getInvalidData();*/
+        /*$this->indexException = IndexException::class;*/
     }
 
-    //API CALL
+    /*//API CALL
     public function test_getExternalDataForBreed_ReturnsDataWhenSuccessful(){
         $response = $this->service->getExternalDataForBreed($this->validZip,$this->validBreed);
         $this->assertEquals($this->service->getCount(),count($response));
@@ -65,16 +65,26 @@ class ExternalPetApiServiceTest extends TestCase
         $expected = 75;
         $actual = $this->service->getCount();
         $this->assertSame($expected, $actual);
+    }*/
+
+    public function test_appendSexString_appends_male_or_female_string()
+    {
+        $output = $this->service->appendSexString('f');
+        $this->assertEquals('Female',$output);
+        $output = $this->service->appendSexString('m');
+        $this->assertEquals('Male',$output);
+        $output = $this->service->appendSexString('Not Available');
+        $this->assertEquals('Not Available',$output);
     }
 
 
 
     //-----------------------Helper Functions-------------------------------------------------------
-    public function getValidData(){
+    /*public function getValidData(){
         return $this->service->getRawDogApiData($this->validZip,$this->validBreed);
     }
 
     public function getInvalidData(){
         return $this->service->getRawDogApiData($this->invalidZip, $this->invalidBreed);
-    }
+    }*/
 }
