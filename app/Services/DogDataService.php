@@ -1,9 +1,6 @@
 <?php
 namespace App\Services;
 
-use App\Http\Controllers\UserController;
-use Storage;
-use App\Services\ExternalPetApiService;
 use App\User;
 use App\Breed;
 use App\Selection;
@@ -11,9 +8,6 @@ use App\Found_Dog;
 
 class DogDataService
 {
-    private $selectionZipCode;
-    private $selectionMaxMiles;
-
     protected $externalApiService;
     protected $externalPetApiService;
 
@@ -122,6 +116,4 @@ class DogDataService
     public function resetUsersToRankOne(){
         $users = User::where('rank', 0)->update(['rank' => 1]);
     }
-
-
 }
