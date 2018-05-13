@@ -116,33 +116,10 @@ class DogDataService
 
     }
 
-
-
-    public function getAllBreeds(){
-        $breedText = Storage::disk('local')->get('/data/breeds.json');
-        $breedArray = json_decode($breedText, true);
-        return $breedArray;
-    }
-
-    public function getBreedId($breedName){
-        $breedText = Storage::disk('local')->get('/data/breeds.json');
-        $breedArray = json_decode($breedText, true);
-        $index = 1;
-        foreach($breedArray as $breed){
-            if($breedName === $breed){
-                return $index;
-            } else{
-                $index++;
-            }
-        };
-        return 0;
-    }
-
     //This function resets all rows to rank 1, rank 1 allows a single row to be eligible
     //for checking for news dogs and to be potentially notified if a new dog is found. Rank
     //0 means a row is not eligible
     public function resetUsersToRankOne(){
-        //For future use, check whether a user has issued a stop to notifications & checking
         $users = User::where('rank', 0)->update(['rank' => 1]);
     }
 

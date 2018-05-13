@@ -102,6 +102,14 @@ class DogDataServiceTest extends TestCase
         $this->assertCount(1,$distanceData);
     }*/
 
+    public function test_resetUsersToRankOne_updates_rank_column_to_one_in_all_database_rows(){
+        factory(User::class,10)->create();
+        $this->dogDataService->resetUsersToRankOne();
+        $this->assertDatabaseMissing('Users',[
+            'rank' => 0
+        ]);
+    }
+
     public function create_mock_updated_dog_data($includeDistance=true){
         $zips = ['95422','95423','91324'];
         $ids = [41612837,41619827,41615837];
