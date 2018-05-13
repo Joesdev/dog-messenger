@@ -1,8 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-
-$factory->define(App\Selection::class, function (Faker $faker) {
+$factory->define(\App\Selection::class, function (Faker $faker) {
     return [
         'breed_id'         => $faker->numberBetween(1,249),
         'zip'              => $faker->numberBetween(90001,96162),

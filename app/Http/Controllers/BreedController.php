@@ -14,22 +14,18 @@ class BreedController extends Controller
     {
         $externalPetApiService = new ExternalPetApiService();
         $masterArrayOfDogs = [];
-        $index = 0;
-        $found_dogs = Found_Dog::where('email', $email)->get();
-        $found_dogs = $found_dogs->map(function ($dogs) {
+        $found_dogs = Found_Dog::where('email', $email)->get()->map(function ($dogs) {
             return $dogs->only(['new_breed_id','miles']);
         });
-
-        foreach($found_dogs as $dog){
-            $dogData = $externalPetApiService->getExternalDataForSingleDog($dog['new_breed_id']);
-            array_push($masterArrayOfDogs,$dogData);
+        if($found_dogs->count() > 0){
+            foreach($found_dogs as $dog){
+                $dogData = $externalPetApiService->getExternalDataForSingleDog($dog['new_breed_id']);
+                array_push($masterArrayOfDogs,$dogData);
+            }
+            return view('results')->with('dogData' ,$masterArrayOfDogs);
+        } else{
+            return view('/welcome');
         }
-        // dd($masterArrayOfDogs);
-        return view('results')->with('dogData' ,$masterArrayOfDogs);
-    }
-
-    public function getUsersBreed(){
 
     }
-
 }
