@@ -41,6 +41,27 @@ class DogDataServiceTest extends TestCase
         $this->assertGreaterThanOrEqual(1,count($dogData));
     }
 
+    public function test_updateHighestBreedId_sets_id_of_selections_table_to_provided_number(){
+        $insertedBreedId = 41000000;
+        $selection = factory(Selection::class)->create();
+        $this->dogDataService->updateHighestBreedId($selection->id,$insertedBreedId);
+        $this->assertDatabaseHas('selections', [
+            'id' => $selection->id,
+            'highest_breed_id' => $insertedBreedId,
+        ]);
+    }
+
+    public function test_getLargestBreedId_returns_largest_id(){
+        $dogArray = [];
+        $highestValue = 100000;
+        //Create an array which has random id values, insert a max into a random index
+        for($i=0;$i<=50;$i++){
+            $dogArray[$i]['id']['$t'] = rand(10000,99999);
+        }
+        $dogArray[rand(1,50)]['id']['$t'] = $highestValue;
+        $returnedMax = $this->dogDataService->getLargestBreedId($dogArray);
+        $this->assertEquals($highestValue,$returnedMax);
+    }
 
 
 
