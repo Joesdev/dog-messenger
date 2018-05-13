@@ -66,6 +66,20 @@ class ExternalPetApiServiceTest extends TestCase
         $actual = $this->service->getCount();
         $this->assertSame($expected, $actual);
     }*/
+    //API CALL
+    public function test_validateMediaKey_returns_a_url_or_a_hashtag(){
+        $picWidth = '500';
+        $dogData = $this->mock_pet_api_data_for_single_dog();
+        $returnedString = $this->service->validateMediaKey($picWidth,$dogData);
+        //Check if string is a url, if so verify it has width of 500, else verify string is '#'
+        $urlCheck = filter_var($returnedString,FILTER_VALIDATE_URL);
+        if($urlCheck){
+            $this->assertContains($picWidth,$returnedString);
+        }else{
+            $this->assertEquals('#',$returnedString);
+        };
+
+    }
 
     public function test_appendSexString_appends_male_or_female_string()
     {
@@ -87,4 +101,13 @@ class ExternalPetApiServiceTest extends TestCase
     public function getInvalidData(){
         return $this->service->getRawDogApiData($this->invalidZip, $this->invalidBreed);
     }*/
+
+    public function mock_pet_api_data_for_single_dog(){
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET',
+            'api.petfinder.com/pet.getRandom?key='.env('API_KEY').'&animal=dog&format=json&output=basic');
+        $response = json_decode($response->getBody()->getContents(),true);
+        $data = $response['petfinder']['pet'];
+        return $data;
+    }
 }

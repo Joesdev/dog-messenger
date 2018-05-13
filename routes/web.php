@@ -37,11 +37,9 @@ Route::get('/user/miles/{email}', 'UserController@getUserMiles');
 Route::post('/selection/{breedName}/{zip}/{maxMiles}', 'FormController@storeSelection');
 // Testing--------------------------------------------------------------------------------------------------------------
 
-Route::get('getUpdate', function(){
+Route::get('single', function(){
    $petApiService = new ExternalPetApiService();
-   $zipApiService = new ExternalZipApiService();
-   $dogDataService = new DogDataService($petApiService, $zipApiService);
-   $dogDataService->getUpdatedBreedArray('joesilvpb4@gmail.com');
+   return $petApiService->getExternalDataForSingleDog(41519837);
 });
 
 Route::get('/sendNotification', function(){
