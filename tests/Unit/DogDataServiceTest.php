@@ -91,13 +91,19 @@ class DogDataServiceTest extends TestCase
     }
 
     /*public function test_getRecordsUnderMaxMiles_returns_only_arrays_with_distance_under_max_miles(){
-
+        $maxMiles = 100;
+        $zip = 95492;
+        $updatedDogData = $this->create_mock_updated_dog_data(false);
+        $distanceData = $this->dogDataService->getRecordsUnderMaxMiles($updatedDogData, $maxMiles, $zip);
+        $this->assertCount(2,$distanceData);
+        $distanceData = $this->dogDataService->getRecordsUnderMaxMiles($updatedDogData, $maxMiles = 35, $zip);
+        $this->assertCount(1,$distanceData);
     }*/
 
     public function create_mock_updated_dog_data($includeDistance=true){
         $zips = ['95422','95423','91324'];
         $ids = [41612837,41619827,41615837];
-        $distance = [20,55,427];
+        $distance = [33,39,380];
         for($i=0;$i<3;$i++){
             $data[$i]['id'] = $ids[$i];
             $data[$i]['zip'] = $zips[$i];

@@ -29,7 +29,7 @@ class NotificationService
         $externalZipApiService = new ExternalZipApiService();
         $dogDataService = new DogDataService($externalPetApiService, $externalZipApiService);
         $updatedArray = $dogDataService->getUpdatedBreedArray($email);
-        $filteredUpdatedArray = $dogDataService->getRecordsUnderMaxMiles($updatedArray,$selection->miles);
+        $filteredUpdatedArray = $dogDataService->getRecordsUnderMaxMiles($updatedArray,$selection->miles,$selection->zip);
         if (empty($filteredUpdatedArray)) {
             return false;
         } else {

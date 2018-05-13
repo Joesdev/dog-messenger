@@ -90,18 +90,18 @@ class DogDataService
         }
     }
 
-    public function getRecordsUnderMaxMiles($breedArray,$maxMiles)
+    public function getRecordsUnderMaxMiles($breedArray,$maxMiles, $zipCode)
     {
         $index = 0;
         if(empty($breedArray)){
             return [];
         }
-        //$distanceArray = $this->externalZipApiService->getMilesBetweenZipCodes($breedArray, $maxMiles);
-        $distanceArray = [
+        $distanceArray = $this->externalZipApiService->getMilesBetweenZipCodes($breedArray, $zipCode);
+        /*$distanceArray = [
             '95422' => 25.92,
             '95423' => 18.45,
             '91324' => 427.54
-        ];
+        ];*/
         //Remove any breed data from array that is under max miles
         foreach($breedArray as $breed){
             $zip = $breed['zip'];
