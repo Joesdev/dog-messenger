@@ -27,8 +27,6 @@ class DogDataServiceTest extends TestCase
     }
     public function test_getUpdatedBreedArray_returns_multiple_arrays_of_new_dogs()
     {
-        //Given I have a user row with a related selection row, and that select's highest breed id
-            //is somewhat recent
         $this->seed('breedsTableSeeder');
         $user = factory(User::class)->create();
         Selection::find($user->id)->update([
@@ -52,33 +50,35 @@ class DogDataServiceTest extends TestCase
     }
 
     public function test_getLargestBreedId_returns_largest_id(){
-        $highestValue = 100000;
+        $highestValue = 100001;
         //Create an array which has random id values, insert a max into a random index
-        $dogArray = $this->create_mock_dog_data(50);
-        dd($dogArray);
+        $dogArray = $this->create_mock_dog_data();
         $dogArray[rand(1,50)]['id']['$t'] = $highestValue;
         $returnedMax = $this->dogDataService->getLargestBreedId($dogArray);
         $this->assertEquals($highestValue,$returnedMax);
     }
 
-    public function create_mock_dog_data($length){
+    public function test_getRecordsLargerThanBreedId_returns_records_larger_than_provided_id(){
+        //Given I have dog data and an id
+        $dogData = $this->create_mock_dog_data();
+        //Insert 3 id's which are higher than the max id in the array
+        $index = rand(1,20);
+        $dogData[$index]['id']['$t'] = rand(100000,100100);
+        $dogData[$index + 5]['id']['$t'] = rand(100200,100500);
+        $dogData[$index + 10]['id']['$t'] = rand(100600,100700);
+        $recordsAboveMax = $this->dogDataService->getRecordsLargerThanBreedId($dogData, 100000);
+        //assert that the 3 'above max' id's are returned from the function
+        $this->assertEquals(3, count($recordsAboveMax));
+    }
+
+    public function create_mock_dog_data(){
         $dogArray = [];
-        for($i=0;$i<=$length;$i++){
+        for($i=0;$i<50;$i++){
             $dogArray[$i]['id']['$t'] = rand(10000,99999);
             $dogArray[$i]['contact']['zip']['$t'] = rand(91111, 98000);
         }
         return $dogArray;
     }
-
-
-
-
-
-
-
-
-
-
 
 
 
