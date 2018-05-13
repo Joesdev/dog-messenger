@@ -94,10 +94,12 @@ class DogDataService
         if(empty($breedArray)){
             return [];
         }
-        $distanceArray = $this->externalZipApiService->getMilesBetweenZipCodes($breedArray, $this->selectionZipCode);
-        /*$distanceArray = [
-            '92585' => 456.437,
-        ];*/
+        //$distanceArray = $this->externalZipApiService->getMilesBetweenZipCodes($breedArray, $this->selectionZipCode);
+        $distanceArray = [
+            '95422' => 25.92,
+            '95423' => 18.45,
+            '91324' => 427.54
+        ];
         //Remove any breed data from array that is under max miles
         foreach($breedArray as $breed){
             $zip = $breed['zip'];
