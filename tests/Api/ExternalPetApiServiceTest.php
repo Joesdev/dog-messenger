@@ -66,7 +66,21 @@ class ExternalPetApiServiceTest extends TestCase
         $actual = $this->service->getCount();
         $this->assertSame($expected, $actual);
     }*/
-    public function test_validateContactKey_returns_Not_Available_for_empty_keys(){
+
+    public function test_validateKey__returns_Not_Available_for_empty_keys(){
+        //When Key has a value
+        $data = $this->mock_general_key('description', 'He likes to bark.');
+        $output = $this->service->validateKey('description',$data);
+        $this->assertEquals('He likes to bark.', $output[0]);
+
+        //When Key has empty value
+        $data = $this->mock_general_key('description', 'nothing');
+        $data['description']= [];
+        $output = $this->service->validateKey('description',$data);
+        $this->assertEquals('Not Available', $output);
+    }
+
+   public function test_validateContactKey_returns_Not_Available_for_empty_keys(){
         //When Key has a value
         $data = $this->mock_contact_key('phone', '123-456-789');
         $output = $this->service->validateContactKey('phone',$data);
@@ -133,6 +147,16 @@ class ExternalPetApiServiceTest extends TestCase
                     ]
                 ]
             ]
+        ];
+    }
+
+    public function mock_general_key($key, $value){
+        return [
+                $key => [
+                    '$t' =>[
+                        $value
+                    ]
+                ]
         ];
     }
 }
