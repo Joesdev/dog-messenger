@@ -3,6 +3,7 @@
 
 namespace App\Services;
 use App\Exceptions\IndexException;
+use App\Exceptions\InvalidPetIdException;
 
 class ExternalPetApiService
 {
@@ -50,12 +51,19 @@ class ExternalPetApiService
             'id=' . $petId
         );
         $data = json_decode($response->getBody()->getContents(), true);
+        if($this->getStatusCode($data) == 201){
+            throw new InvalidPetIdException('The pet id no longer exists');
+        }
         if(array_key_exists('pet' ,$data['petfinder'])){
             return $data['petfinder']['pet'];
             return $data = $this->getSlimDogData($data['petfinder']['pet']);
         } else{
             return $data = [];
         }
+    }
+
+    public function getStatusCode($data){
+        return $data['petfinder']['header']['status']['code']['$t'];
     }
 
     public function getSlimDogData($dogData)

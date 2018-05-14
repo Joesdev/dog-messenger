@@ -39,7 +39,7 @@ Route::post('/selection/{breedName}/{zip}/{maxMiles}', 'FormController@storeSele
 
 Route::get('single', function(){
    $petApiService = new ExternalPetApiService();
-   return $petApiService->getExternalDataForSingleDog(41519837);
+   return $petApiService->getExternalDataForSingleDog(50);
 });
 
 Route::get('/sendNotification', function(){

@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Exceptions\IndexException;
+use App\Exceptions\InvalidPetIdException;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -18,6 +19,7 @@ class ExternalPetApiServiceTest extends TestCase
     private $invalidBreed = 'Huzzky';
 
     private $indexException;
+    private $invalidPetIdException;
 
     public function setUp(){
         parent::setUp();
@@ -27,6 +29,7 @@ class ExternalPetApiServiceTest extends TestCase
         //API CALL
         $this->invalidData = $this->getInvalidData();
         $this->indexException = IndexException::class;
+        $this->invalidPetIdException = InvalidPetIdException::class;
     }
 
     //API CALL
@@ -66,6 +69,13 @@ class ExternalPetApiServiceTest extends TestCase
         $actual = $this->service->getCount();
         $this->assertSame($expected, $actual);
     }
+
+    public function test_getExternalDataForSingleDog_returns_exception_for_invalid_pet_id(){
+        $invalidPetId = 50;
+        $this->expectException($this->invalidPetIdException);
+        $this->service->getExternalDataForSingleDog($invalidPetId);
+    }
+
     //API CALL
     public function test_getSlimDogData_returns_data_without_errors(){
         $dogData = $this->mock_pet_api_data_for_single_dog();
