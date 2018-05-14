@@ -110,6 +110,10 @@ class DogDataService
 
     }
 
+    public function getBreedId($breedName){
+        return Breed::where('breed', $breedName)->pluck('id')->first();
+    }
+
     //This function resets all rows to rank 1, rank 1 allows a single row to be eligible
     //for checking for news dogs and to be potentially notified if a new dog is found. Rank
     //0 means a row is not eligible

@@ -70,11 +70,17 @@ class ExternalPetApiServiceTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    public function test_getExternalDataForSingleDog_returns_exception_for_invalid_pet_id(){
+    public function test_getExternalDataForSingleDog_throws_exception_for_invalid_pet_id(){
         $invalidPetId = 50;
         $this->expectException($this->invalidPetIdException);
         $this->service->getExternalDataForSingleDog($invalidPetId);
     }
+
+   /* public function test_getExternalDataForSingleDog_returns_valid_data(){
+        $validPetId = 41619837;
+        $this->service->getExternalDataForSingleDog($validPetId);
+
+    }*/
 
     //API CALL
     public function test_getSlimDogData_returns_data_without_errors(){

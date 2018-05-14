@@ -55,7 +55,6 @@ class ExternalPetApiService
             throw new InvalidPetIdException('The pet id no longer exists');
         }
         if(array_key_exists('pet' ,$data['petfinder'])){
-            return $data['petfinder']['pet'];
             return $data = $this->getSlimDogData($data['petfinder']['pet']);
         } else{
             return $data = [];
