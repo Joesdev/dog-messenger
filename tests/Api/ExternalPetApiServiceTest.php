@@ -82,6 +82,25 @@ class ExternalPetApiServiceTest extends TestCase
         $this->assertAllKeysExist($dogData);
     }
 
+    public function test_getStatusCode_throws_exception_when_status_code_key_doesnt_exist()
+    {
+        $arrayWithNoStatusCode = [
+            'petfinder' => [
+                    'nokey' => 'somevalue'
+            ]
+        ];
+        $this->expectException($this->indexException);
+        $this->service->getStatusCode($arrayWithNoStatusCode);
+    }
+
+    public function test_getStatusCode_returns_status_code_when_key_value_exists()
+    {
+        $arrayWithStatusCode['petfinder']['header']['status']['code']['$t'] = '200';
+        $statuCode = $this->service->getStatusCode($arrayWithStatusCode);
+        $this->assertEquals('200',$statuCode);
+    }
+
+
     //API CALL
     public function test_getSlimDogData_returns_data_without_errors(){
         $dogData = $this->mock_pet_api_data_for_single_dog();

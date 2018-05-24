@@ -7,7 +7,8 @@ use App\Exceptions\InvalidPetIdException;
 
 class ExternalPetApiService
 {
-    private $count = 75;
+    private $countOfDogsRequested = 75;
+
 
     public function getExternalDataForBreed($location, $breed)
     {
@@ -22,7 +23,7 @@ class ExternalPetApiService
             'key=' . env('API_KEY') . '&' .
             'location=' . $location . '&' .
             'breed=' . $breed . '&' .
-            'count='.$this->count. '&' .
+            'count='.$this->countOfDogsRequested. '&' .
             'format=json' . '&' .
             'offset=0'
         );
@@ -39,7 +40,7 @@ class ExternalPetApiService
     }
 
     public function getCount(){
-        return $this->count;
+        return $this->countOfDogsRequested;
     }
 
     public function getExternalDataForSingleDog($petId)
@@ -62,7 +63,11 @@ class ExternalPetApiService
     }
 
     public function getStatusCode($data){
-        return $data['petfinder']['header']['status']['code']['$t'];
+        if(isset($data['petfinder']['header']['status']['code']['$t'])) {
+            return $data['petfinder']['header']['status']['code']['$t'];
+        }else{
+            throw new IndexException;
+        }
     }
 
     public function getSlimDogData($dogData)

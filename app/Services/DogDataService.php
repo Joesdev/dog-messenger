@@ -111,7 +111,11 @@ class DogDataService
     }
 
     public function getBreedId($breedName){
-        return Breed::where('breed', $breedName)->pluck('id')->first();
+        $breedId = Breed::where('breed', $breedName)->pluck('id')->first();
+        if(is_null($breedId)){
+            return false;
+        }
+        return $breedId;
     }
 
     //This function resets all rows to rank 1, rank 1 allows a single row to be eligible
