@@ -76,27 +76,17 @@ class ExternalPetApiServiceTest extends TestCase
         $this->service->getExternalDataForSingleDog($invalidPetId);
     }
 
-   /* public function test_getExternalDataForSingleDog_returns_valid_data(){
+    public function test_getExternalDataForSingleDog_returns_valid_data(){
         $validPetId = 41619837;
-        $this->service->getExternalDataForSingleDog($validPetId);
-
-    }*/
+        $dogData = $this->service->getExternalDataForSingleDog($validPetId);
+        $this->assertAllKeysExist($dogData);
+    }
 
     //API CALL
     public function test_getSlimDogData_returns_data_without_errors(){
         $dogData = $this->mock_pet_api_data_for_single_dog();
         $output = $this->service->getSlimDogData($dogData);
-        $this->assertArrayHasKey('name',$output);
-        $this->assertArrayHasKey('sex',$output);
-        $this->assertArrayHasKey('mix',$output);
-        $this->assertArrayHasKey('description',$output);
-        $this->assertArrayHasKey('phone',$output);
-        $this->assertArrayHasKey('email',$output);
-        $this->assertArrayHasKey('address',$output);
-        $this->assertArrayHasKey('city',$output);
-        $this->assertArrayHasKey('state',$output);
-        $this->assertArrayHasKey('zip',$output);
-        $this->assertArrayHasKey('media',$output);
+        $this->assertAllKeysExist($output);
     }
 
     public function test_validateKey__returns_Not_Available_for_empty_keys(){
@@ -112,7 +102,7 @@ class ExternalPetApiServiceTest extends TestCase
         $this->assertEquals('Not Available', $output);
     }
 
-   public function test_validateContactKey_returns_Not_Available_for_empty_keys(){
+    public function test_validateContactKey_returns_Not_Available_for_empty_keys(){
         //When Key has a value
         $data = $this->mock_contact_key('phone', '123-456-789');
         $output = $this->service->validateContactKey('phone',$data);
@@ -126,6 +116,7 @@ class ExternalPetApiServiceTest extends TestCase
     }
 
     //API CALL
+
     public function test_validateMediaKey_returns_a_url_or_a_hashtag(){
         $picWidth = '500';
         $dogData = $this->mock_pet_api_data_for_single_dog();
@@ -139,7 +130,6 @@ class ExternalPetApiServiceTest extends TestCase
         };
 
     }
-
     public function test_appendSexString_appends_male_or_female_string()
     {
         $output = $this->service->appendSexString('f');
@@ -151,6 +141,21 @@ class ExternalPetApiServiceTest extends TestCase
     }
 
     //-----------------------Helper Functions-------------------------------------------------------
+
+    public function assertAllKeysExist($dogData)
+    {
+        $this->assertArrayHasKey('name',$dogData);
+        $this->assertArrayHasKey('sex',$dogData);
+        $this->assertArrayHasKey('mix',$dogData);
+        $this->assertArrayHasKey('description',$dogData);
+        $this->assertArrayHasKey('phone',$dogData);
+        $this->assertArrayHasKey('email',$dogData);
+        $this->assertArrayHasKey('address',$dogData);
+        $this->assertArrayHasKey('city',$dogData);
+        $this->assertArrayHasKey('state',$dogData);
+        $this->assertArrayHasKey('zip',$dogData);
+        $this->assertArrayHasKey('media',$dogData);
+    }
     public function getValidData(){
         return $this->service->getRawDogApiData($this->validZip,$this->validBreed);
     }

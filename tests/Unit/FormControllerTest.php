@@ -31,6 +31,7 @@ class FormControllerTest extends TestCase
         parent::setUp();
         //A user will automatically create a related selection row
         factory(User::class,$this->numRows)->create();
+
         $this->seed('breedsTableSeeder');
         $this->petApiService = new ExternalPetApiService();
         $this->zipApiService = new ExternalZipApiService();
@@ -68,7 +69,7 @@ class FormControllerTest extends TestCase
     public function test_StoreUsersSelection_StoresUser()
     {
         $this->sendForm();
-        $this->assertCount(4,User::all());
+        $this->assertCount(5,User::all());
     }
 
     public function test_storeSelection_stores_single_row_in_database(){
