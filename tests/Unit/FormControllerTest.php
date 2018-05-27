@@ -16,9 +16,9 @@ class FormControllerTest extends TestCase
     use RefreshDatabase;
     //Data
     private $url = "/";
-    private $numRows = 3;
+    private $numRows = 4;
     private $form;
-    private $validBreedId;
+    private $validBreedId = 5;
     private $validBreed = 'Akita';
     private $validZip = '95402';
     private $validMiles = 50;
@@ -31,11 +31,12 @@ class FormControllerTest extends TestCase
         parent::setUp();
         //A user will automatically create a related selection row
         factory(User::class,$this->numRows)->create();
+
+        $this->seed('breedsTableSeeder');
         $this->petApiService = new ExternalPetApiService();
         $this->zipApiService = new ExternalZipApiService();
         $this->dogService = new DogDataService($this->petApiService,$this->zipApiService);
         $this->form = new FormController($this->petApiService,$this->dogService);
-        $this->validBreedId = $this->dogService->getBreedId($this->validBreed);
     }
 
     public function test_StoreUsersSelection_RequiresValidEmail()
@@ -68,7 +69,7 @@ class FormControllerTest extends TestCase
     public function test_StoreUsersSelection_StoresUser()
     {
         $this->sendForm();
-        $this->assertCount(4,User::all());
+        $this->assertCount(5,User::all());
     }
 
     public function test_storeSelection_stores_single_row_in_database(){

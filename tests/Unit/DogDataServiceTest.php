@@ -22,13 +22,13 @@ class DogDataServiceTest extends TestCase
 
     public function setUp(){
         parent::setUp();
+        $this->seed('breedsTableSeeder');
         $this->petApiService = new ExternalPetApiService();
         $this->zipApiService = new ExternalZipApiService();
         $this->dogDataService = new DogDataService($this->petApiService, $this->zipApiService);
     }
     public function test_getUpdatedBreedArray_returns_multiple_arrays_of_new_dogs()
     {
-        $this->seed('breedsTableSeeder');
         $user = factory(User::class)->create();
         Selection::find($user->id)->update([
             'breed_id'         => 5,
@@ -101,6 +101,20 @@ class DogDataServiceTest extends TestCase
         $distanceData = $this->dogDataService->getRecordsUnderMaxMiles($updatedDogData, $maxMiles = 35, $zip);
         $this->assertCount(1,$distanceData);
     }*/
+
+    public function test_getBreedId_returns_correct_id_for_a_breed_name()
+    {
+        $validBreedName = 'Cattle Dog';
+        $breedId = $this->dogDataService->getBreedId($validBreedName);
+        $this->assertEquals(56,$breedId);
+    }
+
+    public function test_getBreedId_returns_zero_for_invalid_breed_names()
+    {
+        $invalidBreedName = 'Invalid Name';
+        $breedId = $this->dogDataService->getBreedId($invalidBreedName);
+        $this->assertEquals(false,$breedId);
+    }
 
     public function test_resetUsersToRankOne_updates_rank_column_to_one_in_all_database_rows(){
         factory(User::class,10)->create();

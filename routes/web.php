@@ -22,8 +22,6 @@ Route::post('/', 'FormController@storeUserSelection')->name('user.create');
 
 Route::view('/results', 'results');
 
-Route::get('/results/{userEmail}', 'BreedController@showCollectedArrayOfDogsView');
-
 Route::get('/results/{email}', 'BreedController@showCollectedArrayOfDogsView');
 
 Route::post('/user-selections', 'FormController@storeUserSelection')->name('user-selections.store');
@@ -37,11 +35,9 @@ Route::get('/user/miles/{email}', 'UserController@getUserMiles');
 Route::post('/selection/{breedName}/{zip}/{maxMiles}', 'FormController@storeSelection');
 // Testing--------------------------------------------------------------------------------------------------------------
 
-Route::get('getUpdate', function(){
+Route::get('single', function(){
    $petApiService = new ExternalPetApiService();
-   $zipApiService = new ExternalZipApiService();
-   $dogDataService = new DogDataService($petApiService, $zipApiService);
-   $dogDataService->getUpdatedBreedArray('joesilvpb4@gmail.com');
+   return $petApiService->getExternalDataForSingleDog(50);
 });
 
 Route::get('/sendNotification', function(){
