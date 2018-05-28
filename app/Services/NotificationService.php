@@ -30,6 +30,7 @@ class NotificationService
         $user = User::where('email', $email)->first();
         $selection = $user->selection()->first();
         $updatedArray = $dogDataService->getUpdatedBreedArray($email);
+        dd($updatedArray);
         $filteredUpdatedArray = $dogDataService->getRecordsUnderMaxMiles($updatedArray,$selection->miles,$selection->zip);
         if (empty($filteredUpdatedArray)) {
             return false;
