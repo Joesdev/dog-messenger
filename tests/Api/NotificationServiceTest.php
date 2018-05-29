@@ -18,6 +18,7 @@ class NotificationServiceTest extends TestCase
     {
         parent::setUp();
         $this->service = new NotificationService();
+        $this->seed('breedsTableSeeder');
         $this->seed('AllTableDataSeeder');
     }
 
@@ -28,8 +29,8 @@ class NotificationServiceTest extends TestCase
 
     public function test_sendNotification_returns_found_dogs_rows_and_sends_notification(){
         $validEmail = 'joesilvpb4@gmail.com';
-        //Give I have a valid email address that is located in Users table
+        $initialCountOfRows = Found_Dog::all()->count();
         $this->service->sendNotification($validEmail);
-        //That email should have more dogs in the found dogs table and be notified by ema
+        $this->assertNotEquals($initialCountOfRows, Found_Dog::all()->count());
     }
 }

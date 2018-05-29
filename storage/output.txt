@@ -2406,3 +2406,150 @@ In NotifyUsers.php line 42:
   ils()                                                                        
                                                                                
 
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
+
+In NotifyUsers.php line 42:
+                                                                               
+  Call to undefined method App\Services\NotificationService::notifyNextTwoEma  
+  ils()                                                                        
+                                                                               
+
