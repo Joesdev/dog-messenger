@@ -39,6 +39,6 @@ class NotifyUsers extends Command
     public function handle()
     {
         $notificationService = new NotificationService();
-        $notificationService->notifyNextTwoEmails();
+        $notificationService->notifyNextBatchOfEmails(2);
     }
 }

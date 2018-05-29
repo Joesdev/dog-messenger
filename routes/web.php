@@ -19,7 +19,6 @@ use App\Services\DogDataService;
 
 Route::view('/', 'welcome')->name('landing');
 Route::post('/', 'FormController@storeUserSelection')->name('user.create');
-
 Route::view('/results', 'results');
 
 Route::get('/results/{email}', 'BreedController@showCollectedArrayOfDogsView');
@@ -34,14 +33,3 @@ Route::get('/user/miles/{email}', 'UserController@getUserMiles');
 
 //Selection
 Route::post('/selection/{breedName}/{zip}/{maxMiles}', 'FormController@storeSelection');
-// Testing--------------------------------------------------------------------------------------------------------------
-
-Route::get('single', function(){
-   $petApiService = new ExternalPetApiService();
-   return $petApiService->getExternalDataForSingleDog(50);
-});
-
-Route::get('/sendNotification', function(){
-   $service = new NotificationService();
-   $service->sendNotification('joesilvpb4@gmail.com');
-});
