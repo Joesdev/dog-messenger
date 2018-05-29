@@ -10,10 +10,11 @@ use App\Services\ExternalPetApiService;
 
 class NotificationService
 {
-    public function notifyNextTwoEmails()
+    public function notifyNextBatchOfEmails($batchCount)
     {
-        $emails = User::where('rank', 1)->take(1)->get()->pluck('email')->toArray();
+        $emails = User::where('rank', 1)->take($batchCount)->get()->pluck('email')->toArray();
         if (empty($emails)) {
+            return true;
         }
         foreach ($emails as $email) {
             $this->sendNotification($email);
@@ -23,13 +24,13 @@ class NotificationService
 
     public function sendNotification($email)
     {
-        $user = User::where('email', $email)->first();
-        $selection = $user->selection()->first();
         $externalPetApiService = new ExternalPetApiService();
         $externalZipApiService = new ExternalZipApiService();
         $dogDataService = new DogDataService($externalPetApiService, $externalZipApiService);
+        $user = User::where('email', $email)->first();
+        $selection = $user->selection()->first();
         $updatedArray = $dogDataService->getUpdatedBreedArray($email);
-        $filteredUpdatedArray = $dogDataService->getRecordsUnderMaxMiles($updatedArray,$selection->miles,$selection->zip);
+        $filteredUpdatedArray = $dogDataService->getRecordsUnderMaxMiles($updatedArray,$selection->max_miles,$selection->zip);
         if (empty($filteredUpdatedArray)) {
             return false;
         } else {
