@@ -2,6 +2,8 @@
 
 namespace Tests\Unit;
 
+use App\Found_Dog;
+use App\Selection;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
@@ -63,5 +65,19 @@ class UserControllerTest extends TestCase
         $response->assertJson([
             'miles' => $this->user->selection->max_miles,
         ]);
+    }
+
+    public function test_destroyUser_removes_user_row_with_selection_row_and_found_dogs_row()
+    {
+        $validEmail = env('APP_EMAIL');
+        factory(User::class)->create(['email' => $validEmail]);
+        factory(Found_Dog::class)->create(['email' => $validEmail]);
+        $userCount = User::all()->count();
+        $selectionCount = Selection::all()->count();
+        $foundDogCount = Found_Dog::all()->count();
+        $this->delete("/user/$validEmail");
+        $this->assertEquals($userCount - 1,User::all()->count());
+        $this->assertEquals($selectionCount - 1,Selection::all()->count());
+        $this->assertEquals($foundDogCount - 1,Found_Dog::all()->count());
     }
 }
