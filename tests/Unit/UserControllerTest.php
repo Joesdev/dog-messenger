@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Found_Dog;
+use App\Selection;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
@@ -74,11 +75,9 @@ class UserControllerTest extends TestCase
         $userCount = User::all()->count();
         $selectionCount = Selection::all()->count();
         $foundDogCount = Found_Dog::all()->count();
-        //When I call the function with that users email
-        $this->post("/user/$email");
-        //Then I expect the user table to be truncated by one,same with selection table and no records for found_dogs with that email
+        $this->delete("/user/$validEmail");
         $this->assertEquals($userCount - 1,User::all()->count());
-        $this->assertEquals($selectionCount - 1,User::all()->count());
-        $this->assertEquals($foundDogCount - 1,User::all(a)->count());
+        $this->assertEquals($selectionCount - 1,Selection::all()->count());
+        $this->assertEquals($foundDogCount - 1,Found_Dog::all()->count());
     }
 }
