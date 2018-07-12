@@ -51,7 +51,7 @@
     <div class="container margin-tb">
         <div class="row">
             <div class="col-sm-12 padding-bottom">
-                <h1 class="h2 text-center txt-black">What Do They Think?</h1>
+                <h1 class="h2 text-center txt-black">What Do Users Think?</h1>
             </div>
         </div>
         <div class="row">

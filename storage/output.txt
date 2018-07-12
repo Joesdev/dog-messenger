@@ -34,3 +34,11 @@ In RequestException.php line 113:
   {"error_code":429,"error_msg":"Usage limit exceeded."}                       
                                                                                
 
+
+In PetArrived.php line 20:
+                                                                               
+  Type error: Too few arguments to function App\Notifications\PetArrived::__c  
+  onstruct(), 1 passed in /home/vagrant/Code/dog-arrival-messenger/app/Servic  
+  es/NotificationService.php on line 38 and exactly 2 expected                 
+                                                                               
+
