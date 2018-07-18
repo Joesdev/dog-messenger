@@ -3,9 +3,9 @@
 namespace Tests\Feature;
 
 use App\Found_Dog;
+use App\Breed;
 use App\Http\Controllers\BreedController;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class BreedControllerTest extends TestCase
@@ -37,5 +37,12 @@ class BreedControllerTest extends TestCase
     {
         $response = $this->get('/results/'.$this->invalidEmail);
         $response->assertViewIs('.welcome');
+    }
+
+    public function test_getHomeView_returns_homepage_and_a_list_of_breed_names()
+    {
+        $response = $this->json('GET', '/');
+        $response->assertViewIs('.welcome');
+        $response->assertViewHas('allBreedNames');
     }
 }
