@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Breed;
 use App\Http\Controllers\NotificationController;
 use App\Found_Dog;
 use App\Services\ExternalPetApiService;
@@ -27,5 +28,12 @@ class BreedController extends Controller
             return view('/welcome');
         }
 
+    }
+
+    public function getHomeView()
+    {
+        $allBreedNames = Breed::all();
+        return $allBreedNames;
+        //return home view with the array
     }
 }
