@@ -3,7 +3,7 @@
 @section('content')
 <header class="bg-header">
     <div class="col-xs-12 col-md-7 col-lg-6 text-center">
-       <h1 class= "h1">Get Alerts the Day <br>a <span style="color: #ff7615;">Dog You Love</span> <br>is Dropped Off <br>at a Local Shelter. 
+       <h1 class= "h1">Get Alerts the Day <br>a <span style="color: #ff7615;">Puppy You Love</span> <br>is Dropped Off <br>at a Local Shelter. 
     </h1>
     </div>
 </header>
@@ -14,17 +14,17 @@
             <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0 text-center">
                 <i class="fa fa-paw fa-3x step-icons"></i>      
                 <h2 class="h3 txt-black">Enter A Breed
-                <small class="text-muted"><br>Tell us what breed of dog you are looking for</small></h2>
+                <small class="text-muted"><br>Tell us what breed of puppy you are looking for</small></h2>
             </div>
             <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0 text-center">
                 <i class="fa fa-map-marker fa-3x step-icons"></i>                            
                 <h2 class="h3 txt-black">Enter a Location
-                <small class="text-muted"><br>Tell us the area you are looking to adopt a dog</small></h2>               
+                <small class="text-muted"><br>Tell us the area you are looking to adopt a puppy</small></h2>               
             </div>
             <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0 text-center">   
                 <i class="fa fa-bell fa-3x step-icons"></i>           
                 <h2 class="h3 txt-black">Get Notified
-                <small class="text-muted"><br>Receive an email when your new dog has entered a shelter near you</small></h2> 
+                <small class="text-muted"><br>Receive an email when your new puppy has entered a shelter near you</small></h2> 
             </div>
         </div>
         <div class="row">
@@ -64,7 +64,7 @@
                 <div class="row">
                     <div class="col-sm-12 padding-lr">
                         <p class="text-center h5 txt-black"><strong>Tiah J.</strong></p>
-                        <p class="text-center"> I have been looking for a Rottweiler and a frisbee partner. Now, I have found the best of both. Thanks Dogfinder!</p>
+                        <p class="text-center"> I have been looking for a Rottweiler puppy. Thanks to findashelterpuppy.com we found our perfect puppy and he has grown into such a handsome boy.</p>
                     </div>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                 <div class="row">
                     <div class="col-sm-12 padding-lr">
                         <p class="text-center h5 txt-black"><strong>Keith M.</strong></p>
-                        <p class="text-center">  Thanks to Dogfiner I was the first to find out as soon as a pug came into a shelter near me and I picked her up that day. Thank you! </p>
+                        <p class="text-center">  I was looking for a puppy and a frisbee partner and I found both. I picked her up the day I was notified she was brought into a shelter. It's been two years and she is my best friend.</p>
                     </div>
                 </div>
             </div>
@@ -90,7 +90,7 @@
                 <div class="row">
                     <div class="col-sm-12 padding-lr">
                         <p class="text-center h5 txt-black"><strong>Lexie D.</strong></p>
-                        <p class="text-center">We wanted to adopt a dog who needed some extra love and care and through Dogfinder we found out new family member. So happy!</p>
+                        <p class="text-center">We wanted to adopt a puppy who needed some extra love and care and we found our new family member and couldn't be happier. Thank you! </p>
                     </div>
                 </div>
             </div>
