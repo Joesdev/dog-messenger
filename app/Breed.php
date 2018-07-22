@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Breed extends Model
 {
-    public $timestamps = true;
+    public $timestamps = false;
     public $primaryKey = 'id';
 
     protected $fillable = ['breed'];

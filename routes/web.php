@@ -17,7 +17,7 @@ use App\Services\ExternalPetApiService;
 use App\Services\NotificationService;
 use App\Services\DogDataService;
 
-Route::view('/', 'welcome')->name('landing');
+Route::get('/', 'BreedController@getHomeView');
 Route::post('/', 'FormController@storeUserSelection')->name('user.create');
 Route::view('/results', 'results');
 
