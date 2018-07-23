@@ -11,6 +11,7 @@ use App\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Psy\Exception\ErrorException;
+use App\Breed;
 
 class FormController extends Controller
 {
@@ -28,7 +29,8 @@ class FormController extends Controller
         $this->validateLandingForm($request);
         $selection =  $this->storeSelection($request);
         $this->storeUser($request,$selection->id);
-        return view('welcome');
+        $allBreedNames = Breed::all();
+        return view('welcome')->with('allBreedNames', $allBreedNames);
     }
 
     public function validateLandingForm(Request $request)
