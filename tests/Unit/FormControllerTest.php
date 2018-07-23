@@ -18,8 +18,6 @@ class FormControllerTest extends TestCase
     private $url = "/";
     private $numRows = 4;
     private $form;
-    private $validBreedId = 5;
-    private $validBreed = 'Akita';
     private $validZip = '95402';
     private $validMiles = 50;
     //Services
