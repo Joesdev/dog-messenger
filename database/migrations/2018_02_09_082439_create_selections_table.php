@@ -15,7 +15,6 @@ class CreateSelectionsTable extends Migration
     {
         Schema::create('selections', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('breed_id');
             $table->string('zip');
             $table->integer('highest_breed_id');
             $table->integer('max_miles');
