@@ -28,7 +28,7 @@ class UserControllerTest extends TestCase
     public function setRandomUser()
     {
         $this->user = User::where('id', random_int(1,User::count()))
-                            ->with('selection.breed')
+                            ->with('selection')
                             ->first();
     }
 
@@ -41,18 +41,6 @@ class UserControllerTest extends TestCase
         ]);
         $response->assertJson(['zip' => $this->user->selection->zip]);
 
-    }
-
-    public function test_getUserBreedName()
-    {
-        $response = $this->get('user/breed/'.$this->user->email);
-        $response->assertStatus(200);
-        $response->assertJsonStructure([
-            'name',
-        ]);
-        $response->assertJson([
-           'name' => $this->user->selection->breed->breed,
-        ]);
     }
 
     public function test_getUserMiles()

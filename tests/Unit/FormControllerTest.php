@@ -60,12 +60,6 @@ class FormControllerTest extends TestCase
         $this->sendForm(['zip' => ''])->assertSessionHasErrors('zip');
     }
 
-    public function test_StoreUsersSelection_RequiresValidBreedName()
-    {
-        $this->sendForm(['breedName' => 'notarealbreed'])->assertSessionHasErrors('breedName');
-        $this->sendForm(['breedName' => ''])->assertSessionHasErrors('breedName');
-    }
-
     public function test_StoreUsersSelection_StoresUser()
     {
         $this->sendForm();
@@ -96,7 +90,6 @@ class FormControllerTest extends TestCase
             'email' => 'johndoe@gmail.com',
             'maxMiles' => 75,
             'zip' => 95492,
-            'breedName' => 'Akita'
         ], $overrides);
     }
 }

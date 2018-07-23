@@ -10,7 +10,7 @@ class ExternalPetApiService
     private $countOfDogsRequested = 75;
 
 
-    public function getExternalDataForBreed($location)
+    public function getExternalDataForDogs($location)
     {
         $data = $this->getRawDogApiData($location);
         $data = $this->validateDogData($data);

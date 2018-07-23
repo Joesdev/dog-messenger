@@ -18,8 +18,7 @@ class DogDataService
 
     public function getUpdatedBreedArray($email){
         $selection = User::whereEmail($email)->with('selection')->firstOrFail()->selection;
-        $breedName = Breed::find($selection->breed_id)->breed;
-        $breeds = $this->externalPetApiService->getExternalDataForBreed($selection->zip, $breedName);
+        $breeds = $this->externalPetApiService->getExternalDataForDogs($selection->zip);
         $latestMaxId = $this->getLargestBreedId($breeds);
 
         $this->updateHighestBreedId($selection->id, $latestMaxId);
