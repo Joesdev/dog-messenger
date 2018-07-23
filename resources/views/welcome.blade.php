@@ -110,7 +110,7 @@
     @endif
     <div class="container-fluid search" id="search">
         <div class="row">
-                <form id="regForm" action="{{route('user.create')}}" method="POST">
+                <form id="regForm" action="{{url('/submit-form')}}" method="POST">
                     {{ csrf_field() }}
                     <h1 class="text-center h1">Find Your New Best Friend</h1>
                     <br><br>
@@ -118,10 +118,9 @@
                         <div class="col-sm-4">
                             <select name="breedName">
                                 <option value="" disabled selected>Breed...</option>
-                                <option value="Akita">Akita</option>
-                                <option value="Husky">Husky</option>
-                                <option value="Pug">Pug</option>
-                                <option value="Pitbul">Pitbul</option>
+                                @foreach($allBreedNames as $name)
+                                <option value="{{$name->breed}}">{{$name->breed}}</option>
+                                @endforeach
                             </select>  
                         </div>
                         <div class="col-sm-4">
@@ -152,24 +151,6 @@
         </div>
     </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 @endsection
