@@ -18,8 +18,6 @@ class FormControllerTest extends TestCase
     private $url = "/";
     private $numRows = 4;
     private $form;
-    private $validBreedId = 5;
-    private $validBreed = 'Akita';
     private $validZip = '95402';
     private $validMiles = 50;
     //Services
@@ -60,12 +58,6 @@ class FormControllerTest extends TestCase
         $this->sendForm(['zip' => ''])->assertSessionHasErrors('zip');
     }
 
-    public function test_StoreUsersSelection_RequiresValidBreedName()
-    {
-        $this->sendForm(['breedName' => 'notarealbreed'])->assertSessionHasErrors('breedName');
-        $this->sendForm(['breedName' => ''])->assertSessionHasErrors('breedName');
-    }
-
     public function test_StoreUsersSelection_StoresUser()
     {
         $this->sendForm();
@@ -73,10 +65,9 @@ class FormControllerTest extends TestCase
     }
 
     public function test_storeSelection_stores_single_row_in_database(){
-        $this->post('/selection/'.$this->validBreed.'/'.$this->validZip.'/'.$this->validMiles);
+        $this->post('/selection/'.$this->validZip.'/'.$this->validMiles);
         $this->assertCount($this->numRows + 1,Selection::all());
         $this->assertDatabaseHas('selections', [
-            'breed_id' => $this->validBreedId,
             'zip'      => $this->validZip,
             'max_miles' => $this->validMiles,
             'match'    => 0
@@ -96,7 +87,6 @@ class FormControllerTest extends TestCase
             'email' => 'johndoe@gmail.com',
             'maxMiles' => 75,
             'zip' => 95492,
-            'breedName' => 'Akita'
         ], $overrides);
     }
 }
