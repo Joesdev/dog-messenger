@@ -34,14 +34,13 @@ class ExternalPetApiServiceTest extends TestCase
 
     //API CALL
     public function test_getExternalDataForBreed_ReturnsDataWhenSuccessful(){
-        $response = $this->service->getExternalDataForBreed($this->validZip,$this->validBreed);
+        $response = $this->service->getExternalDataForBreed($this->validZip);
         $this->assertEquals($this->service->getCount(),count($response));
-
     }
     //API CALL
     public function test_getExternalDataForBreed_ReturnsExceptionWhenApiReturnsNoData(){
         $this->expectException($this->indexException);
-        $this->service->getExternalDataForBreed($this->invalidZip,$this->invalidBreed);
+        $this->service->getExternalDataForBreed($this->invalidZip);
     }
     //API CALL
     public function test_getRawDogApiData_ReturnsSucess()
