@@ -42,3 +42,11 @@ In PetArrived.php line 20:
   es/NotificationService.php on line 38 and exactly 2 expected                 
                                                                                
 
+PHP Fatal error:  Cannot redeclare App\Services\ExternalZipApiService::getMilesBetweenZipCodes() in /home/vagrant/Code/dog-arrival-messenger/app/Services/ExternalZipApiService.php on line 29
+
+In ExternalZipApiService.php line 29:
+                                                                               
+  Cannot redeclare App\Services\ExternalZipApiService::getMilesBetweenZipCode  
+  s()                                                                          
+                                                                               
+
