@@ -12,19 +12,19 @@
     <div class="container">
         <div class="row padding-tb">
             <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0 text-center">
-                <i class="fa fa-paw fa-3x step-icons"></i>      
-                <h2 class="h3 txt-black">Enter A Breed
-                <small class="text-muted"><br>Tell us what breed of puppy you are looking for</small></h2>
-            </div>
-            <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0 text-center">
                 <i class="fa fa-map-marker fa-3x step-icons"></i>                            
                 <h2 class="h3 txt-black">Enter a Location
-                <small class="text-muted"><br>Tell us the area you are looking to adopt a puppy</small></h2>               
+                <small class="text-muted"><br>Tell us the area where you are looking to adopt a puppy</small></h2>               
+            </div>
+            <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0 text-center">
+                <i class="fa fa-arrows-alt fa-3x step-icons"></i>      
+                <h2 class="h3 txt-black">Enter A Distance
+                <small class="text-muted"><br>Tell us how many miles away you are looking to adopt a puppy </small></h2>
             </div>
             <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0 text-center">   
                 <i class="fa fa-bell fa-3x step-icons"></i>           
                 <h2 class="h3 txt-black">Get Notified
-                <small class="text-muted"><br>Receive an email when your new puppy has entered a shelter near you</small></h2> 
+                <small class="text-muted"><br>Receive an email when a puppy has entered a shelter near you</small></h2> 
             </div>
         </div>
         <div class="row">
