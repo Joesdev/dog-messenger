@@ -37,6 +37,6 @@ Route::post('/selection/{breedName}/{zip}/{maxMiles}', 'FormController@storeSele
 //For Testing Only
 Route::get('/distance', function(){
     $distanceService = new ExternalZipApiService();
-    $data = $distanceService->getDistanceBetweenTwoZipCodes(95492,91324);
+    $data = $distanceService->getMilesBetweenZipCodes([['zip' => 95492], ['zip' => 95402],['zip'=> 95501]],91324);
     return  $data;
 });

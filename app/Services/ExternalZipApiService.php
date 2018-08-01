@@ -3,34 +3,28 @@ namespace App\Services;
 
 Class ExternalZipApiService {
 
-    public function getMilesBetweenZipCodes($zipCodes, $focusZip)
+    public function getMilesBetweenZipCodes($destZipArray, $homeZip)
     {
-        $client = new \GuzzleHttp\Client();
-        $zipDistanceArray = [];
+        $destZipString = $this->concatStringOfZipCodes($destZipArray);
+        $fullApiArray = $this->queryGoogleDistanceApi($homeZip, $destZipString);
+        $distance = $this->extractDistanceFromApiArray($fullApiArray);
+        return $distance;
+        /*return $zipDistanceArray['distances'];*/
+    }
+
+    public function concatStringOfZipCodes($zipCodes)
+    {
         $zipString = '';
         $index = 0;
         foreach($zipCodes as $zipCode){
             if($index == 0){
                 $zipString .= $zipCode['zip'];
             }else{
-                $zipString .= ', ' . $zipCode['zip'];
+                $zipString .= '|' . $zipCode['zip'];
             }
             $index++;
         }
-        $query = "https://www.zipcodeapi.com/rest/" .  env('ZIP_API_KEY')  . "/multi-distance.json" .
-            "/"         .  $focusZip               . "/"                     .
-            $zipString       .  "/mile"
-        ;
-        $queryResponse = $client->request('GET', $query);
-        $zipDistanceArray = json_decode($queryResponse ->getBody()->getContents(), true);
-        return $zipDistanceArray['distances'];
-    }
-
-    public function getDistanceBetweenTwoZipCodes($homeZip, $destinationZip)
-    {
-        $fullApiArray = $this->queryGoogleDistanceApi($homeZip,$destinationZip);
-        $distance = $this->extractDistanceFromApiArray($fullApiArray);
-        return $distance;
+        return $zipString;
     }
 
     public function queryGoogleDistanceApi($homeZip, $destinationZip)
@@ -44,9 +38,14 @@ Class ExternalZipApiService {
         return $distanceArray;
     }
 
-    public function extractDistanceFromApiArray($distanceArray){
-        $distanceString = $distanceArray['rows']['0']['elements']['0']['distance']['text'];
-        $distance = preg_replace("/[^0-9,.]/", "", $distanceString);
-        return $distance;
+    public function extractDistanceFromApiArray($responseArray){
+        $distanceArray = [];
+        $responseSubArray = $responseArray['rows']['0']['elements'];
+        foreach($responseSubArray as $indexArray){
+            $distString = $indexArray['distance']['text'];
+            $distance = preg_replace("/[^0-9,.]/", "", $distString);
+            array_push($distanceArray, $distance);
+        }
+        return $distanceArray;
     }
 }
