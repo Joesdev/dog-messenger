@@ -28,4 +28,13 @@ class ExternalZipApiServiceTest extends TestCase
         $this->assertEquals(379.775,$distanceArray['91324']);
         $this->assertEquals(657.215,$distanceArray['98260']);
     }*/
+
+    public function test_concatStringOfZipCodes_returns_a_string_of_zip_codes_with_or_operator_as_spacer()
+    {
+        $arrayOfZipCodes = [95492, 91324, 95501];
+        $stringOfZipCodes = $this->service->concatStringOfZipCodes($arrayOfZipCodes);
+        $this->assertEquals('95492|91324|95501', $stringOfZipCodes);
+        $singleStringOfZipCode = $this->service->concatStringOfZipCodes([95492]);
+        $this->assertEquals('95492', $singleStringOfZipCode);
+    }
 }
