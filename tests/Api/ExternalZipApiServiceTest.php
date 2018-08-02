@@ -12,20 +12,21 @@ class ExternalZipApiServiceTest extends TestCase
     use RefreshDatabase;
 
     protected $service;
+    protected $validDestZipCodes = [95501, 96001, 91324];
+    protected $validHomeZip = 95401;
 
     public function setUp(){
         parent::setUp();
         $this->service = new ExternalZipApiService();
     }
 
-    /*//API CALLS (3)
     public function test_getMilesBetweenZipCodes_returns_array_with_distance_key_values()
     {
-        $distanceArray = $this->service->getMilesBetweenZipCodes($this->validZipCodes,$this->validFocusZipCode);
-        $this->assertEquals(445.764,$distanceArray['88901']);
-        $this->assertEquals(379.775,$distanceArray['91324']);
-        $this->assertEquals(657.215,$distanceArray['98260']);
-    }*/
+        $distanceArray = $this->service->getMilesBetweenZipCodes($this->validDestZipCodes,$this->validHomeZip);
+        $this->assertEquals(204, $distanceArray['96001']);
+        $this->assertEquals(419, $distanceArray['91324']);
+        $this->assertEquals(219, $distanceArray['95501']);
+    }
 
     public function test_concatStringOfZipCodes_returns_a_string_of_zip_codes_with_or_operator_as_spacer()
     {
