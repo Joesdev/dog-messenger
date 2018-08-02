@@ -12,8 +12,6 @@ class ExternalZipApiServiceTest extends TestCase
     use RefreshDatabase;
 
     protected $service;
-    protected $validZipCodes = [['zip' => '91324'],['zip' => '98260'],['zip' => '88901']];
-    protected $validFocusZipCode = '95492';
 
     public function setUp(){
         parent::setUp();
@@ -37,4 +35,14 @@ class ExternalZipApiServiceTest extends TestCase
         $singleStringOfZipCode = $this->service->concatStringOfZipCodes([95492]);
         $this->assertEquals('95492', $singleStringOfZipCode);
     }
+
+    public function test_queryGoogleDistanceApi_returns_status_of_ok_and_distance_values()
+    {
+        $homeZipCode = 91324;
+        $destinationZipCodes = '95492|95401|95501';
+        $data = $this->service->queryGoogleDistanceApi($homeZipCode, $destinationZipCodes);
+        $status = $data['status'];
+        $this->assertEquals('OK', $status);
+    }
+
 }
