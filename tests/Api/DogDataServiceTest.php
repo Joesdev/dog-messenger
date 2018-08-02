@@ -102,6 +102,25 @@ class DogDataServiceTest extends TestCase
         $this->assertCount(1,$distanceData);
     }*/
 
+    public function test_extractDogDataByKey_returns_an_array_of_values()
+    {
+        //given I have multiple zip codes by key 'zip'
+        $arrayOfTestVals = [
+            ['city' => 'New York', 'zip' => 95402],
+            ['city' => 'Mccloud', 'zip' => 96057],
+            ['city' => 'Santa Monica', 'zip' => 91324]
+        ];
+        $expectedZipArray = [95402, 96057, 91324];
+        $expectedCityArray = ['New York', 'Mccloud', 'Santa Monica'];
+
+        //when I call extractZipCodesByKey with a parameter of 'zip' and the breed array
+        $zipCodes = $this->dogDataService->extractDogDataByKey('zip', $arrayOfTestVals);
+        $cities = $this->dogDataService->extractDogDataByKey('city', $arrayOfTestVals);
+        //Then I expect a normal array containing only zip codes
+        $this->assertEquals($expectedZipArray, $zipCodes);
+        $this->assertEquals($expectedCityArray, $cities);
+    }
+
     public function test_getBreedId_returns_correct_id_for_a_breed_name()
     {
         $validBreedName = 'Cattle Dog';

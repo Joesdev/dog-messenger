@@ -7,9 +7,9 @@ Class ExternalZipApiService {
     {
         $destZipString = $this->concatStringOfZipCodes($destZipArray);
         $fullApiArray = $this->queryGoogleDistanceApi($homeZip, $destZipString);
-        $distance = $this->extractDistanceFromApiArray($fullApiArray);
-        return $distance;
-        /*return $zipDistanceArray['distances'];*/
+        $distanceArray = $this->extractDistanceFromApiArray($fullApiArray);
+        $distBetweenZipsArray = array_combine($destZipArray, $distanceArray);
+        return $distBetweenZipsArray;
     }
 
     public function concatStringOfZipCodes($zipCodes)
@@ -18,9 +18,9 @@ Class ExternalZipApiService {
         $index = 0;
         foreach($zipCodes as $zipCode){
             if($index == 0){
-                $zipString .= $zipCode['zip'];
+                $zipString .= $zipCode;
             }else{
-                $zipString .= '|' . $zipCode['zip'];
+                $zipString .= '|' . $zipCode;
             }
             $index++;
         }

@@ -90,7 +90,8 @@ class DogDataService
         if(empty($breedArray)){
             return [];
         }
-        $distanceArray = $this->externalZipApiService->getMilesBetweenZipCodes($breedArray, $zipCode);
+        $arrayOfZipCodes = $this->extractDogDataByKey('zip', $breedArray);
+        $distanceArray = $this->externalZipApiService->getMilesBetweenZipCodes($arrayOfZipCodes, $zipCode);
         /*$distanceArray = [
             '95462' => 11.591,
             '95828' => 77.12,
@@ -108,6 +109,15 @@ class DogDataService
         }
         return $breedArray;
 
+    }
+
+    public function extractDogDataByKey($key, $dogData)
+    {
+        $stringOfZipCodes = [];
+        foreach($dogData as $data){
+            array_push($stringOfZipCodes, $data[$key]);
+        }
+        return $stringOfZipCodes;
     }
 
     public function getBreedId($breedName){
