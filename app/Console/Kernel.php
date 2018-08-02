@@ -24,14 +24,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('Notify:Users')
+         /*$schedule->command('Notify:Users')
                   ->everyFiveMinutes()
                   ->withoutOverlapping()
                   ->appendOutputTo(storage_path('output.txt'));
 
          $schedule->command('Notify:Reset')
                   ->daily()
-                  ->appendOutputTo(storage_path('output.txt'));
+                  ->appendOutputTo(storage_path('output.txt'));*/
     }
 
     /**
