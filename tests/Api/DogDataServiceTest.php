@@ -91,16 +91,16 @@ class DogDataServiceTest extends TestCase
     }
 
     //Caution Api Call is Metered to 50/hour, this function makes 6 api calls
-    /*public function test_getRecordsUnderMaxMiles_returns_only_arrays_with_distance_under_max_miles(){
+    public function test_getRecordsUnderMaxMiles_returns_only_arrays_with_distance_under_max_miles(){
         $maxMiles = 100;
         $zip = 95492;
         $updatedDogData = $this->create_mock_updated_dog_data(false);
         $distanceData = $this->dogDataService->getRecordsUnderMaxMiles($updatedDogData, $maxMiles, $zip);
         $this->assertCount(2,$distanceData);
         $this->assertArrayHasKey('distance',$distanceData[0]);
-        $distanceData = $this->dogDataService->getRecordsUnderMaxMiles($updatedDogData, $maxMiles = 35, $zip);
+        $distanceData = $this->dogDataService->getRecordsUnderMaxMiles($updatedDogData, $maxMiles = 75, $zip);
         $this->assertCount(1,$distanceData);
-    }*/
+    }
 
     public function test_extractDogDataByKey_returns_an_array_of_values()
     {
