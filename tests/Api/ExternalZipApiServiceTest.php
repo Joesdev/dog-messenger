@@ -45,4 +45,33 @@ class ExternalZipApiServiceTest extends TestCase
         $this->assertEquals('OK', $status);
     }
 
+    public function test_extractDistanceFromApiArray_returns_array_of_integers_representing_miles()
+    {
+        $data = $this->mock_google_api_distance_array();
+        $arrayOfDistanceValues = $this->service->extractDistanceFromApiArray($data);
+        $this->assertEquals([10,424], $arrayOfDistanceValues);
+    }
+
+    public function mock_google_api_distance_array()
+    {
+        $googleApiArray = [
+            'rows' => [
+                0 => [
+                   'elements' => [
+                       0 =>[
+                           'distance' => [
+                                    'text' => "10.0 mi"
+                           ]
+                       ],
+                       1 => [
+                           'distance' => [
+                               'text' => "424 mi"
+                           ]
+                       ]
+                   ]
+                ]
+            ]
+        ];
+        return $googleApiArray;
+    }
 }
