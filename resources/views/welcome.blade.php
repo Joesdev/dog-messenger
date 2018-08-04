@@ -3,7 +3,7 @@
 @section('content')
 <header class="bg-header">
     <div class="col-xs-12 col-md-7 col-lg-6 text-center">
-       <h1 class= "h1">Get Alerts the Day <br>a <span style="color: #ff7615;">Puppy You Love</span> <br>is Dropped Off <br>at a Local Shelter. 
+       <h1 class= "h1">Get Alerts the Day <br>a <span style="color: #ff7615;">Puppy You Love</span> <br>is Dropped Off <br>at a Local Shelter 
     </h1>
     </div>
 </header>
@@ -101,7 +101,7 @@
 <!-- forms at bottom -->
 
 <section>
-    @if($errors->any())
+    @if(!$errors->any())
         <ul id="errors">
             @foreach ($errors->all() as $error)
                 <li>{{$error}}</li>
@@ -116,7 +116,7 @@
                     <br><br>
                     <div class="row padding-bottom-sm">
                         <div class="col-sm-4">
-                            <select name="breedName">
+                            <select name="breedName" required>
                                 <option value="" disabled selected>Breed...</option>
                                 @foreach($allBreedNames as $name)
                                 <option value="{{$name->breed}}">{{$name->breed}}</option>
@@ -127,7 +127,7 @@
                             <input placeholder="Zip Code..." type="number" id="zip" name="zip">
                         </div>
                         <div class="col-sm-4">
-                            <select name="maxMiles" id="maxMiles">
+                            <select name="maxMiles" id="maxMiles" required>
                                 <option value="" disabled selected>Miles Away...</option>
                                 <option value=25>25 Miles</option>
                                 <option value=50>50 Miles</option>
@@ -143,14 +143,29 @@
                     </div>
                     <br>
                    <div class="row">
-                    <div class="col-xs-12">
-                         <input type="submit" value="Submit" class="btn btn-yellow btn-lg center-block txt-white blue-hov">
+                        <div class="col-xs-12">
+                        <input type="submit" value="Submit" class="btn btn-yellow btn-lg center-block txt-white blue-hov" data-toggle="modal" data-target="#myModal">
+                        <!-- If there are no errors, once the submit btn is clicked above, then show this popup modal below -->
+                            @if(!$errors->any())
+                                <!-- Popup "Success" Modal -->
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Success <i class="fa fa-check fa-lg"></i></h4>
+                                      </div>
+                                      <div class="modal-body">
+                                        Your information was submitted successfully! We will send you an email as soon as a puppy is brought into a shelter near you. 
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            @endif
+                        </div>
                     </div>
-                   </div>
                 </form>
         </div>
     </div>
 </section>
-
-
 @endsection
