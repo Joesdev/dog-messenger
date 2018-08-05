@@ -41,14 +41,4 @@ class UserController extends Controller
         Selection::where('id',$userSelectionId)->delete();
         Found_Dog::whereEmail($email)->delete();
     }
-
-    public function getUserSelection($email)
-    {
-        $user = User::where('email', $email)->with('selection')->firstOrFail();
-        $selection = [
-            'zipCode' => $user->selection->zip,
-            'miles' => $user->selection->max_miles
-        ];
-        return $selection;
-    }
 }

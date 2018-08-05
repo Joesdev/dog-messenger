@@ -26,7 +26,7 @@ class BreedController extends Controller
                     array_push($masterArrayOfDogs,$dogData);
                 }
             }
-            return view('results')->with('dogData' ,$masterArrayOfDogs)->with('userEmail',$email);
+            return view('results')->with('dogData' ,$masterArrayOfDogs)->with('userSelection',);
         } else{
             return view('/welcome');
         }

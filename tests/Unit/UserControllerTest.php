@@ -68,12 +68,4 @@ class UserControllerTest extends TestCase
         $this->assertEquals($selectionCount - 1,Selection::all()->count());
         $this->assertEquals($foundDogCount - 1,Found_Dog::all()->count());
     }
-
-    public function test_getUserSelection_returns_all_rows(){
-        $validEmail = User::firstOrFail()->email;
-        $response = $this->get("/user/selection/$validEmail");
-        $response->assertJsonStructure([
-           'zipCode','miles'
-        ]);
-    }
 }
