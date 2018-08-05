@@ -25,7 +25,8 @@ class UserServiceTest extends TestCase
         $this->service = new UserService();
         $this->seed('usersTableSeeder');
     }
-    public function test_getUserSelection_returns_all_rows(){
+    public function test_getUserSelection_returns_all_rows()
+    {
         $validEmail = User::firstOrFail()->email;
         $selection = $this->service->getUserSelection($validEmail);
         $this->assertArrayHasKey('zipCode', $selection);

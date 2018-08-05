@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\Found_Dog;
-use App\Breed;
 use App\Http\Controllers\BreedController;
+use App\Services\UserService as User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -23,7 +23,8 @@ class BreedControllerTest extends TestCase
     public function setUp(){
         parent::setUp();
         $this->seed('found_dogsTableSeeder');
-        $this->breedController = new BreedController();
+        factory(User::class,1)->create(['email' => $this->email]);
+        $this->breedController = new BreedController(new UserService());
     }
 
     public function test_showCollectedArrayOfDogsView_returns_view_with_data_from_found_dogs_table()

@@ -16,7 +16,7 @@
 	<div class="container padding-bottom-md">
 		<div class="row">
 			<div class="col-xs-12">
-				<h1 class="text-center txt-black h2"><span style="color: #ff7615;">New</span> <u>poodles</u> in shelters within <u> 20</u> miles from zip code # <u>22112</u></h1>
+				<h1 class="text-center txt-black h2"><span style="color: #ff7615;">New</span> <u>puppies</u> in shelters within <u> {{$userSelection['miles']}}</u> miles from zip code # <u>{{$userSelection['zipCode']}}</u></h1>
 			</div>
 		</div>
 	</div>
