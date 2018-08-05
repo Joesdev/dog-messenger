@@ -42,3 +42,15 @@ In PetArrived.php line 20:
   es/NotificationService.php on line 38 and exactly 2 expected                 
                                                                                
 
+
+In ExternalPetApiService.php line 38:
+                                   
+  [App\Exceptions\IndexException]  
+                                   
+
+
+In ExternalPetApiService.php line 38:
+                                   
+  [App\Exceptions\IndexException]  
+                                   
+

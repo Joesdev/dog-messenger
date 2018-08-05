@@ -26,11 +26,14 @@ class FormController extends Controller
 
     public function storeUserSelection(Request $request)
     {
+        $allBreedNames = Breed::all();
         $this->validateLandingForm($request);
         $selection =  $this->storeSelection($request);
-        $this->storeUser($request,$selection->id);
-        $allBreedNames = Breed::all();
-        return view('welcome')->with('allBreedNames', $allBreedNames);
+        $isSuccessful = $this->storeUser($request,$selection->id);
+        if($isSuccessful){
+            return view('welcome')->with('allBreedNames', $allBreedNames)
+                                       ->with('isSuccessful', true);
+        }
     }
 
     public function validateLandingForm(Request $request)

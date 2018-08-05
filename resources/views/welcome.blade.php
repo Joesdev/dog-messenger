@@ -101,7 +101,8 @@
 <!-- forms at bottom -->
 
 <section>
-    @if(!$errors->any())
+
+    @if($errors->any())
         <ul id="errors">
             @foreach ($errors->all() as $error)
                 <li>{{$error}}</li>
