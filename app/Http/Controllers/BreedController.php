@@ -21,7 +21,10 @@ class BreedController extends Controller
         if($found_dogs->count() > 0){
             foreach($found_dogs as $dog){
                 $dogData = $externalPetApiService->getExternalDataForSingleDog($dog['new_breed_id']);
-                array_push($masterArrayOfDogs,$dogData);
+                if(!empty($dogData)){
+                    $dogData['distance'] = $dog['miles'];
+                    array_push($masterArrayOfDogs,$dogData);
+                }
             }
             return view('results')->with('dogData' ,$masterArrayOfDogs);
         } else{

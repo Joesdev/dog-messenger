@@ -33,3 +33,8 @@ Route::get('/user/miles/{email}', 'UserController@getUserMiles');
 
 //Selection
 Route::post('/selection/{zip}/{maxMiles}', 'FormController@storeSelection');
+
+Route::get('/sendNotification', function(){
+    $service = new NotificationService();
+    $service->sendNotification('ulemke@yahoo.com');
+});
