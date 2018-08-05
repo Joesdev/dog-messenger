@@ -68,4 +68,15 @@ class UserControllerTest extends TestCase
         $this->assertEquals($selectionCount - 1,Selection::all()->count());
         $this->assertEquals($foundDogCount - 1,Found_Dog::all()->count());
     }
+
+    public function test_getUserSelection_returns_all_rows(){
+        //Given I have a users email
+        $validEmail = 'joeblow@gmail.com';
+        //When I call the function with the email
+        $response = $this->get("/user/selection/$validEmail");
+        //Then I expect to receive all rows except timestamps and rank and remember token and password
+        $response->assertJsonStructure([
+           'id','zip','max_miles'
+        ]);
+    }
 }

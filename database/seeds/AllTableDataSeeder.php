@@ -22,7 +22,7 @@ class AllTableDataSeeder extends Seeder
         $dogDataService = new DogDataService($externalPetApiService, $externalZipApiService);
         $emails = [
             ['joesilvpb4@gmail.com'],
-            ['drycreeksilv@gmail.com'],
+            ['joeblow@gmail.com'],
             ['drycreeksilva@gmail.com'],
             ['joey4favre@gmail.com'],
             ['joseph.silva.275@my.csun.edu']

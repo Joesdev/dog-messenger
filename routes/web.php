@@ -30,11 +30,12 @@ Route::delete('/user/{email}', 'UserController@destroyUser')->name('user.delete'
 Route::get('/user/zip/{email}', 'UserController@getUserZip');
 Route::get('/user/breed/{email}', 'UserController@getUserBreed');
 Route::get('/user/miles/{email}', 'UserController@getUserMiles');
+Route::get('/user/selection/{email}', 'UserController@getUserSelection');
 
 //Selection
 Route::post('/selection/{zip}/{maxMiles}', 'FormController@storeSelection');
 
 Route::get('/sendNotification', function(){
     $service = new NotificationService();
-    $service->sendNotification('ulemke@yahoo.com');
+    $service->sendNotification('dborer@lang.com');
 });
