@@ -84,6 +84,7 @@ class FormControllerTest extends TestCase
     protected function validFields($overrides = [])
     {
         return array_merge([
+            'breed' => 'Akita',
             'email' => 'johndoe@gmail.com',
             'maxMiles' => 75,
             'zip' => 95492,

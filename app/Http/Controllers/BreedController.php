@@ -35,7 +35,7 @@ class BreedController extends Controller
             $userSelection = $this->userService->getUserSelection($email);
             return view('results')->with('dogData' ,$masterArrayOfDogs)->with('userSelection',$userSelection);
         } else{
-            return view('/welcome');
+            return view('/welcome')->with('allBreedNames', $allBreedNames = Breed::all());
         }
 
     }
