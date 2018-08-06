@@ -22,6 +22,7 @@ class ExternalPetApiService
         $response = $client->request('GET', 'api.petfinder.com/pet.find?' .
             'key=' . env('API_KEY') . '&' .
             'location=' . $location . '&' .
+            'animal=dog&' .
             'age=Baby&' .
             'count='.$this->countOfDogsRequested. '&' .
             'format=json' . '&' .

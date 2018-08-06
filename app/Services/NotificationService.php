@@ -35,7 +35,7 @@ class NotificationService
             return false;
         } else {
             $dogDataService->addDogsToFoundDogsTable($filteredUpdatedArray, $email);
-            $user->notify(new PetArrived($user->email));
+            /*$user->notify(new PetArrived($user->email));*/
         }
     }
 }

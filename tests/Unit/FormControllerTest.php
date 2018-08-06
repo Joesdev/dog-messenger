@@ -15,7 +15,7 @@ class FormControllerTest extends TestCase
 {
     use RefreshDatabase;
     //Data
-    private $url = "/";
+    private $url = "/submit-form";
     private $numRows = 4;
     private $form;
     private $validZip = '95402';
@@ -84,6 +84,7 @@ class FormControllerTest extends TestCase
     protected function validFields($overrides = [])
     {
         return array_merge([
+            'breed' => 'Akita',
             'email' => 'johndoe@gmail.com',
             'maxMiles' => 75,
             'zip' => 95492,
