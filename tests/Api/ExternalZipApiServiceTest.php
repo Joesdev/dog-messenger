@@ -23,7 +23,7 @@ class ExternalZipApiServiceTest extends TestCase
     public function test_getMilesBetweenZipCodes_returns_array_with_distance_key_values()
     {
         $distanceArray = $this->service->getMilesBetweenZipCodes($this->validDestZipCodes,$this->validHomeZip);
-        $this->assertEquals(204, $distanceArray['96001']);
+        $this->assertEquals(205, $distanceArray['96001']);
         $this->assertEquals(419, $distanceArray['91324']);
         $this->assertEquals(219, $distanceArray['95501']);
     }
