@@ -145,28 +145,44 @@
                     <br>
                    <div class="row">
                         <div class="col-xs-12">
-                        <input type="submit" value="Submit" class="btn btn-yellow btn-lg center-block txt-white blue-hov" data-toggle="modal" data-target="#myModal">
-                        <!-- If there are no errors, once the submit btn is clicked above, then show this popup modal below -->
-                            @if(!$errors->any())
-                                <!-- Popup "Success" Modal -->
-                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                  <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">Success <i class="fa fa-check fa-lg"></i></h4>
-                                      </div>
-                                      <div class="modal-body">
-                                        Your information was submitted successfully! We will send you an email as soon as a puppy is brought into a shelter near you. 
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                            @endif
+                        <input type="submit" value="Submit" class="btn btn-yellow btn-lg center-block txt-white blue-hov">
                         </div>
                     </div>
                 </form>
         </div>
     </div>
 </section>
+@if(isset($isSuccessful))
+<!-- Popup "Success" Modal -->
+<script type="text/javascript">
+    
+         $('#myModal').modal('show');
+    
+</script>   
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Success <i class="fa fa-check fa-lg"></i></h4>
+      </div>
+      <div class="modal-body">
+        Your information was submitted successfully! We will send you an email as soon as a puppy is brought into a shelter near you. 
+      </div>
+    </div>
+  </div>
+</div>
+@endif
+</div>
+
+
+<!--  1. removing modal and fade class makes it work (without JS). 
+2. The bootstrap library gets applied to the first jquery library but when you reload the jquery library, the original bootstrap load is lost(Modal function is in bootstrap).
+ -->
+
+
+
+
+
+
 @endsection
