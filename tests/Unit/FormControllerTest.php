@@ -15,7 +15,7 @@ class FormControllerTest extends TestCase
 {
     use RefreshDatabase;
     //Data
-    private $url = "/";
+    private $url = "/submit-form";
     private $numRows = 4;
     private $form;
     private $validZip = '95402';
