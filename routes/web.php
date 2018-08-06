@@ -18,7 +18,7 @@ use App\Services\NotificationService;
 use App\Services\DogDataService;
 
 Route::get('/', 'BreedController@getHomeView');
-Route::post('/submit-form', 'FormController@storeUserSelection');
+Route::post('/submit-form', 'FormController@storeUserSelection')->name('submit.form');
 Route::view('/results', 'results');
 
 Route::get('/results/{email}', 'BreedController@showCollectedArrayOfDogsView');
