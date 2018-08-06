@@ -6,7 +6,7 @@ use App\Found_Dog;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
-class deleteExpiredFoundDogs extends Command
+class DeleteExpiredFoundDogs extends Command
 {
     /**
      * The name and signature of the console command.
@@ -39,7 +39,7 @@ class deleteExpiredFoundDogs extends Command
      */
     public function handle()
     {
-        Found_Dog::where('created_at', '<',Carbon::now())->each(function($item){
+        Found_Dog::where('created_at', '<=',Carbon::now()->subDays(14))->each(function($item){
            $item->delete();
         });
     }
