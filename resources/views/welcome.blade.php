@@ -152,18 +152,14 @@
         </div>
     </div>
 </section>
-@if(isset($isSuccessful))
-<!-- Popup "Success" Modal -->
-<script type="text/javascript">
-    
-         $('#myModal').modal('show');
-    
-</script>   
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  aria-hidden=true>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
         <h4 class="modal-title" id="myModalLabel">Success <i class="fa fa-check fa-lg"></i></h4>
       </div>
       <div class="modal-body">
@@ -172,14 +168,14 @@
     </div>
   </div>
 </div>
+
+@if(isset($isSuccessful))
+    <script>
+        $(function() {
+            $('#myModal').modal('show');
+        });
+    </script>
 @endif
-</div>
-
-
-<!--  1. removing modal and fade class makes it work (without JS). 
-2. The bootstrap library gets applied to the first jquery library but when you reload the jquery library, the original bootstrap load is lost(Modal function is in bootstrap).
- -->
-
 
 
 

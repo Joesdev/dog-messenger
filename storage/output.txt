@@ -54,3 +54,9 @@ In ExternalPetApiService.php line 38:
   [App\Exceptions\IndexException]  
                                    
 
+
+In DogDataService.php line 21:
+                                                
+  Trying to get property 'breed' of non-object  
+                                                
+
