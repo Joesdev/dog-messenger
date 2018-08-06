@@ -111,7 +111,7 @@
     @endif
     <div class="container-fluid search" id="search">
         <div class="row">
-                <form id="regForm" action="{{url('/submit-form')}}" method="POST">
+                <form id="regForm" action="{{url()->route('submit.form')}}" method="POST">
                     {{ csrf_field() }}
                     <h1 class="text-center h1">Find Your New Best Friend</h1>
                     <br><br>

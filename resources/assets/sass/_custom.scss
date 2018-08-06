@@ -244,7 +244,7 @@ input[type="submit"] {
   border-color: black;
 }
 
-/*// Popup Modal
+// Popup Modal
 .modal-content {
   border: 5px $main-blue solid;
   .close {
@@ -253,7 +253,8 @@ input[type="submit"] {
 }
 i.fa.fa-check.fa-lg {
   color: #60bd00;
-}*/
-/*.modal-body {
-  font-size: 16px;
-}*/
+}
+.modal-dialog {
+  width: 90%;
+  margin: 0 auto;
+}
