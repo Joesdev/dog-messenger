@@ -41,18 +41,17 @@ class AllTableDataSeeder extends Seeder
 
             DB::table('selections')->insert([
                 'id' => $index + 1,
-                'breed_id' => 5 + $index,
                 'zip' => $zips[$index],
                 'highest_breed_id' => 41000000,
                 'max_miles' => $maxMiles[$index],
                 'match' => 0
             ]);
             //Update the highest breed id column
-            $dogDataService->getUpdatedBreedArray($email[0]);
+            /*$dogDataService->getUpdatedBreedArray($email[0]);
             $highestId = Selection::where('id', $index + 1)->get()->pluck('highest_breed_id');
             Selection::where('id', $index + 1)->update([
                 'highest_breed_id' => $highestId[0] - 10000
-            ]);
+            ]);*/
             $index++;
         }
 
