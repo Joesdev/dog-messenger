@@ -57,13 +57,12 @@ class UserControllerTest extends TestCase
 
     public function test_destroyUser_removes_user_row_with_selection_row_and_found_dogs_row()
     {
-        $validEmail = env('APP_EMAIL');
-        factory(User::class)->create(['email' => $validEmail]);
-        factory(Found_Dog::class)->create(['email' => $validEmail]);
+        $user = factory(User::class)->create();
+        factory(Found_Dog::class)->create(['email' => $user->email]);
         $userCount = User::all()->count();
         $selectionCount = Selection::all()->count();
         $foundDogCount = Found_Dog::all()->count();
-        $this->delete("/user/$validEmail");
+        $this->delete("/user/$user->email");
         $this->assertEquals($userCount - 1,User::all()->count());
         $this->assertEquals($selectionCount - 1,Selection::all()->count());
         $this->assertEquals($foundDogCount - 1,Found_Dog::all()->count());

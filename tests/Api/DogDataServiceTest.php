@@ -31,8 +31,8 @@ class DogDataServiceTest extends TestCase
     {
         $user = factory(User::class)->create();
         Selection::find($user->id)->update([
-            'zip'              => 95492,
-            'highest_breed_id' => 42380000,
+            'zip'              => 91324,
+            'highest_breed_id' => 42390000,
             'max_miles'        => 75
         ]);
         $dogData = $this->dogDataService->getUpdatedBreedArray($user->email);
