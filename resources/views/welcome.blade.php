@@ -116,14 +116,6 @@
                     <br><br>
                     <div class="row padding-bottom-sm">
                         <div class="col-sm-4">
-                            <select name="breedName">
-                                <option value="" disabled selected>Breed...</option>
-                                @foreach($allBreedNames as $name)
-                                <option value="{{$name->breed}}">{{$name->breed}}</option>
-                                @endforeach
-                            </select>  
-                        </div>
-                        <div class="col-sm-4">
                             <input placeholder="Zip Code..." type="number" id="zip" name="zip">
                         </div>
                         <div class="col-sm-4">
@@ -135,11 +127,9 @@
                                 <option value=150>150 Miles</option>
                             </select>  
                         </div> 
-                    </div>
-                    <div class="row padding-bottom-sm">
-                       <div class="col-xs-12">
+                        <div class="col-sm-4">
                             <input placeholder="Email Address..." type="email" name="email">
-                        </div> 
+                        </div>
                     </div>
                     <br>
                    <div class="row">
