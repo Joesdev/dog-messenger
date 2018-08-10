@@ -26,8 +26,8 @@ class FormController extends Controller
         $this->validateLandingForm($request);
         $selection =  $this->storeSelection($request);
         $this->storeUser($request,$selection->id);
-      
         $allBreedNames = Breed::all();
+        dd('here');
         return view('welcome')->with('allBreedNames', $allBreedNames);
     }
 

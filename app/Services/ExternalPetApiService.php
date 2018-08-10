@@ -33,11 +33,17 @@ class ExternalPetApiService
     }
 
     public function validateDogData($data){
+        dd($data);
         if(isset($data['petfinder']['pets']['pet'])){
             return $data['petfinder']['pets']['pet'];
         }else{
             throw new IndexException;
         }
+    }
+
+    public function validateGeographicLocation($apiDogArray)
+    {
+        
     }
 
     public function getCount(){
