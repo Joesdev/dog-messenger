@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\DogDataService;
 use App\Services\ExternalPetApiService;
 use App\Services\NotificationService;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Selection;
 use App\User;
@@ -55,12 +56,17 @@ class FormController extends Controller
     }
 
     public function storeUser($request,$selectionId){
-        return User::create([
-            'rank' => 0,
-            'name' => 'user',
-            'email' => $request->email,
-            'selection_id' => $selectionId,
-        ]);
+        try{
+            User::whereEmail($request->email)->firstOrFail();
+            return User::create([
+                'rank' => 0,
+                'name' => 'user',
+                'email' => $request->email,
+                'selection_id' => $selectionId,
+            ]);
+        }catch(ModelNotFoundException $error){
+            redirect('')->withErrors('This Email Already Exists');
+        }
     }
 
     public function testFunction(){
