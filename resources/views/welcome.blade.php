@@ -114,6 +114,10 @@
                     {{ csrf_field() }}
                     <h1 class="text-center h1">Find Your New Best Friend</h1>
                     <br><br>
+                    <div class="special-field" style="display:none">
+                        <label for="akbar">Akbar</label>
+                        <input type="text" name="akbar" id="akbar" value="">
+                    </div>
                     <div class="row padding-bottom-sm">
                         <div class="col-sm-4">
                             <input placeholder="Zip Code..." type="number" id="zip" name="zip">
