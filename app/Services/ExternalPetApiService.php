@@ -4,7 +4,7 @@
 namespace App\Services;
 use App\Exceptions\IndexException;
 use App\Exceptions\InvalidPetIdException;
-
+use App\Exceptions\InvalidLocationException;
 class ExternalPetApiService
 {
     private $countOfDogsRequested = 75;
@@ -33,17 +33,14 @@ class ExternalPetApiService
     }
 
     public function validateDogData($data){
-        dd($data);
-        if(isset($data['petfinder']['pets']['pet'])){
+        $statusCode = $statusCode = $data['petfinder']['header']['status']['code']['$t'];
+        if($statusCode == 100){
             return $data['petfinder']['pets']['pet'];
+        }elseif ($statusCode == 203){
+            throw new InvalidLocationException;
         }else{
             throw new IndexException;
         }
-    }
-
-    public function validateGeographicLocation($apiDogArray)
-    {
-        
     }
 
     public function getCount(){
