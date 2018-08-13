@@ -40,7 +40,7 @@ class ExternalPetApiServiceTest extends TestCase
     }
     //API CALL
     public function test_getExternalDataForDogs_ReturnsExceptionWhenApiReturnsNoData(){
-        $this->expectException($this->indexException);
+        $this->expectException($this->invalidLocationException);
         $this->service->getExternalDataForDogs($this->invalidZip);
     }
     //API CALL
