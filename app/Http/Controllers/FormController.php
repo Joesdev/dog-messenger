@@ -33,6 +33,10 @@ class FormController extends Controller
 
     public function validateLandingForm(Request $request)
     {
+        //Send the Bot to the home page with no errors, bot protection
+        if(!is_null($request->akbar)){
+            redirect('/');
+        }
         $this->validate($request, [
             'email'     => 'required|email',
             'maxMiles'  => 'required|integer|between:1,200',
