@@ -248,3 +248,18 @@ input[type="submit"] {
 .navbar-default {
   border-color: black;
 }
+
+// Popup Modal
+.modal-content {
+  border: 5px $main-blue solid;
+  .close {
+    font-size: 30px;
+  }
+}
+i.fa.fa-check.fa-lg {
+  color: #60bd00;
+}
+.modal-dialog {
+  width: 90%;
+  margin: 0 auto;
+}

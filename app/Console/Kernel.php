@@ -32,6 +32,7 @@ class Kernel extends ConsoleKernel
          $schedule->command('Notify:Reset')
                   ->daily()
                   ->appendOutputTo(storage_path('output.txt'));*/
+
          $schedule->command('truncate:dogs')->daily();
     }
 

@@ -25,15 +25,20 @@ class FormController extends Controller
     {
         $this->validateLandingForm($request);
         $selection =  $this->storeSelection($request);
-        $this->storeUser($request,$selection->id);
-        $allBreedNames = Breed::all();
-        return view('welcome')->with('allBreedNames', $allBreedNames);
+        $isSuccessful = $this->storeUser($request,$selection->id);
+        if($isSuccessful){
+            return redirect('/')->with('isSuccessful', true);
+        }
     }
 
     public function validateLandingForm(Request $request)
     {
-        $this->validate($request, [
-            'email'     => 'required|email',
+        //Send the Bot to the home page with no errors, bot protection
+        if(!is_null($request->akbar)){
+            redirect('/');
+        }
+        $request->validate([
+            'email'     => 'required|email|unique:users',
             'maxMiles'  => 'required|integer|between:1,200',
             'zip'       => 'required|regex:/\b\d{5}\b/'
         ]);

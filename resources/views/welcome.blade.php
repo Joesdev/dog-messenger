@@ -3,7 +3,7 @@
 @section('content')
 <header class="bg-header">
     <div class="col-xs-12 col-md-7 col-lg-6 text-center">
-       <h1 class= "h1">Get Alerts the Day <br>a <span style="color: #ff7615;">Puppy You Love</span> <br>is Dropped Off <br>at a Local Shelter. 
+       <h1 class= "h1">Get Alerts the Day <br>a <span style="color: #ff7615;">Puppy You Love</span> <br>is Dropped Off <br>at a Local Shelter 
     </h1>
     </div>
 </header>
@@ -101,6 +101,7 @@
 <!-- forms at bottom -->
 
 <section>
+
     @if($errors->any())
         <ul id="errors">
             @foreach ($errors->all() as $error)
@@ -110,16 +111,20 @@
     @endif
     <div class="container-fluid search" id="search">
         <div class="row">
-                <form id="regForm" action="{{url('/submit-form')}}" method="POST">
+                <form id="regForm" action="{{url('/create')}}" method="post">
                     {{ csrf_field() }}
                     <h1 class="text-center h1">Find Your New Best Friend</h1>
                     <br><br>
+                    <div class="special-field" style="display:none">
+                        <label for="akbar">Akbar</label>
+                        <input type="text" name="akbar" id="akbar" value="">
+                    </div>
                     <div class="row padding-bottom-sm">
                         <div class="col-sm-4">
                             <input placeholder="Zip Code..." type="number" id="zip" name="zip">
                         </div>
                         <div class="col-sm-4">
-                            <select name="maxMiles" id="maxMiles">
+                            <select name="maxMiles" id="maxMiles" required>
                                 <option value="" disabled selected>Miles Away...</option>
                                 <option value=25>25 Miles</option>
                                 <option value=50>50 Miles</option>
@@ -133,14 +138,41 @@
                     </div>
                     <br>
                    <div class="row">
-                    <div class="col-xs-12">
-                         <input type="submit" value="Submit" class="btn btn-yellow btn-lg center-block txt-white blue-hov">
+                        <div class="col-xs-12">
+                        <input type="submit" value="Submit" class="btn btn-yellow btn-lg center-block txt-white blue-hov">
+                        </div>
                     </div>
-                   </div>
                 </form>
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  aria-hidden=true>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Success <i class="fa fa-check fa-lg"></i></h4>
+      </div>
+      <div class="modal-body">
+        Your information was submitted successfully! We will send you an email as soon as a puppy is brought into a shelter near you. 
+      </div>
+    </div>
+  </div>
+</div>
+
+@if(Session::has('isSuccessful'))
+    <script>
+        $(function() {
+            $('#myModal').modal('show');
+        });
+    </script>
+@endif
+
+
+
 
 
 @endsection

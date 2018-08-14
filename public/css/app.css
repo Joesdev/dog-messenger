@@ -8031,6 +8031,23 @@ input[type="submit"] {
   border-color: black;
 }
 
+.modal-content {
+  border: 5px #B8DED7 solid;
+}
+
+.modal-content .close {
+  font-size: 30px;
+}
+
+i.fa.fa-check.fa-lg {
+  color: #60bd00;
+}
+
+.modal-dialog {
+  width: 90%;
+  margin: 0 auto;
+}
+
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
