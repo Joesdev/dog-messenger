@@ -26,9 +26,7 @@ class FormController extends Controller
         $this->validateLandingForm($request);
         $selection =  $this->storeSelection($request);
         $this->storeUser($request,$selection->id);
-      
-        $allBreedNames = Breed::all();
-        return view('welcome')->with('allBreedNames', $allBreedNames);
+        return back();
     }
 
     public function validateLandingForm(Request $request)
@@ -37,7 +35,7 @@ class FormController extends Controller
         if(!is_null($request->akbar)){
             redirect('/');
         }
-        $this->validate($request, [
+        $request->validate([
             'email'     => 'required|email|unique:users',
             'maxMiles'  => 'required|integer|between:1,200',
             'zip'       => 'required|regex:/\b\d{5}\b/'
