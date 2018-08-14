@@ -32,4 +32,4 @@ Route::get('/user/breed/{email}', 'UserController@getUserBreed');
 Route::get('/user/miles/{email}', 'UserController@getUserMiles');
 
 //Selection
-Route::post('/selection/{breedName}/{zip}/{maxMiles}', 'FormController@storeSelection');
+Route::post('/selection/{zip}/{maxMiles}', 'FormController@storeSelection');

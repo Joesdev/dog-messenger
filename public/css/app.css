@@ -7888,6 +7888,12 @@ h1, h2, h3 {
   }
 }
 
+@media only screen and (max-width: 600px) {
+  .paralax {
+    background-attachment: inherit;
+  }
+}
+
 /*testimonials pic*/
 .test-pic {
   width: 50%;
@@ -8037,9 +8043,11 @@ i.fa.fa-check.fa-lg {
   color: #60bd00;
 }
 
-/*.modal-body {
-  font-size: 16px;
-}*/
+.modal-dialog {
+  width: 90%;
+  margin: 0 auto;
+}
+
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)

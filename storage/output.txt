@@ -1,5 +1,6 @@
 
 
+
 In RequestException.php line 113:
                                                                                
   Client error: `GET https://www.zipcodeapi.com/rest/izhxHnTNS5S6hWDG13Uv6weD  
