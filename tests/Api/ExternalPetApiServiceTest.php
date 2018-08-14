@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Exceptions\IndexException;
+use App\Exceptions\InvalidLocationException;
 use App\Exceptions\InvalidPetIdException;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -18,6 +19,7 @@ class ExternalPetApiServiceTest extends TestCase
 
     private $indexException;
     private $invalidPetIdException;
+    private $invalidLocationException;
 
     public function setUp(){
         parent::setUp();
@@ -27,6 +29,7 @@ class ExternalPetApiServiceTest extends TestCase
         //API CALL
         $this->invalidData = $this->getInvalidData();
         $this->indexException = IndexException::class;
+        $this->invalidLocationException = InvalidLocationException::class;
         $this->invalidPetIdException = InvalidPetIdException::class;
     }
 
@@ -37,7 +40,7 @@ class ExternalPetApiServiceTest extends TestCase
     }
     //API CALL
     public function test_getExternalDataForDogs_ReturnsExceptionWhenApiReturnsNoData(){
-        $this->expectException($this->indexException);
+        $this->expectException($this->invalidLocationException);
         $this->service->getExternalDataForDogs($this->invalidZip);
     }
     //API CALL
@@ -56,7 +59,7 @@ class ExternalPetApiServiceTest extends TestCase
     }
 
     public function test_validateDogData_RedirectsIfNull(){
-        $this->expectException($this->indexException);
+        $this->expectException($this->invalidLocationException);
         $this->service->validateDogData($this->invalidData);
 
     }

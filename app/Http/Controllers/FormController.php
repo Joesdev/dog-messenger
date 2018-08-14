@@ -29,7 +29,6 @@ class FormController extends Controller
         if($isSuccessful){
             return redirect('/')->with('isSuccessful', true);
         }
-
     }
 
     public function validateLandingForm(Request $request)
