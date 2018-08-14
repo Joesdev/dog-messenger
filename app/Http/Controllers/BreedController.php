@@ -6,10 +6,16 @@ use App\Breed;
 use App\Http\Controllers\NotificationController;
 use App\Found_Dog;
 use App\Services\ExternalPetApiService;
+use App\Services\UserService;
 use App\Services\ValidationService;
 
 class BreedController extends Controller
 {
+    protected $userService;
+
+    public function __construct(UserService $userService){
+        $this->userService = $userService;
+    }
 
     public function showCollectedArrayOfDogsView($email)
     {
@@ -21,11 +27,15 @@ class BreedController extends Controller
         if($found_dogs->count() > 0){
             foreach($found_dogs as $dog){
                 $dogData = $externalPetApiService->getExternalDataForSingleDog($dog['new_breed_id']);
-                array_push($masterArrayOfDogs,$dogData);
+                if(!empty($dogData)){
+                    $dogData['distance'] = $dog['miles'];
+                    array_push($masterArrayOfDogs,$dogData);
+                }
             }
-            return view('results')->with('dogData' ,$masterArrayOfDogs);
+            $userSelection = $this->userService->getUserSelection($email);
+            return view('results')->with('dogData' ,$masterArrayOfDogs)->with('userSelection',$userSelection);
         } else{
-            return view('/welcome');
+            return view('/welcome')->with('allBreedNames', $allBreedNames = Breed::all());
         }
 
     }

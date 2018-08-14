@@ -18,8 +18,7 @@ class DogDataService
 
     public function getUpdatedBreedArray($email){
         $selection = User::whereEmail($email)->with('selection')->firstOrFail()->selection;
-        $breedName = Breed::find($selection->breed_id)->breed;
-        $breeds = $this->externalPetApiService->getExternalDataForBreed($selection->zip, $breedName);
+        $breeds = $this->externalPetApiService->getExternalDataForDogs($selection->zip);
         $latestMaxId = $this->getLargestBreedId($breeds);
 
         $this->updateHighestBreedId($selection->id, $latestMaxId);
@@ -90,7 +89,8 @@ class DogDataService
         if(empty($breedArray)){
             return [];
         }
-        $distanceArray = $this->externalZipApiService->getMilesBetweenZipCodes($breedArray, $zipCode);
+        $arrayOfZipCodes = $this->extractDogDataByKey('zip', $breedArray);
+        $distanceArray = $this->externalZipApiService->getMilesBetweenZipCodes($arrayOfZipCodes, $zipCode);
         /*$distanceArray = [
             '95462' => 11.591,
             '95828' => 77.12,
@@ -108,6 +108,15 @@ class DogDataService
         }
         return $breedArray;
 
+    }
+
+    public function extractDogDataByKey($key, $dogData)
+    {
+        $stringOfZipCodes = [];
+        foreach($dogData as $data){
+            array_push($stringOfZipCodes, $data[$key]);
+        }
+        return $stringOfZipCodes;
     }
 
     public function getBreedId($breedName){

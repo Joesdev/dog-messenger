@@ -15,8 +15,6 @@ class ExternalPetApiServiceTest extends TestCase
     private $validData, $invalidData;
     private $validZip = 91324;
     private $invalidZip = 11111;
-    private $validBreed = 'Akita';
-    private $invalidBreed = 'Huzzky';
 
     private $indexException;
     private $invalidPetIdException;
@@ -33,20 +31,19 @@ class ExternalPetApiServiceTest extends TestCase
     }
 
     //API CALL
-    public function test_getExternalDataForBreed_ReturnsDataWhenSuccessful(){
-        $response = $this->service->getExternalDataForBreed($this->validZip,$this->validBreed);
+    public function test_getExternalDataForDogs_ReturnsDataWhenSuccessful(){
+        $response = $this->service->getExternalDataForDogs($this->validZip);
         $this->assertEquals($this->service->getCount(),count($response));
-
     }
     //API CALL
-    public function test_getExternalDataForBreed_ReturnsExceptionWhenApiReturnsNoData(){
+    public function test_getExternalDataForDogs_ReturnsExceptionWhenApiReturnsNoData(){
         $this->expectException($this->indexException);
-        $this->service->getExternalDataForBreed($this->invalidZip,$this->invalidBreed);
+        $this->service->getExternalDataForDogs($this->invalidZip);
     }
     //API CALL
     public function test_getRawDogApiData_ReturnsSucess()
     {
-        $response = $this->service->getRawDogApiData($this->validZip, $this->validBreed);
+        $response = $this->service->getRawDogApiData($this->validZip);
         $status_code = $response['petfinder']['header']['status']['code']['$t'];
         $arrayOfPets = $response['petfinder']['pets']['pet'];
         $this->assertEquals(100,$status_code);
@@ -176,11 +173,11 @@ class ExternalPetApiServiceTest extends TestCase
         $this->assertArrayHasKey('media',$dogData);
     }
     public function getValidData(){
-        return $this->service->getRawDogApiData($this->validZip,$this->validBreed);
+        return $this->service->getRawDogApiData($this->validZip);
     }
 
     public function getInvalidData(){
-        return $this->service->getRawDogApiData($this->invalidZip, $this->invalidBreed);
+        return $this->service->getRawDogApiData($this->invalidZip);
     }
 
     public function mock_pet_api_data_for_single_dog(){

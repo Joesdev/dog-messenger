@@ -10,19 +10,20 @@ class ExternalPetApiService
     private $countOfDogsRequested = 75;
 
 
-    public function getExternalDataForBreed($location, $breed)
+    public function getExternalDataForDogs($location)
     {
-        $data = $this->getRawDogApiData($location, $breed);
+        $data = $this->getRawDogApiData($location);
         $data = $this->validateDogData($data);
         return $data;
     }
 
-    public function getRawDogApiData($location, $breed){
+    public function getRawDogApiData($location){
         $client = new \GuzzleHttp\Client();
         $response = $client->request('GET', 'api.petfinder.com/pet.find?' .
             'key=' . env('API_KEY') . '&' .
             'location=' . $location . '&' .
-            'breed=' . $breed . '&' .
+            'animal=dog&' .
+            'age=Baby&' .
             'count='.$this->countOfDogsRequested. '&' .
             'format=json' . '&' .
             'offset=0'
