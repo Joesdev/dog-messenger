@@ -17,6 +17,9 @@ use App\Services\ExternalPetApiService;
 use App\Services\NotificationService;
 use App\Services\DogDataService;
 
+use App\User as User;
+use App\Notifications\PetArrived;
+
 Route::get('/', 'BreedController@getHomeView');
 Route::post('/submit-form', 'FormController@storeUserSelection');
 Route::view('/results', 'results');
@@ -33,3 +36,9 @@ Route::get('/user/miles/{email}', 'UserController@getUserMiles');
 
 //Selection
 Route::post('/selection/{zip}/{maxMiles}', 'FormController@storeSelection');
+
+Route::get('/test/notification/{email}', function($email){
+$user = User::where('email', $email)->first();
+$user->notify(new PetArrived($user->email));
+dd('done');
+});

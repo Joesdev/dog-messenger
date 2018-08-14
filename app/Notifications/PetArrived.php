@@ -17,7 +17,7 @@ class PetArrived extends Notification
      *
      * @return void
      */
-    public function __construct($name, $breed)
+    public function __construct($email)
     {
         $this->email = $email;
     }
@@ -43,9 +43,9 @@ class PetArrived extends Notification
     {
         return (new MailMessage)
                     ->greeting('Hi There, ')
-                    ->line('A dog has been dropped off at your local shelter, check it out below!')
-                    ->action('Show Me', url("/results/$email"))
-                    ->line('Thank you for using PetNotifier!');
+                    ->line('Guess what? A puppy has been dropped off at your local shelter, check it out below!')
+                    ->action('Show Me', url("/results/$this->email"))
+                    ->line('Thank you for using Findashelterpuppy.com! We hope you find your new best friend.');
     }
 
     /**
