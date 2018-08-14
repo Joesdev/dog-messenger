@@ -39,6 +39,6 @@ Route::post('/selection/{zip}/{maxMiles}', 'FormController@storeSelection');
 
 Route::get('/test/notification/{email}', function($email){
 $user = User::where('email', $email)->first();
-$user->notify(new PetArrived($user->email));
+$user->notify(new PetArrived($user->email, 95492, 100));
 dd('done');
 });
