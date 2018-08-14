@@ -42,7 +42,6 @@ class BreedController extends Controller
 
     public function getHomeView()
     {
-        $allBreedNames = Breed::all();
-        return view('/welcome')->with('allBreedNames', $allBreedNames);
+        return view('/welcome');
     }
 }

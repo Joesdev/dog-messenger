@@ -10,18 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Services
-use App\Services\ExternalZipApiService;
-use App\Services\ExternalPetApiService;
-
-use App\Services\NotificationService;
-use App\Services\DogDataService;
 
 use App\User as User;
 use App\Notifications\PetArrived;
 
 Route::get('/', 'BreedController@getHomeView');
-Route::post('/submit-form', 'FormController@storeUserSelection');
+Route::post('/create', 'FormController@storeUserSelection');
 Route::view('/results', 'results');
 
 Route::get('/results/{email}', 'BreedController@showCollectedArrayOfDogsView');
