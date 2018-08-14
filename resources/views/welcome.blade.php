@@ -111,10 +111,14 @@
     @endif
     <div class="container-fluid search" id="search">
         <div class="row">
-                <form id="regForm" action="{{url()->route('submit.form')}}" method="POST">
+                <form id="regForm" action="{{url('/create')}}" method="post">
                     {{ csrf_field() }}
                     <h1 class="text-center h1">Find Your New Best Friend</h1>
                     <br><br>
+                    <div class="special-field" style="display:none">
+                        <label for="akbar">Akbar</label>
+                        <input type="text" name="akbar" id="akbar" value="">
+                    </div>
                     <div class="row padding-bottom-sm">
                         <div class="col-sm-4">
                             <input placeholder="Zip Code..." type="number" id="zip" name="zip">
@@ -159,7 +163,7 @@
   </div>
 </div>
 
-@if(isset($isSuccessful))
+@if(Session::has('isSuccessful'))
     <script>
         $(function() {
             $('#myModal').modal('show');

@@ -23,27 +23,23 @@ class FormController extends Controller
 
     public function storeUserSelection(Request $request)
     {
-        $allBreedNames = Breed::all();
         $this->validateLandingForm($request);
         $selection =  $this->storeSelection($request);
-
         $isSuccessful = $this->storeUser($request,$selection->id);
         if($isSuccessful){
-            return view('welcome')->with('allBreedNames', $allBreedNames)
-                                       ->with('isSuccessful', true);
+            return redirect('/')->with('isSuccessful', true);
         }
-
-        $this->storeUser($request,$selection->id);
-      
-        $allBreedNames = Breed::all();
-        return view('welcome')->with('allBreedNames', $allBreedNames);
 
     }
 
     public function validateLandingForm(Request $request)
     {
-        $this->validate($request, [
-            'email'     => 'required|email',
+        //Send the Bot to the home page with no errors, bot protection
+        if(!is_null($request->akbar)){
+            redirect('/');
+        }
+        $request->validate([
+            'email'     => 'required|email|unique:users',
             'maxMiles'  => 'required|integer|between:1,200',
             'zip'       => 'required|regex:/\b\d{5}\b/'
         ]);
