@@ -35,7 +35,7 @@ class FormController extends Controller
     {
         //Send the Bot to the home page with no errors, bot protection
         if(!is_null($request->akbar)){
-            redirect('/');
+            return redirect('/');
         }
         $request->validate([
             'email'     => 'required|email|unique:users',
