@@ -2,9 +2,6 @@
 namespace App\Services;
 
 use App\User;
-use App\Breed;
-use App\Selection;
-use App\Found_Dog;
 
 class UserService
 {
@@ -17,6 +14,4 @@ class UserService
         ];
         return $selection;
     }
-
-
 }
