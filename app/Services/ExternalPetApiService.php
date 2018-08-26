@@ -57,12 +57,13 @@ class ExternalPetApiService
         );
         $data = json_decode($response->getBody()->getContents(), true);
         if($this->getStatusCode($data) == 201){
-            throw new InvalidPetIdException('The pet id no longer exists');
+            return false;
+            /*throw new InvalidPetIdException('The pet id no longer exists')*/;
         }
         if(array_key_exists('pet' ,$data['petfinder'])){
             return $data = $this->getSlimDogData($data['petfinder']['pet']);
         } else{
-            return $data = [];
+            return false;
         }
     }
 
