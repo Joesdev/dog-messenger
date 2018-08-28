@@ -61,7 +61,6 @@ class ExternalPetApiService
         if($this->getStatusCode($data) == 201){
             Found_Dog::where('new_breed_id', $petId)->delete();
             return false;
-            /*throw new InvalidPetIdException('The pet id no longer exists')*/;
         }
         if(array_key_exists('pet' ,$data['petfinder'])){
             return $data = $this->getSlimDogData($data['petfinder']['pet']);
