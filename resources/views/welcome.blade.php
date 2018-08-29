@@ -2,9 +2,16 @@
 
 @section('content')
 <header class="bg-header">
+
+<!-- alert for wrong zip code input -->
+<div class="alert alert-warning alert-dismissible collapse" role="alert" id="zip-alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong><p>We're sorry, the zip code you entered was not recognized as a valid zip code.</p></strong><p>Please enter a valid zip code and resubmit the form <a href="#search">below.</a> Thank you. </p>
+</div>
+<!-- end alert -->
     <div class="col-xs-12 col-md-7 col-lg-6 text-center">
        <h1 class= "h1">Get Alerts the Day <br>a <span style="color: #ff7615;">Puppy You Love</span> <br>is Dropped Off <br>at a Local Shelter 
-    </h1>
+        </h1>
     </div>
 </header>
 <!-- 3 steps -->
@@ -102,13 +109,15 @@
 
 <section>
 
-    @if($errors->any())
-        <ul id="errors">
-            @foreach ($errors->all() as $error)
-                <li>{{$error}}</li>
-            @endforeach
-        </ul>
-    @endif
+<!-- BELOW CODE FOR IF ZIPCODE ERROR THEN SHOW ALERT -->
+@if($errors->any())
+    <script>
+        $(function() {
+            $('#zip-alert').show();
+        });
+    </script>
+@endif
+
     <div class="container-fluid search" id="search">
         <div class="row">
                 <form id="regForm" action="{{url('/create')}}" method="post">
@@ -146,7 +155,7 @@
         </div>
     </div>
 </section>
-
+<!-- success modal popup when form submitted -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  aria-hidden=true>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
