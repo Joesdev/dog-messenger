@@ -6,7 +6,7 @@
 <!-- alert for wrong zip code input -->
 <div class="alert alert-warning alert-dismissible collapse" role="alert" id="zip-alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong><p>We're sorry, the zip code you entered was not recognized as a valid zip code.</p></strong><p>Please enter a valid zip code and resubmit the form <a href="#search">below.</a> Thank you. </p>
+  <strong><p>We're sorry, the zip code you entered was not recognized as a valid zip code.</p></strong><p>Please make the corrections and resubmit the form <a href="#search">below.</a> Thank you. </p>
 </div>
 <!-- end alert -->
     <div class="col-xs-12 col-md-7 col-lg-6 text-center">
