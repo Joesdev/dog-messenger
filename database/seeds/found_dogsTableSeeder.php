@@ -19,7 +19,7 @@ class found_dogsTableSeeder extends Seeder
 
             DB::table('found_dogs')->insert([
                 'email'         => 'joesilvpb4@gmail.com',
-                'new_breed_id'  => '42337992',
+                'new_breed_id'  => '42338007',
                 'miles'         => 75
             ]);
 

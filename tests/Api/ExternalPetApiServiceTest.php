@@ -12,6 +12,8 @@ use App\Services\ExternalPetApiService;
 
 class ExternalPetApiServiceTest extends TestCase
 {
+    use RefreshDatabase;
+
     private $service;
     private $validData, $invalidData;
     private $validZip = 91324;
@@ -72,8 +74,7 @@ class ExternalPetApiServiceTest extends TestCase
 
     public function test_getExternalDataForSingleDog_throws_exception_for_invalid_pet_id(){
         $invalidPetId = 50;
-        $this->expectException($this->invalidPetIdException);
-        $this->service->getExternalDataForSingleDog($invalidPetId);
+        $this->assertEquals(false, $this->service->getExternalDataForSingleDog($invalidPetId));
     }
 
     public function test_getExternalDataForSingleDog_returns_valid_data(){

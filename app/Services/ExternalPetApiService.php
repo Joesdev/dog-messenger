@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Exceptions\IndexException;
 use App\Exceptions\InvalidPetIdException;
 use App\Exceptions\InvalidLocationException;
+use App\Found_Dog;
+
 class ExternalPetApiService
 {
     private $countOfDogsRequested = 75;
@@ -57,12 +59,13 @@ class ExternalPetApiService
         );
         $data = json_decode($response->getBody()->getContents(), true);
         if($this->getStatusCode($data) == 201){
-            throw new InvalidPetIdException('The pet id no longer exists');
+            Found_Dog::where('new_breed_id', $petId)->delete();
+            return false;
         }
         if(array_key_exists('pet' ,$data['petfinder'])){
             return $data = $this->getSlimDogData($data['petfinder']['pet']);
         } else{
-            return $data = [];
+            return false;
         }
     }
 

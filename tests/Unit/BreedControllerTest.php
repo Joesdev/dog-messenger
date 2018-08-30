@@ -49,6 +49,5 @@ class BreedControllerTest extends TestCase
     {
         $response = $this->json('GET', '/');
         $response->assertViewIs('.welcome');
-        $response->assertViewHas('allBreedNames');
     }
 }
