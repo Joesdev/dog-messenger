@@ -6,7 +6,10 @@
 <!-- alert for wrong zip code input -->
 <div class="alert alert-warning alert-dismissible collapse" role="alert" id="zip-alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong><p>We're sorry, the zip code you entered was not recognized as a valid zip code.</p></strong><p>Please make the corrections and resubmit the form <a href="#search">below.</a> Thank you. </p>
+  @foreach ($errors->all() as $error)
+  <strong><p>{{$error}} </p></strong>
+    @endforeach
+  <p>Please make the corrections and resubmit the form <a href="#search">below.</a> Thank you. </p>
 </div>
 <!-- end alert -->
     <div class="col-xs-12 col-md-7 col-lg-6 text-center">
@@ -130,7 +133,7 @@
                     </div>
                     <div class="row padding-bottom-sm">
                         <div class="col-sm-4">
-                            <input placeholder="Zip Code..." type="number" id="zip" name="zip">
+                            <input placeholder="Zip Code..." type="number" id="zip" name="zip" required>
                         </div>
                         <div class="col-sm-4">
                             <select name="maxMiles" id="maxMiles" required>
@@ -142,7 +145,7 @@
                             </select>  
                         </div> 
                         <div class="col-sm-4">
-                            <input placeholder="Email Address..." type="email" name="email">
+                            <input placeholder="Email Address..." type="email" name="email" required>
                         </div>
                     </div>
                     <br>
