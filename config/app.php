@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Pet Notifier'),
+    'name' => env('APP_NAME', 'FindAShelterPuppy'),
 
     /*
     |--------------------------------------------------------------------------
