@@ -64,16 +64,6 @@ class FormControllerTest extends TestCase
         $this->assertCount(5,User::all());
     }
 
-    public function test_storeSelection_stores_single_row_in_database(){
-        $this->post('/selection/'.$this->validZip.'/'.$this->validMiles);
-        $this->assertCount($this->numRows + 1,Selection::all());
-        $this->assertDatabaseHas('selections', [
-            'zip'      => $this->validZip,
-            'max_miles' => $this->validMiles,
-            'match'    => 0
-        ]);
-    }
-
     // --------------------------------- Helper Functions -------------------------------------------
     protected function sendForm($attributes = [])
     {
