@@ -8,7 +8,8 @@ use App\Services\NotificationService;
 use Illuminate\Http\Request;
 use App\Selection;
 use App\User;
-use App\Breed;
+use Illuminate\Support\Facades\DB;
+use PHPUnit\Framework\Exception;
 
 class FormController extends Controller
 {
@@ -24,8 +25,7 @@ class FormController extends Controller
     public function storeUserSelection(Request $request)
     {
         $this->validateLandingForm($request);
-        $selection =  $this->storeSelection($request);
-        $isSuccessful = $this->storeUser($request,$selection->id);
+        $isSuccessful = $this->storeUserWithSelection($request);
         if($isSuccessful){
             return redirect('/')->with('isSuccessful', true);
         }
@@ -44,7 +44,33 @@ class FormController extends Controller
         ]);
     }
 
-    public function storeSelection(Request $request){
+    public function storeUserWithSelection(Request $request)
+    {
+        $breedArray = $this->externalPetApiService->getExternalDataForDogs($request->zip);
+        $selection = new Selection([
+            'zip' => $request->zip,
+            'highest_breed_id' => $this->dogDataService->getLargestBreedId($breedArray),
+            'max_miles' => $request->maxMiles,
+            'match'     => false
+        ]);
+        $user = new User([
+            'rank' => 0,
+            'name' => 'user',
+            'email' => $request->email
+        ]);
+        try {
+            DB::transaction(function() use ($selection, $user){
+                $selection->save();
+                $user->selection_id = $selection->id;
+                $user->save();
+            });
+        } catch (Exception $error){
+            return false;
+        }
+        return true;
+    }
+
+   /* public function storeSelection(Request $request){
         $breedArray = $this->externalPetApiService->getExternalDataForDogs($request->zip);
         return Selection::create([
             'zip' => $request->zip,
@@ -61,7 +87,7 @@ class FormController extends Controller
             'email' => $request->email,
             'selection_id' => $selectionId,
         ]);
-    }
+    }*/
 
     public function testFunction(){
         $notificationService = new NotificationService();
