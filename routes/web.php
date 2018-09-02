@@ -28,9 +28,6 @@ Route::get('/user/zip/{email}', 'UserController@getUserZip');
 Route::get('/user/breed/{email}', 'UserController@getUserBreed');
 Route::get('/user/miles/{email}', 'UserController@getUserMiles');
 
-//Selection
-Route::post('/selection/{zip}/{maxMiles}', 'FormController@storeSelection');
-
 Route::get('/test/notification/{email}', function($email){
     $user = User::where('email', $email)->first();
     $user->notify(new PetArrived($user->email, 95492, 100));
