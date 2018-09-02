@@ -58,10 +58,11 @@ class FormControllerTest extends TestCase
         $this->sendForm(['zip' => ''])->assertSessionHasErrors('zip');
     }
 
-    public function test_StoreUsersSelection_StoresUser()
+    public function test_StoreUsersSelection_StoresUser_and_selection()
     {
         $this->sendForm();
         $this->assertCount(5,User::all());
+        $this->assertCount(5, Selection::all());
     }
 
     // --------------------------------- Helper Functions -------------------------------------------
