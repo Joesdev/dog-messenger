@@ -12,15 +12,18 @@ class PetArrived extends Notification
     use Queueable;
 
     protected $email;
+    protected $token;
     protected $zip;
+    protected $distance;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($email, $zip, $distance)
+    public function __construct($user, $zip, $distance)
     {
-        $this->email = $email;
+        $this->email = $user->email;
+        $this->token = $user->token;
         $this->zip = $zip;
         $this->distance = $distance;
     }
@@ -48,7 +51,7 @@ class PetArrived extends Notification
                     ->subject('We Found Puppies Near You')
                     ->greeting('Good News! ')
                     ->line("A puppy has been dropped off within $this->distance miles of a shelter near zip code $this->zip.  Check it out below!")
-                    ->action('Show Me', url("/results/$this->email"))
+                    ->action('Show Me', url("/results/$this->email/$this->token"))
                     ->line('Thank you for using our service! We hope you find your new best friend.');
     }
 

@@ -17,27 +17,30 @@ class BreedController extends Controller
         $this->userService = $userService;
     }
 
-    public function showCollectedArrayOfDogsView($email)
+    public function showCollectedArrayOfDogsView($email,$token)
     {
         $externalPetApiService = new ExternalPetApiService();
         $masterArrayOfDogs = [];
-        $found_dogs = Found_Dog::where('email', $email)->get()->map(function ($dogs) {
-            return $dogs->only(['new_breed_id','miles']);
-        });
-        if($found_dogs->count() > 0){
-            foreach($found_dogs as $dog){
-                $dogData = $externalPetApiService->getExternalDataForSingleDog($dog['new_breed_id']);
-                if(!empty($dogData)){
-                    $dogData['distance'] = $dog['miles'];
-                    array_push($masterArrayOfDogs,$dogData);
+        if($this->userService->checkUserToken($token, $email) == true) {
+            $found_dogs = Found_Dog::where('email', $email)->get()->map(function ($dogs) {
+                return $dogs->only(['new_breed_id', 'miles']);
+            });
+            if ($found_dogs->count() > 0) {
+                foreach ($found_dogs as $dog) {
+                    $dogData = $externalPetApiService->getExternalDataForSingleDog($dog['new_breed_id']);
+                    if (!empty($dogData)) {
+                        $dogData['distance'] = $dog['miles'];
+                        array_push($masterArrayOfDogs, $dogData);
+                    }
                 }
+                $userSelection = $this->userService->getUserSelection($email);
+                return view('results')->with('dogData', $masterArrayOfDogs)->with('userSelection', $userSelection);
+            } else {
+                return view('/welcome')->with('allBreedNames', $allBreedNames = Breed::all());
             }
-            $userSelection = $this->userService->getUserSelection($email);
-            return view('results')->with('dogData' ,$masterArrayOfDogs)->with('userSelection',$userSelection);
-        } else{
-            return view('/welcome')->with('allBreedNames', $allBreedNames = Breed::all());
+        } else {
+            return redirect('/')-with('errors', 'Invalid Request');
         }
-
     }
 
     public function getHomeView()

@@ -87,3 +87,9 @@ In ExternalZipApiService.php line 45:
   Undefined index: distance  
                              
 
+
+In ExternalZipApiService.php line 45:
+                             
+  Undefined index: distance  
+                             
+
