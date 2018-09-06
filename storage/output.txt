@@ -93,3 +93,15 @@ In ExternalZipApiService.php line 45:
   Undefined index: distance  
                              
 
+
+In DogDataService.php line 59:
+                       
+  Undefined index: $t  
+                       
+
+
+In ExternalZipApiService.php line 45:
+                             
+  Undefined index: distance  
+                             
+

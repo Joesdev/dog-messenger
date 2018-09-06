@@ -39,7 +39,7 @@ class BreedController extends Controller
                 return view('/welcome')->with('allBreedNames', $allBreedNames = Breed::all());
             }
         } else {
-            return redirect('/')-with('errors', 'Invalid Request');
+            return redirect('/');
         }
     }
 

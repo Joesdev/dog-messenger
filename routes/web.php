@@ -30,6 +30,6 @@ Route::get('/user/miles/{email}', 'UserController@getUserMiles');
 
 Route::get('/test/notification/{email}', function($email){
     $user = User::where('email', $email)->first();
-    $user->notify(new PetArrived($user->email, 95492, 100));
+    $user->notify(new PetArrived($user, 95492, 100));
     dd('done');
 });
