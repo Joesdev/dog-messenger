@@ -1,2 +1,89 @@
 
 
+
+In User.php line 25:
+                                             
+  Parse error: syntax error, unexpected ']'  
+                                             
+
+PHP Fatal error:  Constant expression contains invalid operations in /home/vagrant/Code/dog-arrival-messenger/app/User.php on line 23
+
+In User.php line 23:
+                                                   
+  Constant expression contains invalid operations  
+                                                   
+
+PHP Fatal error:  Constant expression contains invalid operations in /home/vagrant/Code/dog-arrival-messenger/app/User.php on line 23
+
+In User.php line 23:
+                                                   
+  Constant expression contains invalid operations  
+                                                   
+
+
+In DogDataService.php line 59:
+                       
+  Undefined index: $t  
+                       
+
+PHP Fatal error:  Constant expression contains invalid operations in /home/vagrant/Code/dog-arrival-messenger/app/User.php on line 23
+
+In User.php line 23:
+                                                   
+  Constant expression contains invalid operations  
+                                                   
+
+PHP Fatal error:  Constant expression contains invalid operations in /home/vagrant/Code/dog-arrival-messenger/app/User.php on line 23
+
+In User.php line 23:
+                                                   
+  Constant expression contains invalid operations  
+                                                   
+
+PHP Fatal error:  Constant expression contains invalid operations in /home/vagrant/Code/dog-arrival-messenger/app/User.php on line 23
+
+In User.php line 23:
+                                                   
+  Constant expression contains invalid operations  
+                                                   
+
+PHP Fatal error:  Constant expression contains invalid operations in /home/vagrant/Code/dog-arrival-messenger/app/User.php on line 23
+
+In User.php line 23:
+                                                   
+  Constant expression contains invalid operations  
+                                                   
+
+PHP Fatal error:  Constant expression contains invalid operations in /home/vagrant/Code/dog-arrival-messenger/app/User.php on line 23
+
+In User.php line 23:
+                                                   
+  Constant expression contains invalid operations  
+                                                   
+
+PHP Fatal error:  Constant expression contains invalid operations in /home/vagrant/Code/dog-arrival-messenger/app/User.php on line 14
+
+In User.php line 14:
+                                                   
+  Constant expression contains invalid operations  
+                                                   
+
+
+In User.php line 22:
+                                                                               
+  Parse error: syntax error, unexpected 'protected' (T_PROTECTED), expecting   
+  '('                                                                          
+                                                                               
+
+
+In DogDataService.php line 59:
+                       
+  Undefined index: $t  
+                       
+
+
+In ExternalZipApiService.php line 45:
+                             
+  Undefined index: distance  
+                             
+

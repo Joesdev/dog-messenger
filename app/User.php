@@ -11,15 +11,15 @@ class User extends Authenticatable
 
     public $timestamps = true;
     protected $primaryKey = 'id';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'rank', 'name', 'email', 'selection_id', 'created_at', 'updated_at'
+        'rank', 'name', 'email', 'token', 'selection_id', 'created_at', 'updated_at'
     ];
-
     /**
      * The attributes that should be hidden for arrays.
      *
