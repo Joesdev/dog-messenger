@@ -45,4 +45,11 @@ class UserServiceTest extends TestCase
         $isTokenValid = $this->service->checkUserToken($validUserToken, $this->user->email);
         $this->assertTrue($isTokenValid);
     }
+
+    public function test_getUserToken_returns_a_users_token_from_database()
+    {
+        $email = $this->user->email;
+        $token = $this->service->getUserToken($email);
+        $this->assertEquals($this->user->token, $token);
+    }
 }

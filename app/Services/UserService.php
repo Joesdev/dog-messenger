@@ -27,7 +27,7 @@ class UserService
 
     public function getUserToken($email)
     {
-        $token = User::where('email', $email)->firstOrFail();
-        return $token;
+        $user = User::where('email', $email)->firstOrFail();
+        return $user->token;
     }
 }
