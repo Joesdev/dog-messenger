@@ -39,5 +39,14 @@ class BreedControllerTest extends TestCase
         $this->assertArrayHasKey('userSelection', $data);
     }
 
-  
+    public function test_showCollectedArrayOfDogsView_returns_welcome_view_when_token_is_invalid()
+    {
+        $invalid_token = str_random(32);
+        //when I hit the url for results but an invalid email
+        $response = $this->get('/results/'.$this->email.'/'.$invalid_token);
+        dd($response);
+        //I expect to see the welcome page
+        $response->assertViewIs('.welcome');
+    }
+
 }
