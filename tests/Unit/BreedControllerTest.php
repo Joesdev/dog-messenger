@@ -31,11 +31,13 @@ class BreedControllerTest extends TestCase
 
     public function test_showCollectedArrayOfDogsView_returns_view_with_data_from_found_dogs_table()
     {
-        factory(UserModel::class,1)->create(['email' => $this->email]);
+        $user = factory(UserModel::class,1)->create(['email' => $this->email])->first();
         $countOfRows = Found_Dog::whereEmail($this->email)->count();
-        $response = $this->get('/results/'.$this->email);
+        $response = $this->get('/results/'.$this->email.'/'.$user->token);
         $data = $response->getOriginalContent()->getData();
         $this->assertCount($countOfRows,$data['dogData']);
         $this->assertArrayHasKey('userSelection', $data);
     }
+
+  
 }
