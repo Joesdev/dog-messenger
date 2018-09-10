@@ -149,29 +149,20 @@ class ExternalPetApiService
         return $sex;
     }
 
-    public function routeToHomeOrResultsPage($email)
+    public function appendFoundDogCollectionDataToApiData($collectionOfFoundDogs)
     {
-        $found_dogs = Found_Dog::BreedIdAndMiles($email);
-        if ($found_dogs->count() > 0) {
-            $masterArrayOfDogs = $this->getApiDataArrayFromACollectionOfFoundDogs($found_dogs);
-            $userSelection = $this->userService->getUserSelection($email);
-            return view('results')->with('dogData', $masterArrayOfDogs)->with('userSelection', $userSelection);
-        } else {
-            return view('/welcome');
-        }
-    }
-
-    public function getApiDataArrayFromACollectionOfFoundDogs($collectionOfFoundDogs)
-    {
-        $masterArrayOfDogs = [];
-        foreach ($collectionOfFoundDogs as $dog) {
-            $dogApiData = $this->externalPetApiService->getExternalDataForSingleDog($dog['new_breed_id']);
-            if (!empty($dogApiData)) {
-                $dogApiData['distance'] = $dog['miles'];
-                array_push($masterArrayOfDogs, $dogData);
+        if ($collectionOfFoundDogs->count() > 0) {
+            $masterArrayOfDogs = [];
+            foreach ($collectionOfFoundDogs as $dog) {
+                $dogApiData = $this->getExternalDataForSingleDog($dog['new_breed_id']);
+                if (!empty($dogApiData)) {
+                    $dogApiData['distance'] = $dog['miles'];
+                    array_push($masterArrayOfDogs, $dogApiData);
+                }
             }
+            return $masterArrayOfDogs;
+        } else {
+            return [];
         }
-        return $masterArrayOfDogs;
     }
-
 }

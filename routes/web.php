@@ -14,9 +14,9 @@
 use App\User as User;
 use App\Notifications\PetArrived;
 
-Route::get('/', 'BreedController@getHomeView');
+Route::view('/', 'welcome');
+
 Route::post('/create', 'FormController@storeUserSelection');
-Route::view('/results', 'results');
 
 Route::get('/results/{email}/{token}', 'BreedController@showCollectedArrayOfDogsView');
 
