@@ -22,9 +22,9 @@ class BreedController extends Controller
     public function showCollectedArrayOfDogsView($email,$token)
     {
         $isTokenValid = $this->userService->checkUserToken($token, $email);
-        $found_dogs = Found_Dog::BreedIdAndMiles($email);
-        $userSelection = $this->userService->getUserSelection($email);
         if($isTokenValid == true) {
+            $found_dogs = Found_Dog::BreedIdAndMiles($email);
+            $userSelection = $this->userService->getUserSelection($email);
             $results = $this->externalPetApiService->appendFoundDogCollectionDataToApiData($found_dogs);
             return view('results')->with('dogData', $results)->with('userSelection', $userSelection);
         } else{

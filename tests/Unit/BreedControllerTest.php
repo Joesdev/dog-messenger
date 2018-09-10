@@ -19,6 +19,7 @@ class BreedControllerTest extends TestCase
      *
      * @return void
      */
+    protected $user;
     protected $email = 'joesilvpb4@gmail.com';
     protected $invalidEmail = 'notreal@gmail.com';
     protected $breedController;
@@ -26,14 +27,14 @@ class BreedControllerTest extends TestCase
     public function setUp(){
         parent::setUp();
         $this->seed('found_dogsTableSeeder');
+        $this->user = factory(UserModel::class,1)->create(['email' => $this->email])->first();
         $this->breedController = new BreedController(new UserService());
     }
 
     public function test_showCollectedArrayOfDogsView_returns_view_with_data_from_found_dogs_table()
     {
-        $user = factory(UserModel::class,1)->create(['email' => $this->email])->first();
         $countOfRows = Found_Dog::whereEmail($this->email)->count();
-        $response = $this->get('/results/'.$this->email.'/'.$user->token);
+        $response = $this->get('/results/'.$this->email.'/'.$this->user->token);
         $data = $response->getOriginalContent()->getData();
         $this->assertCount($countOfRows,$data['dogData']);
         $this->assertArrayHasKey('userSelection', $data);
@@ -42,11 +43,8 @@ class BreedControllerTest extends TestCase
     public function test_showCollectedArrayOfDogsView_returns_welcome_view_when_token_is_invalid()
     {
         $invalid_token = str_random(32);
-        //when I hit the url for results but an invalid email
         $response = $this->get('/results/'.$this->email.'/'.$invalid_token);
-        dd($response);
-        //I expect to see the welcome page
-        $response->assertViewIs('.welcome');
+        $response->assertRedirect('/');
     }
 
 }
