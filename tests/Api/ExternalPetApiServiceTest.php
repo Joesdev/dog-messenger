@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Exceptions\IndexException;
 use App\Exceptions\InvalidLocationException;
 use App\Exceptions\InvalidPetIdException;
+use App\Found_Dog;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -160,6 +161,15 @@ class ExternalPetApiServiceTest extends TestCase
         $this->assertEquals('Not Available',$output);
     }
 
+    public function test_appendFoundDogCollectionDataToApiData_returns_api_data_with_distance_key_values()
+    {
+        $this->seed('found_dogsTableSeeder');
+        $found_dogs = Found_Dog::all();
+        $dog_data = $this->service->appendFoundDogCollectionDataToApiData($found_dogs);
+        $this->assertAllKeysExist($dog_data[0]);
+        $this->assertArrayHasKey('distance', $dog_data[0]);
+    }
+
     //-----------------------Helper Functions-------------------------------------------------------
 
     public function assertAllKeysExist($dogData)
@@ -214,4 +224,5 @@ class ExternalPetApiServiceTest extends TestCase
                 ]
         ];
     }
+
 }

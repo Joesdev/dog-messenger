@@ -38,16 +38,4 @@ class BreedControllerTest extends TestCase
         $this->assertCount($countOfRows,$data['dogData']);
         $this->assertArrayHasKey('userSelection', $data);
     }
-
-    public function test_redirectInvalidEmail_redirects_to_home_page_when_email_is_not_in_found_dogs_table()
-    {
-        $response = $this->get('/results/'.$this->invalidEmail);
-        $response->assertViewIs('.welcome');
-    }
-
-    public function test_getHomeView_returns_homepage_and_a_list_of_breed_names()
-    {
-        $response = $this->json('GET', '/');
-        $response->assertViewIs('.welcome');
-    }
 }
