@@ -25,6 +25,7 @@ class BreedController extends Controller
         if($isTokenValid == true) {
             $found_dogs = Found_Dog::BreedIdAndMiles($email);
             $userSelection = $this->userService->getUserSelection($email);
+            if(cache)
             $results = $this->externalPetApiService->appendFoundDogCollectionDataToApiData($found_dogs);
             return view('results')->with('dogData', $results)->with('userSelection', $userSelection);
         } else{

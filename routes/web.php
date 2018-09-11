@@ -33,3 +33,14 @@ Route::get('/test/notification/{email}', function($email){
     $user->notify(new PetArrived($user, 95492, 100));
     dd('done');
 });
+
+Route::get('/test/cache', function(){
+    if(cache()->has('users')){
+        return cache()->get('users','Error');
+    } else {
+        dd('false');
+        $users = User::all();
+        cache()->add('users', $users,5);
+        return $users;
+    }
+});
