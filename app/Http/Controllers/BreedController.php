@@ -12,36 +12,23 @@ use App\Services\ValidationService;
 class BreedController extends Controller
 {
     protected $userService;
+    protected $externalPetApiService;
 
-    public function __construct(UserService $userService){
-        $this->userService = $userService;
+    public function __construct(){
+        $this->userService = new UserService;
+        $this->externalPetApiService = new ExternalPetApiService();
     }
 
-    public function showCollectedArrayOfDogsView($email)
+    public function showCollectedArrayOfDogsView($email,$token)
     {
-        $externalPetApiService = new ExternalPetApiService();
-        $masterArrayOfDogs = [];
-        $found_dogs = Found_Dog::where('email', $email)->get()->map(function ($dogs) {
-            return $dogs->only(['new_breed_id','miles']);
-        });
-        if($found_dogs->count() > 0){
-            foreach($found_dogs as $dog){
-                $dogData = $externalPetApiService->getExternalDataForSingleDog($dog['new_breed_id']);
-                if(!empty($dogData)){
-                    $dogData['distance'] = $dog['miles'];
-                    array_push($masterArrayOfDogs,$dogData);
-                }
-            }
+        $isTokenValid = $this->userService->checkUserToken($token, $email);
+        if($isTokenValid == true) {
+            $found_dogs = Found_Dog::BreedIdAndMiles($email);
             $userSelection = $this->userService->getUserSelection($email);
-            return view('results')->with('dogData' ,$masterArrayOfDogs)->with('userSelection',$userSelection);
+            $results = $this->externalPetApiService->appendFoundDogCollectionDataToApiData($found_dogs);
+            return view('results')->with('dogData', $results)->with('userSelection', $userSelection);
         } else{
-            return view('/welcome')->with('allBreedNames', $allBreedNames = Breed::all());
+            return redirect('/');
         }
-
-    }
-
-    public function getHomeView()
-    {
-        return view('/welcome');
     }
 }

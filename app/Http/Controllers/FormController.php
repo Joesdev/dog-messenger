@@ -54,9 +54,10 @@ class FormController extends Controller
             'match'     => false
         ]);
         $user = new User([
-            'rank' => 0,
-            'name' => 'user',
-            'email' => $request->email
+            'rank'  => 0,
+            'name'  => 'user',
+            'email' => $request->email,
+            'token' => str_random(32)
         ]);
         try {
             DB::transaction(function() use ($selection, $user){

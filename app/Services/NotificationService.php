@@ -35,7 +35,7 @@ class NotificationService
             return false;
         } else {
             $dogDataService->addDogsToFoundDogsTable($filteredUpdatedArray, $email);
-            $user->notify(new PetArrived($user->email, $selection->zip, $selection->max_miles));
+            $user->notify(new PetArrived($user, $selection->zip, $selection->max_miles));
         }
     }
 }

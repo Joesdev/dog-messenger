@@ -14,11 +14,11 @@
 use App\User as User;
 use App\Notifications\PetArrived;
 
-Route::get('/', 'BreedController@getHomeView');
-Route::post('/create', 'FormController@storeUserSelection');
-Route::view('/results', 'results');
+Route::view('/', 'welcome');
 
-Route::get('/results/{email}', 'BreedController@showCollectedArrayOfDogsView');
+Route::post('/create', 'FormController@storeUserSelection');
+
+Route::get('/results/{email}/{token}', 'BreedController@showCollectedArrayOfDogsView');
 
 Route::post('/user-selections', 'FormController@storeUserSelection')->name('user-selections.store');
 
@@ -30,6 +30,6 @@ Route::get('/user/miles/{email}', 'UserController@getUserMiles');
 
 Route::get('/test/notification/{email}', function($email){
     $user = User::where('email', $email)->first();
-    $user->notify(new PetArrived($user->email, 95492, 100));
+    $user->notify(new PetArrived($user, 95492, 100));
     dd('done');
 });

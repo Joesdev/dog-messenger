@@ -149,4 +149,20 @@ class ExternalPetApiService
         return $sex;
     }
 
+    public function appendFoundDogCollectionDataToApiData($collectionOfFoundDogs)
+    {
+        if ($collectionOfFoundDogs->count() > 0) {
+            $masterArrayOfDogs = [];
+            foreach ($collectionOfFoundDogs as $dog) {
+                $dogApiData = $this->getExternalDataForSingleDog($dog['new_breed_id']);
+                if (!empty($dogApiData)) {
+                    $dogApiData['distance'] = $dog['miles'];
+                    array_push($masterArrayOfDogs, $dogApiData);
+                }
+            }
+            return $masterArrayOfDogs;
+        } else {
+            return [];
+        }
+    }
 }

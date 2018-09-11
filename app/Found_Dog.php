@@ -12,4 +12,11 @@ class Found_Dog extends Model
 
     protected $fillable = ['email', 'new_breed_id','miles'];
 
+    public function scopeBreedIdAndMiles($query, $email)
+    {
+        return $query->where('email', $email)->get()->map(function ($dogs) {
+            return $dogs->only(['new_breed_id', 'miles']);
+        });
+    }
+
 }

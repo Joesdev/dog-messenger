@@ -14,4 +14,20 @@ class UserService
         ];
         return $selection;
     }
+
+    public function checkUserToken($token, $email)
+    {
+        $user = User::where('email', $email)->first();
+        if($token == $user->token){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    public function getUserToken($email)
+    {
+        $user = User::where('email', $email)->firstOrFail();
+        return $user->token;
+    }
 }
