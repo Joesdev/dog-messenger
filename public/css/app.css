@@ -7724,6 +7724,7 @@ button.close {
 html, body {
   height: 100%;
   background-color: white;
+  overflow-x: hidden;
 }
 
 /*WELCOME PAGE STYLES*/
