@@ -28,8 +28,8 @@ Route::get('/user/zip/{email}', 'UserController@getUserZip');
 Route::get('/user/breed/{email}', 'UserController@getUserBreed');
 Route::get('/user/miles/{email}', 'UserController@getUserMiles');
 
-Route::get('/test/notification/{email}', function($email){
+/*Route::get('/test/notification/{email}', function($email){
     $user = User::where('email', $email)->first();
     $user->notify(new PetArrived($user, 95492, 100));
     dd('done');
-});
+});*/
