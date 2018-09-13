@@ -8,6 +8,7 @@ use App\Found_Dog;
 use App\Services\ExternalPetApiService;
 use App\Services\UserService;
 use App\Services\ValidationService;
+use Carbon\Carbon;
 
 class BreedController extends Controller
 {
@@ -25,8 +26,9 @@ class BreedController extends Controller
         if($isTokenValid == true) {
             $found_dogs = Found_Dog::BreedIdAndMiles($email);
             $userSelection = $this->userService->getUserSelection($email);
-            if(cache)
-            $results = $this->externalPetApiService->appendFoundDogCollectionDataToApiData($found_dogs);
+            $results = cache()->remember('results',10, function() use ($found_dogs){
+                return $this->externalPetApiService->appendFoundDogCollectionDataToApiData($found_dogs);
+            });
             return view('results')->with('dogData', $results)->with('userSelection', $userSelection);
         } else{
             return redirect('/');
