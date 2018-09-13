@@ -24,9 +24,11 @@ class BreedController extends Controller
     {
         $isTokenValid = $this->userService->checkUserToken($token, $email);
         if($isTokenValid == true) {
+            $endOfDay = Carbon::now()->endOfDay();
             $found_dogs = Found_Dog::BreedIdAndMiles($email);
             $userSelection = $this->userService->getUserSelection($email);
-            $results = cache()->remember('results',10, function() use ($found_dogs){
+            //Check if email exists as a key in cache, if not store data in cache with key being user's email
+            $results = cache()->remember("$email", $endOfDay, function() use ($found_dogs){
                 return $this->externalPetApiService->appendFoundDogCollectionDataToApiData($found_dogs);
             });
             return view('results')->with('dogData', $results)->with('userSelection', $userSelection);
