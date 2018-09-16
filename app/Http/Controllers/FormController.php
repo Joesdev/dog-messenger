@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Selection;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use PHPUnit\Framework\Exception;
 
 class FormController extends Controller
@@ -25,6 +26,9 @@ class FormController extends Controller
     public function storeUserSelection(Request $request)
     {
         $this->validateLandingForm($request);
+        if($this->checkHoneyPot($request)){
+            return redirect('/');
+        };
         $isSuccessful = $this->storeUserWithSelection($request);
         if($isSuccessful){
             return redirect('/')->with('isSuccessful', true);
@@ -33,10 +37,7 @@ class FormController extends Controller
 
     public function validateLandingForm(Request $request)
     {
-        //Send the Bot to the home page with no errors, bot protection
-        if(!is_null($request->akbar)){
-            return redirect('/');
-        }
+
         $request->validate([
             'email'     => 'required|email|unique:users',
             'maxMiles'  => 'required|integer|between:1,200',
@@ -69,6 +70,17 @@ class FormController extends Controller
             return false;
         }
         return true;
+    }
+
+    public function checkHoneyPot(Request $request)
+    {
+        $honeyPot = $request->akbar;
+        if(!is_null($honeyPot)){
+            Log::notice('Honeypot Activated');
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
