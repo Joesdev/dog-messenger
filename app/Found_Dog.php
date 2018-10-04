@@ -14,7 +14,7 @@ class Found_Dog extends Model
 
     public function scopeBreedIdAndMiles($query, $email)
     {
-        return $query->where('email', $email)->get()->map(function ($dogs) {
+        return $query->where('email', $email)->get()->sortByDesc('updated_at')->map(function ($dogs) {
             return $dogs->only(['new_breed_id', 'miles']);
         });
     }
