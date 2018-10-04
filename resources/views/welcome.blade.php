@@ -74,7 +74,7 @@
                 <div class="row">
                     <div class="col-sm-12 padding-lr">
                         <p class="text-center h5 txt-black"><strong>Tiah J.</strong></p>
-                        <p class="text-center"> I have been looking for a Rottweiler puppy to adopt near me. Thanks to findashelterpuppy.com we found our perfect puppy for free and he has grown into such a handsome boy.</p>
+                        <p class="text-center"> I have been looking for a Rottweiler puppy to adopt near me and I found my perfect puppy for free through findashelterpuppy.com. Thanks so much!</p>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                 <div class="row">
                     <div class="col-sm-12 padding-lr">
                         <p class="text-center h5 txt-black"><strong>Keith M.</strong></p>
-                        <p class="text-center">  I was looking for a puppy and a frisbee partner. I picked her up the day I was notified by findashelterpuppy.com that she was brought into a shelter near me for free! It's been two years and she is my best friend.</p>
+                        <p class="text-center">  I was looking for a puppy and a frisbee partner. Findashelterpuppy.com notified me as soon as she was brought into a shelter near me for free! It's been two years and she is my best friend.</p>
                     </div>
                 </div>
             </div>
