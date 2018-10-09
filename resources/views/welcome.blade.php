@@ -13,7 +13,7 @@
 </div>
 <!-- end alert -->
     <div class="col-xs-12 col-md-7 col-lg-6 text-center">
-       <h1 class= "h1">Get Alerts the Day <br>a <span style="color: #ff7615;">Puppy You Love</span> <br>is Dropped Off <br>at a Local Shelter 
+       <h1 class= "h1">Be the First to Know <br> When <span style="color: #ff7615;">Puppies</span> Arrive <br>at Local Shelters <br>Near You
         </h1>
     </div>
 </header>
@@ -74,7 +74,7 @@
                 <div class="row">
                     <div class="col-sm-12 padding-lr">
                         <p class="text-center h5 txt-black"><strong>Tiah J.</strong></p>
-                        <p class="text-center"> I have been looking for a Rottweiler puppy. Thanks to findashelterpuppy.com we found our perfect puppy and he has grown into such a handsome boy.</p>
+                        <p class="text-center"> I have been looking for a Rottweiler puppy to adopt near me and I found my perfect puppy for free through findashelterpuppy.com. Thanks so much!</p>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                 <div class="row">
                     <div class="col-sm-12 padding-lr">
                         <p class="text-center h5 txt-black"><strong>Keith M.</strong></p>
-                        <p class="text-center">  I was looking for a puppy and a frisbee partner and I found both. I picked her up the day I was notified she was brought into a shelter. It's been two years and she is my best friend.</p>
+                        <p class="text-center">  I was looking for a puppy and a frisbee partner. Findashelterpuppy.com notified me as soon as she was brought into a shelter near me for free! It's been two years and she is my best friend.</p>
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                 <div class="row">
                     <div class="col-sm-12 padding-lr">
                         <p class="text-center h5 txt-black"><strong>Lexie D.</strong></p>
-                        <p class="text-center">We wanted to adopt a puppy who needed some extra love and care and we found our new family member and couldn't be happier. Thank you! </p>
+                        <p class="text-center">We wanted to find a puppy to adopt near us who needed some extra love and care and we found our new family member and couldn't be happier. Thank you! </p>
                     </div>
                 </div>
             </div>
