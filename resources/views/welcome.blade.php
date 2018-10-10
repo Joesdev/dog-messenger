@@ -13,7 +13,7 @@
 </div>
 <!-- end alert -->
     <div class="col-xs-12 col-md-7 col-lg-6 text-center">
-       <h1 class= "h1">Get Alerts the Day <br>a <span style="color: #ff7615;">Puppy You Love</span> <br>is Dropped Off <br>at a Local Shelter 
+       <h1 class= "h1">Be the First to Know <br> When <span style="color: #ff7615;">Puppies</span> Arrive <br>at Local Shelters <br>Near You
         </h1>
     </div>
 </header>
@@ -22,17 +22,17 @@
     <div class="container">
         <div class="row padding-tb">
             <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0 text-center">
-                <i class="fa fa-map-marker fa-3x step-icons"></i>                            
+                <a href="#search"><i class="fa fa-map-marker fa-3x step-icons"></i></a>
                 <h2 class="h3 txt-black">Enter a Location
                 <small class="text-muted"><br>Tell us the area where you are looking to adopt a puppy</small></h2>               
             </div>
             <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0 text-center">
-                <i class="fa fa-arrows-alt fa-3x step-icons"></i>      
+                <a href="#search"><i class="fa fa-arrows-alt fa-3x step-icons"></i></a>
                 <h2 class="h3 txt-black">Enter A Distance
                 <small class="text-muted"><br>Tell us how many miles away you are looking to adopt a puppy </small></h2>
             </div>
-            <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0 text-center">   
-                <i class="fa fa-bell fa-3x step-icons"></i>           
+            <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0 text-center">
+                <a href="#search"><i class="fa fa-bell fa-3x step-icons"></i></a>
                 <h2 class="h3 txt-black">Get Notified
                 <small class="text-muted"><br>Receive an email when a puppy has entered a shelter near you</small></h2> 
             </div>
@@ -74,7 +74,7 @@
                 <div class="row">
                     <div class="col-sm-12 padding-lr">
                         <p class="text-center h5 txt-black"><strong>Tiah J.</strong></p>
-                        <p class="text-center"> I have been looking for a Rottweiler puppy. Thanks to findashelterpuppy.com we found our perfect puppy and he has grown into such a handsome boy.</p>
+                        <p class="text-center"> I have been looking for a Rottweiler puppy to adopt near me and I found my perfect puppy for free through findashelterpuppy.com. Thanks so much!</p>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                 <div class="row">
                     <div class="col-sm-12 padding-lr">
                         <p class="text-center h5 txt-black"><strong>Keith M.</strong></p>
-                        <p class="text-center">  I was looking for a puppy and a frisbee partner and I found both. I picked her up the day I was notified she was brought into a shelter. It's been two years and she is my best friend.</p>
+                        <p class="text-center">  I was looking for a puppy and a frisbee partner. Findashelterpuppy.com notified me as soon as she was brought into a shelter near me for free! It's been two years and she is my best friend.</p>
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                 <div class="row">
                     <div class="col-sm-12 padding-lr">
                         <p class="text-center h5 txt-black"><strong>Lexie D.</strong></p>
-                        <p class="text-center">We wanted to adopt a puppy who needed some extra love and care and we found our new family member and couldn't be happier. Thank you! </p>
+                        <p class="text-center">We wanted to find a puppy to adopt near us who needed some extra love and care and we found our new family member and couldn't be happier. Thank you! </p>
                     </div>
                 </div>
             </div>
@@ -121,7 +121,7 @@
     </script>
 @endif
 
-    <div class="container-fluid search" id="search">
+    <div class="container-fluid search">
         <div class="row">
                 <form id="regForm" action="{{url('/create')}}" method="post">
                     {{ csrf_field() }}
@@ -155,6 +155,9 @@
                         </div>
                     </div>
                 </form>
+                <div id="search">
+
+                </div>
         </div>
     </div>
 </section>
