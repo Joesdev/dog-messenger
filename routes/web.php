@@ -18,7 +18,8 @@ Route::view('/', 'welcome');
 
 Route::post('/create', 'FormController@storeUserSelection');
 
-Route::get('/results/{email}/{token}', 'BreedController@showCollectedArrayOfDogsView');
+/*Route::get('/results/{email}/{token}', 'BreedController@showCollectedArrayOfDogsView');*/
+Route::get('/results/{email}', 'BreedController@showCollectedArrayOfDogsView');
 
 Route::post('/user-selections', 'FormController@storeUserSelection')->name('user-selections.store');
 
