@@ -32,7 +32,7 @@
 					<div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
 						<div class="row">
 							<div class="col-xs-12 p-0">
-								<div class="img img-responsive center-block" style="background-image:url('{{$dog['media']}}');"></div>
+								<div class="img img-responsive center-block" style="background-image:url('{{$dog['media']}}');"><h2 class="badge-miles"> <i class="fa fa-map-marker txt-orange fa-lg"></i> {{$dog['distance']}} miles</h2></div>
 							</div>
 							<!-- CONTACT INFO-->
 							<div class="col-xs-12 contact-box">
