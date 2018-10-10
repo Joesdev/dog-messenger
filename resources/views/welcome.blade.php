@@ -1,5 +1,4 @@
 @extends('partials.master')
-
 @section('content')
 <header class="bg-header">
 
