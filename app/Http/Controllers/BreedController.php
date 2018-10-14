@@ -20,10 +20,10 @@ class BreedController extends Controller
         $this->externalPetApiService = new ExternalPetApiService();
     }
 
-    public function showCollectedArrayOfDogsView($email/*,$token*/)
+    public function showCollectedArrayOfDogsView($email,$token)
     {
-        /*$isTokenValid = $this->userService->checkUserToken($token, $email);
-        if($isTokenValid == true) {*/
+        $isTokenValid = $this->userService->checkUserToken($token, $email);
+        if($isTokenValid == true) {
             $endOfDay = Carbon::now()->endOfDay();
             $found_dogs = Found_Dog::BreedIdAndMiles($email);
             $userSelection = $this->userService->getUserSelection($email);
@@ -32,8 +32,8 @@ class BreedController extends Controller
                 return $this->externalPetApiService->appendFoundDogCollectionDataToApiData($found_dogs);
             });
             return view('results')->with('dogData', $results)->with('userSelection', $userSelection);
-        /*} else{
+        } else{
             return redirect('/');
-        }*/
+        }
     }
 }
