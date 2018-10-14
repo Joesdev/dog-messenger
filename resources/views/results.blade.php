@@ -32,11 +32,10 @@
 					<div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
 						<div class="row">
 							<div class="col-xs-12 p-0">
-								<div class="img img-responsive center-block" style="background-image:url('{{$dog['media']}}');"><h2 class="badge-miles"> <i class="fa fa-map-marker txt-orange fa-lg"></i> {{$dog['distance']}} miles</h2></div>
 								@if($dog['media'] === '#')
-									<div class="img img-responsive center-block" style="background-image:url({{url('/images/default_pic.jpg')}});"></div>
+									<div class="img img-responsive center-block" style="background-image:url({{url('/images/default_pic.jpg')}});"><h2 class="badge-miles"> <i class="fa fa-map-marker txt-orange fa-lg"></i> {{$dog['distance']}} miles</h2></div>
 								@else
-									<div class="img img-responsive center-block" style="background-image:url('{{$dog['media']}}');"></div>
+									<div class="img img-responsive center-block" style="background-image:url('{{$dog['media']}}');"><h2 class="badge-miles"> <i class="fa fa-map-marker txt-orange fa-lg"></i> {{$dog['distance']}} miles</h2></div>
 								@endif
 							</div>
 							<!-- CONTACT INFO-->
