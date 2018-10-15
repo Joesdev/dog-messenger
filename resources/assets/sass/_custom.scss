@@ -54,6 +54,9 @@ h1, h2, h3 {
 .txt-orange {
   color: $main-orange;
 }
+.txt-grey {
+  color: $main-grey;
+}
 .txt-scroll {
   @media only screen and (max-width: 766px) {
   max-height: 20em;
@@ -263,4 +266,22 @@ i.fa.fa-check.fa-lg {
 .modal-dialog {
   width: 90%;
   margin: 0 auto;
+}
+/*RESULTS PG*/
+
+.badge-miles {
+  display: inline-block;
+    min-width: 10px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #3e3e3e;
+    line-height: 1;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-align: center;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    margin-left: 5px;
+    margin-top: 10px;
 }
