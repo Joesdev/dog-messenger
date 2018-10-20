@@ -11,14 +11,18 @@ class PuppyArrived extends Notification
 {
     use Queueable;
 
+    protected $options;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($options)
     {
-        //
+        $this->options = $options;
+        $this->options['greeting'] = 'Good News!';
+        $this->options['body'] = "A puppy has been dropped off within ". $this->options['miles']. " miles of a shelter near zip code ".$this->options['zip']. "Check it out below!";
+        $this->options['line'] = "Thank you for using our service! We hope you find your new best friend.";
     }
 
     /**
@@ -42,7 +46,7 @@ class PuppyArrived extends Notification
     {
         return (new MailMessage)
             ->subject('We Found Puppies Near You')
-            ->markdown('mail.puppyarrived');
+            ->markdown('mail.puppyarrived', $this->options);
     }
 
     /**

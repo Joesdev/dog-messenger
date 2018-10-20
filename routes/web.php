@@ -13,6 +13,7 @@
 
 use App\User as User;
 use App\Notifications\PetArrived;
+use App\Notifications\PuppyArrived;
 
 Route::view('/', 'welcome');
 
@@ -29,8 +30,9 @@ Route::get('/user/zip/{email}', 'UserController@getUserZip');
 Route::get('/user/breed/{email}', 'UserController@getUserBreed');
 Route::get('/user/miles/{email}', 'UserController@getUserMiles');
 
-/*Route::get('/test/notification/{email}', function($email){
+
+Route::get('/test/notification/{email}', function($email){
     $user = User::where('email', $email)->first();
-    $user->notify(new PetArrived($user, 95492, 100));
+    $user->notify(new PuppyArrived(['zip' => 95492, 'miles' => 50]));
     dd('done');
-});*/
+});
