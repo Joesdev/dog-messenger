@@ -32,7 +32,9 @@ Route::get('/user/miles/{email}', 'UserController@getUserMiles');
 
 
 Route::get('/test/notification/{email}', function($email){
-    $user = User::where('email', $email)->first();
+    /*$user = User::where('email', $email)->first();
     $user->notify(new PuppyArrived(['zip' => 95492, 'miles' => 50]));
-    dd('done');
+    dd('done');*/
+    $notificationService = new \App\Services\NotificationService();
+    $notificationService->sendNotification('joesilvpb4@gmail.com');
 });

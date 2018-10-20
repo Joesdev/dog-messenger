@@ -2,7 +2,7 @@
 
 
 namespace App\Services;
-use App\Notifications\PetArrived;
+use App\Notifications\PuppyArrived;
 use Notifiable;
 use App\User;
 use App\Services\DogDataService;
@@ -24,19 +24,21 @@ class NotificationService
 
     public function sendNotification($email)
     {
-        $externalPetApiService = new ExternalPetApiService();
+       /* $externalPetApiService = new ExternalPetApiService();
         $externalZipApiService = new ExternalZipApiService();
-        $dogDataService = new DogDataService($externalPetApiService, $externalZipApiService);
+        $dogDataService = new DogDataService($externalPetApiService, $externalZipApiService);*/
         $user = User::where('email', $email)->first();
         $selection = $user->selection()->first();
+        /*
         $updatedArray = $dogDataService->getUpdatedBreedArray($email);
         $filteredUpdatedArray = $dogDataService->getRecordsUnderMaxMiles($updatedArray,$selection->max_miles,$selection->zip);
         if (empty($filteredUpdatedArray)) {
             return false;
         } else {
-            $dogDataService->addDogsToFoundDogsTable($filteredUpdatedArray, $email);
-            $user->notify(new PetArrived($user, $selection->zip, $selection->max_miles));
-        }
+            $dogDataService->addDogsToFoundDogsTable($filteredUpdatedArray, $email);*/
+            /*$user->notify(new PetArrived($user, $selection->zip, $selection->max_miles));*/
+            $user->notify(new PuppyArrived($user, ['zip' => $selection->zip, 'miles' => $selection->max_miles]));
+        /*}*/
     }
 }
 
