@@ -26,11 +26,13 @@ class PuppyArrived extends Notification
 
         $this->options = $options;
         $this->options['greeting'] = 'Good News!';
-        $this->options['body'] = "A puppy has been dropped off within ". $this->options['miles']. " miles of a shelter near zip code ".$this->options['zip']. "Check it out below!";
+        $this->options['body'] = "A puppy has been dropped off within ". $this->options['miles']. " miles of a shelter near zip code ".$this->options['zip']. ". Check it out below!";
         $this->options['line'] = "Thank you for using our service! We hope you find your new best friend.";
-        $this->options['actionText1'] = 'Show Me';
-        $this->options['actionText2'] = 'Unsubscribe';
+
+        $this->options['actionText'] = 'Show Me';
+        $this->options['unsubText'] = 'Unsubscribe';
         $this->options['actionUrl1'] = url("/results/$this->email/$this->token");
+        $this->options['unsubLink'] = url("/results/$this->email/$this->token");
     }
 
     /**
