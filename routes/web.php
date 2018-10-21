@@ -20,14 +20,12 @@ Route::view('/', 'welcome');
 Route::post('/create', 'FormController@storeUserSelection');
 
 Route::get('/results/{email}/{token}', 'BreedController@showCollectedArrayOfDogsView');
-Route::get('/results/{email}', 'BreedController@showCollectedArrayOfDogsView');
 
 Route::post('/user-selections', 'FormController@storeUserSelection')->name('user-selections.store');
 
 //User
-Route::delete('/user/{email}', 'UserController@destroyUser')->name('user.delete');
+Route::delete('/user/{email}/{token}', 'UserController@destroyUser')->name('user.delete');
 Route::get('/user/zip/{email}', 'UserController@getUserZip');
-Route::get('/user/breed/{email}', 'UserController@getUserBreed');
 Route::get('/user/miles/{email}', 'UserController@getUserMiles');
 
 

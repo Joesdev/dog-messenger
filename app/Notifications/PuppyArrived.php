@@ -32,7 +32,7 @@ class PuppyArrived extends Notification
         $this->options['actionText'] = 'Show Me';
         $this->options['unsubText'] = 'Unsubscribe';
         $this->options['actionUrl1'] = url("/results/$this->email/$this->token");
-        $this->options['unsubLink'] = url("/results/$this->email/$this->token");
+        $this->options['unsubLink'] = url("/user/$this->email/$this->token");
     }
 
     /**

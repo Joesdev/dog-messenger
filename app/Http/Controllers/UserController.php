@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Found_Dog;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use App\User;
 use App\Selection;
@@ -17,15 +18,6 @@ class UserController extends Controller
         ];
     }
 
-    public function getUserBreed($email)
-    {
-        $user = User::where('email', $email)->with('selection.breed')->firstOrFail();
-        $breedName = $user->selection->breed->breed;
-        return [
-            'name' => $breedName,
-        ];
-    }
-
     public function getUserMiles($email)
     {
         $user = User::whereEmail($email)->firstOrFail();
@@ -34,11 +26,16 @@ class UserController extends Controller
         ];
     }
 
-    public function destroyUser($email)
+    public function destroyUser($email, $token)
     {
-        $userSelectionId = User::whereEmail($email)->pluck('selection_id');
-        User::whereEmail($email)->delete();
-        Selection::where('id',$userSelectionId)->delete();
-        Found_Dog::whereEmail($email)->delete();
+        $isTokenValid = $this->userService->checkUserToken($token, $email);
+        if($isTokenValid == true) {
+            $userSelectionId = User::whereEmail($email)->pluck('selection_id');
+            User::whereEmail($email)->delete();
+            Selection::where('id', $userSelectionId)->delete();
+            Found_Dog::whereEmail($email)->delete();
+        } else{
+            return redirect('/');
+        }
     }
 }
