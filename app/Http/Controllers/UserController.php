@@ -26,15 +26,23 @@ class UserController extends Controller
         ];
     }
 
-    public function destroyUser($email, $token)
+    public function destroyUser($email)
     {
-        $isTokenValid = $this->userService->checkUserToken($token, $email);
-        if($isTokenValid == true) {
             $userSelectionId = User::whereEmail($email)->pluck('selection_id');
             User::whereEmail($email)->delete();
             Selection::where('id', $userSelectionId)->delete();
             Found_Dog::whereEmail($email)->delete();
-        } else{
+    }
+
+    public function unsubUser($email, $token)
+    {
+        $userService = new UserService();
+        if($userService->checkUserToken($token, $email)){
+            $user = User::whereEmail($email)->first();
+            $unsubscribedNumber = 2;
+            $user->rank = $unsubscribedNumber;
+            $user->save();
+        } else {
             return redirect('/');
         }
     }

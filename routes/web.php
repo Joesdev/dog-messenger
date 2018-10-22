@@ -27,6 +27,7 @@ Route::post('/user-selections', 'FormController@storeUserSelection')->name('user
 Route::delete('/user/{email}/{token}', 'UserController@destroyUser')->name('user.delete');
 Route::get('/user/zip/{email}', 'UserController@getUserZip');
 Route::get('/user/miles/{email}', 'UserController@getUserMiles');
+Route::get('/user/unsubscribe/{email}/{token}', 'UserController@unsubUser');
 
 
 Route::get('/test/notification/{email}', function($email){
