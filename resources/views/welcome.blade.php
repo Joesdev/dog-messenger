@@ -13,13 +13,13 @@
 </div>
 <!-- end alert -->
 <!-- alert a user will see when unsubscribing-->
-{{--<div class="alert alert-warning alert-dismissible collapse" role="alert" id="unsubscribe-alert">
+<div class="alert alert-warning alert-dismissible collapse" role="alert" id="unsubscribe-alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     @foreach ($errors->all() as $error)
         <strong><p>{{$error}} </p></strong>
     @endforeach
     <p>Thank you for using our service. You are now <b>unsubscribed.</b></p>
-</div>--}}
+</div>
 <!-- end alert -->
     <div class="col-xs-12 col-md-7 col-lg-6 text-center">
        <h1 class= "h1">Be the First to Know <br> When <span style="color: #ff7615;">Puppies</span> Arrive <br>at Local Shelters <br>Near You
@@ -123,20 +123,20 @@
 
 <!-- BELOW CODE FOR IF ZIPCODE ERROR THEN SHOW ALERT -->
 @if($errors->any())
-    {{--@if($errors->has('unsubscribed-alert'))
+    @if($errors->has('unsubscribed-alert'))
         <script>
             $(function() {
                 $('#unsubscribe-alert').show();
             });
         </script>
-    @else--}}
+    @else
             <script>
                 $(function() {
                     $('#zip-alert').show();
                 });
             </script>
     @endif
-{{--@endif--}}
+@endif
 
     <div class="container-fluid search">
         <div class="row">

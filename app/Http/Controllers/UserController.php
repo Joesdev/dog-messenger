@@ -42,7 +42,7 @@ class UserController extends Controller
             $unsubscribedNumber = 2;
             $user->rank = $unsubscribedNumber;
             $user->save();
-            return view('welcome')->withErrors(['unsubscribed-alert' => 'Notification Emails have been stopped.']);
+            return redirect('/')->withErrors(['unsubscribed-alert' => 'Notification Emails have been stopped.']);
         }
     }
 }
