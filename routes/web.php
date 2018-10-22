@@ -11,9 +11,6 @@
 |
 */
 
-use App\User as User;
-use App\Notifications\PetArrived;
-use App\Notifications\PuppyArrived;
 
 Route::view('/', 'welcome');
 
@@ -30,10 +27,7 @@ Route::get('/user/miles/{email}', 'UserController@getUserMiles');
 Route::get('/user/unsubscribe/{email}/{token}', 'UserController@unsubUser');
 
 
-Route::get('/test/notification/{email}', function($email){
-    /*$user = User::where('email', $email)->first();
-    $user->notify(new PuppyArrived(['zip' => 95492, 'miles' => 50]));
-    dd('done');*/
+/*Route::get('/test/notification/{email}', function($email){
     $notificationService = new \App\Services\NotificationService();
     $notificationService->sendNotification('joesilvpb4@gmail.com');
-});
+});*/

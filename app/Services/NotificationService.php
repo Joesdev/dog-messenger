@@ -26,7 +26,7 @@ class NotificationService
     {
         $externalPetApiService = new ExternalPetApiService();
         $externalZipApiService = new ExternalZipApiService();
-        $dogDataService = new DogDataService($externalPetApiService, $externalZipApiService);*/
+        $dogDataService = new DogDataService($externalPetApiService, $externalZipApiService);
         $user = User::where('email', $email)->first();
         $selection = $user->selection()->first();
 

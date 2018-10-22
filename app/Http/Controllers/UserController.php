@@ -37,13 +37,12 @@ class UserController extends Controller
     public function unsubUser($email, $token)
     {
         $userService = new UserService();
-        if($userService->checkUserToken($token, $email)){
+        if($userService->checkUserToken($token, $email)) {
             $user = User::whereEmail($email)->first();
             $unsubscribedNumber = 2;
             $user->rank = $unsubscribedNumber;
             $user->save();
-        } else {
-            return redirect('/');
+            return view('welcome')->withErrors(['unsubscribed-alert' => 'Notification Emails have been stopped.']);
         }
     }
 }
