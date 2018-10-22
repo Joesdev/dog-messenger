@@ -27,7 +27,7 @@ Route::get('/user/miles/{email}', 'UserController@getUserMiles');
 Route::get('/user/unsubscribe/{email}/{token}', 'UserController@unsubUser');
 
 
-/*Route::get('/test/notification/{email}', function($email){
+Route::get('/test/notification/{email}', function($email){
     $notificationService = new \App\Services\NotificationService();
     $notificationService->sendNotification('joesilvpb4@gmail.com');
-});*/
+});
