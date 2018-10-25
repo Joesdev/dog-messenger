@@ -42,20 +42,16 @@
 							<div class="col-xs-12 contact-box">
 								<br>
 								<p class="txt-black"><strong>Contact</strong></p>
-								<p><i class="fa fa-address-book txt-orange"></i> Sonoma County Humane Society <br>
-								11845 Wicks St <br>
-								{{$dog['city']}}, {{$dog['state']}} <br>
-								91352
-								</p>
-    							<p><i class="fa fa-envelope txt-orange"></i> {{$dog['email']}}</p>
-								<p><i class="fa fa-phone txt-orange"></i> {{$dog['phone']}}</p>
+								<p><i class="fa fa-address-book txt-orange"></i><strong>Address: <strong>{{$dog['address']}}<br></p>
+    							<p><i class="fa fa-envelope txt-orange"></i><strong>Email: <strong> {{$dog['email']}}</p>
+								<p><i class="fa fa-phone txt-orange"></i><strong>Phone Number: <strong> {{$dog['phone']}}</p>
 							</div>
 						</div>
 					</div>
 					<!-- DOG INFO -->
 					<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 about-box">
 						<h2 class="h3 txt-black">{{$dog['name']}}</h2>
-						<p class="txt-black"><strong>{{$dog['sex']}} - {{$dog['age']}}</strong></p>
+						<p class="txt-black"><strong>{{$dog['sex']}}</strong></p>
 						<p class="txt-black txt-scroll"><strong>About:</strong> {{$dog['description']}}
 						</p>
 					</div>	
