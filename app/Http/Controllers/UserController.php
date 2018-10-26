@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Found_Dog;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use App\User;
 use App\Selection;
@@ -17,15 +18,6 @@ class UserController extends Controller
         ];
     }
 
-    public function getUserBreed($email)
-    {
-        $user = User::where('email', $email)->with('selection.breed')->firstOrFail();
-        $breedName = $user->selection->breed->breed;
-        return [
-            'name' => $breedName,
-        ];
-    }
-
     public function getUserMiles($email)
     {
         $user = User::whereEmail($email)->firstOrFail();
@@ -36,9 +28,22 @@ class UserController extends Controller
 
     public function destroyUser($email)
     {
-        $userSelectionId = User::whereEmail($email)->pluck('selection_id');
-        User::whereEmail($email)->delete();
-        Selection::where('id',$userSelectionId)->delete();
-        Found_Dog::whereEmail($email)->delete();
+            $userSelectionId = User::whereEmail($email)->pluck('selection_id');
+            User::whereEmail($email)->delete();
+            Selection::where('id', $userSelectionId)->delete();
+            Found_Dog::whereEmail($email)->delete();
+    }
+
+    public function unsubUser($email, $token)
+    {
+        $userService = new UserService();
+        if($userService->checkUserToken($token, $email)) {
+            $user = User::whereEmail($email)->first();
+            $unsubscribedNumber = 2;
+            $user->rank = $unsubscribedNumber;
+            $user->save();
+            return redirect('/')->withErrors(['unsubscribed-alert' => '
+            You have been successfully unsubscribed from findashelterpuppy.com and will no longer receive emails.']);
+        }
     }
 }
