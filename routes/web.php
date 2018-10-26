@@ -11,26 +11,23 @@
 |
 */
 
-use App\User as User;
-use App\Notifications\PetArrived;
 
 Route::view('/', 'welcome');
 
 Route::post('/create', 'FormController@storeUserSelection');
 
 Route::get('/results/{email}/{token}', 'BreedController@showCollectedArrayOfDogsView');
-Route::get('/results/{email}', 'BreedController@showCollectedArrayOfDogsView');
 
 Route::post('/user-selections', 'FormController@storeUserSelection')->name('user-selections.store');
 
 //User
-Route::delete('/user/{email}', 'UserController@destroyUser')->name('user.delete');
+Route::delete('/user/{email}/{token}', 'UserController@destroyUser')->name('user.delete');
 Route::get('/user/zip/{email}', 'UserController@getUserZip');
-Route::get('/user/breed/{email}', 'UserController@getUserBreed');
 Route::get('/user/miles/{email}', 'UserController@getUserMiles');
+Route::get('/user/unsubscribe/{email}/{token}', 'UserController@unsubUser');
 
-/*Route::get('/test/notification/{email}', function($email){
-    $user = User::where('email', $email)->first();
-    $user->notify(new PetArrived($user, 95492, 100));
-    dd('done');
-});*/
+
+Route::get('/test/notification/{email}', function($email){
+    $notificationService = new \App\Services\NotificationService();
+    $notificationService->sendNotification('joesilvpb4@gmail.com');
+});

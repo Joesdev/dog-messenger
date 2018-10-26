@@ -41,10 +41,14 @@
 							<!-- CONTACT INFO-->
 							<div class="col-xs-12 contact-box">
 								<br>
-								<p class="txt-black"><strong>Contact</strong></p>
-								<p><i class="fa fa-address-book txt-orange"></i><strong>Address: <strong>{{$dog['address']}}<br></p>
-    							<p><i class="fa fa-envelope txt-orange"></i><strong>Email: <strong> {{$dog['email']}}</p>
-								<p><i class="fa fa-phone txt-orange"></i><strong>Phone Number: <strong> {{$dog['phone']}}</p>
+								<p class="txt-black"><strong><u>Contact</u></strong></p>
+								<p><i class="fa fa-address-book txt-orange"></i><strong> Address:</strong><br>
+									Street: {{$dog['address']}}<br>
+									City: {{$dog['city']}}<br>
+									State: {{$dog['state']}}<br>
+								</p>
+    							<p><i class="fa fa-envelope txt-orange"></i><strong> Email: </strong> {{$dog['email']}}</p>
+								<p><i class="fa fa-phone txt-orange"></i><strong> Phone Number: </strong> {{$dog['phone']}}</p>
 							</div>
 						</div>
 					</div>

@@ -1,6 +1,0 @@
-
-In ExternalZipApiService.php line 43:
-                       
-  Undefined offset: 0  
-                       
-

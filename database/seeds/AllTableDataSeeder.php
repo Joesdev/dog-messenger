@@ -38,11 +38,16 @@ class AllTableDataSeeder extends Seeder
                 'email' => $email[0],
                 'selection_id' => $index + 1
             ]);
+            if($email[0] == 'joesilvpb4@gmail.com') {
+                DB::table('users')->update([
+                    'token' => 'JOEReN7kIJOXWcCcSRuPmiwBgEnQmp2M'
+                ]);
+            }
 
             DB::table('selections')->insert([
                 'id' => $index + 1,
                 'zip' => $zips[$index],
-                'highest_breed_id' => 41000000,
+                'highest_breed_id' => 43051724,
                 'max_miles' => $maxMiles[$index],
                 'match' => 0
             ]);

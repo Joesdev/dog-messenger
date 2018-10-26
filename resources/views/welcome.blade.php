@@ -12,6 +12,14 @@
   <p>Please make the corrections and resubmit the form <a href="#search">below.</a> Thank you. </p>
 </div>
 <!-- end alert -->
+<!-- alert a user will see when unsubscribing-->
+<div class="alert alert-warning alert-dismissible collapse" role="alert" id="unsubscribe-alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    @foreach ($errors->all() as $error)
+        <strong><p>{{$error}} </p></strong>
+    @endforeach
+</div>
+<!-- end alert -->
     <div class="col-xs-12 col-md-7 col-lg-6 text-center">
        <h1 class= "h1">Be the First to Know <br> When <span style="color: #ff7615;">Puppies</span> Arrive <br>at Local Shelters <br>Near You
         </h1>
@@ -114,11 +122,19 @@
 
 <!-- BELOW CODE FOR IF ZIPCODE ERROR THEN SHOW ALERT -->
 @if($errors->any())
-    <script>
-        $(function() {
-            $('#zip-alert').show();
-        });
-    </script>
+    @if($errors->has('unsubscribed-alert'))
+        <script>
+            $(function() {
+                $('#unsubscribe-alert').show();
+            });
+        </script>
+    @else
+            <script>
+                $(function() {
+                    $('#zip-alert').show();
+                });
+            </script>
+    @endif
 @endif
 
     <div class="container-fluid search">
