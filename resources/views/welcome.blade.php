@@ -18,7 +18,6 @@
     @foreach ($errors->all() as $error)
         <strong><p>{{$error}} </p></strong>
     @endforeach
-    <p>Thank you for using our service. You are now <b>unsubscribed.</b></p>
 </div>
 <!-- end alert -->
     <div class="col-xs-12 col-md-7 col-lg-6 text-center">

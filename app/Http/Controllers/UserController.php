@@ -42,7 +42,8 @@ class UserController extends Controller
             $unsubscribedNumber = 2;
             $user->rank = $unsubscribedNumber;
             $user->save();
-            return redirect('/')->withErrors(['unsubscribed-alert' => 'Notification Emails have been stopped.']);
+            return redirect('/')->withErrors(['unsubscribed-alert' => '
+            You have been successfully unsubscribed from findashelterpuppy.com and will no longer receive emails.']);
         }
     }
 }
