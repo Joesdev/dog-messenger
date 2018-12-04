@@ -273,12 +273,16 @@ i.fa.fa-check.fa-lg {
 
 // NAVBAR
 
+nav.navbar.navbar-fixed-top {
+  background-image: linear-gradient(to right, rgba(255,0,0,0), #333);
+}
+
 nav a {
   color: white;
 }
 
 .nav > li > a:hover, .nav > li > a:focus {
-  color: $main-grey;
+  color: $main-orange;
   background-color: transparent;
 }
 
@@ -295,6 +299,7 @@ nav a {
   color: $main-orange;
 }
 
+ /*On mobile, change the menu style to this below*/
 @media only screen and (max-width: 747px) {
     .navbar-toggle.collapsed {
       background-color: white;
@@ -312,6 +317,9 @@ nav a {
       }
       .nav > li > a:hover, .nav > li > a:focus {
         color: $main-orange;
+      }
+      .col-xs-12.col-md-7.col-lg-6.text-center {
+        padding-top: 1.5em;
       }
     }
 
