@@ -1,6 +1,5 @@
 html, body {
-  height: 100%; 
-  background-color: white;
+ background-color: white;
   overflow-x: hidden;
   }
 
@@ -14,8 +13,8 @@ p {
   background-attachment: fixed;
   background-size: cover;
   min-width: 100%;
-  min-height: 100%;
   margin-top: 0;
+  height: 55em;
 }
   @media only screen and (min-width: 300px) {
     .bg-header h1 {
@@ -102,9 +101,7 @@ h1, h2, h3 {
 .border-0 {
   border: none;
 }
-.padding-nav-txt {
-  padding-left: 2em;
-}
+
 
 /* BUTTONS*/
 .btn-yellow {
@@ -189,9 +186,6 @@ input[type="submit"] {
 }
 
 /* RESULTS PAGE ADDITIONAL STYLES*/
-.navbar-right {
-  margin-right: 20px;
-}
 
 .bg-blue {
   background-color: $main-blue;
@@ -243,15 +237,6 @@ input[type="submit"] {
      width: 20em;
      }
 }
-.navbar-default .navbar-link {
-  color: black;
-}
-.navbar-default .navbar-link:hover {
-  color: $main-orange;
-}
-.navbar-default {
-  border-color: black;
-}
 
 // Popup Modal
 .modal-content {
@@ -285,3 +270,49 @@ i.fa.fa-check.fa-lg {
     margin-left: 5px;
     margin-top: 10px;
 }
+
+// NAVBAR
+
+nav a {
+  color: white;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+  color: $main-grey;
+  background-color: transparent;
+}
+
+.navbar-fixed-top.scrolled {
+  background-color: $main-grey;
+  transition: background-color 200ms linear;
+}
+
+.navbar-fixed-top.scrolled a{
+  color:white;
+}
+
+.navbar-fixed-top.scrolled a:hover, a:focus {
+  color: $main-orange;
+}
+
+@media only screen and (max-width: 747px) {
+    .navbar-toggle.collapsed {
+      background-color: white;
+      border: solid $main-orange 2px;
+      } 
+      button.navbar-toggle {
+        border: solid $main-orange 2px;
+        background-color: white;
+      }
+      span.icon-bar {
+        background-color: $main-orange;
+      }
+      div#bs-example-navbar-collapse-1 {
+        background-color: $main-grey;
+      }
+      .nav > li > a:hover, .nav > li > a:focus {
+        color: $main-orange;
+      }
+    }
+
+

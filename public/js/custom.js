@@ -13,13 +13,17 @@ $(document).ready(function(){
 	        window.location.hash = target;
 	    });
 	});
+
+	console.log('worked');
 });
 
+// JS Navbar onscroll change bg color
 
+$(function () {
+  $(document).scroll(function () {
+    var $nav = $(".navbar-fixed-top");
+    console.log('triggered')
+    $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+  });
 
-
-
-
-
-
-
+});

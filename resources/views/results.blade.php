@@ -5,9 +5,6 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="colxs-12">
-				<div class="navbar navbar-default navbar-static-top">
-					<p class="navbar-text navbar-right padding-nav-txt"><a href="{{url('/')}}" class="navbar-link txt-black">Home</a></p>
-				</div>
 			</div>
 		</div>
 	</div>
