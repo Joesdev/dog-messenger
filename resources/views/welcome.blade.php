@@ -188,7 +188,9 @@
         <h4 class="modal-title" id="myModalLabel">Success <i class="fa fa-check fa-lg"></i></h4>
       </div>
       <div class="modal-body">
-        Your information was submitted successfully! When a shelter near you receives new puppies, we will send you an email with the puppy and shelter information. Depending on your location, you can expect an email within a few days.  
+        When a shelter near you receives new puppies, we will send you an email with the puppy and shelter information.
+            <br>
+          Depending on your location, you can expect an email <strong>within a few days</strong>.
       </div>
     </div>
   </div>
