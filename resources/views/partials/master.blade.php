@@ -21,8 +21,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <meta name="description" content="Be the first to find out when a new puppy is brought into an animal shelter near you through findashelterpuppy.com in three easy steps for free!">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+
 </head>
 <body>
+@include('partials.nav')
+
 @yield('content')
 
 @include('partials.footer')

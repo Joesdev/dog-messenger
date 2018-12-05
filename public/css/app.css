@@ -7722,7 +7722,6 @@ button.close {
 }
 
 html, body {
-  height: 100%;
   background-color: white;
   overflow-x: hidden;
 }
@@ -7738,8 +7737,8 @@ p {
   background-attachment: fixed;
   background-size: cover;
   min-width: 100%;
-  min-height: 100%;
   margin-top: 0;
+  height: 55em;
 }
 
 @media only screen and (min-width: 300px) {
@@ -7853,10 +7852,6 @@ h1, h2, h3 {
   border: none;
 }
 
-.padding-nav-txt {
-  padding-left: 2em;
-}
-
 /* BUTTONS*/
 .btn-yellow {
   background-color: #F3D030;
@@ -7947,10 +7942,6 @@ input[type="submit"] {
 }
 
 /* RESULTS PAGE ADDITIONAL STYLES*/
-.navbar-right {
-  margin-right: 20px;
-}
-
 .bg-blue {
   background-color: #B8DED7;
 }
@@ -8024,18 +8015,6 @@ input[type="submit"] {
   }
 }
 
-.navbar-default .navbar-link {
-  color: black;
-}
-
-.navbar-default .navbar-link:hover {
-  color: #ed7333;
-}
-
-.navbar-default {
-  border-color: black;
-}
-
 .modal-content {
   border: 5px #B8DED7 solid;
 }
@@ -8069,6 +8048,58 @@ i.fa.fa-check.fa-lg {
   border-radius: 10px;
   margin-left: 5px;
   margin-top: 10px;
+}
+
+nav.navbar.navbar-fixed-top {
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(255, 0, 0, 0)), to(#333));
+  background-image: linear-gradient(to right, rgba(255, 0, 0, 0), #333);
+}
+
+nav a {
+  color: white;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+  color: #ed7333;
+  background-color: transparent;
+}
+
+.navbar-fixed-top.scrolled {
+  background-color: #3e3e3e;
+  -webkit-transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
+}
+
+.navbar-fixed-top.scrolled a {
+  color: white;
+}
+
+.navbar-fixed-top.scrolled a:hover, a:focus {
+  color: #ed7333;
+}
+
+/*On mobile, change the menu style to this below*/
+@media only screen and (max-width: 747px) {
+  .navbar-toggle.collapsed {
+    background-color: white;
+    border: solid #ed7333 2px;
+  }
+  button.navbar-toggle {
+    border: solid #ed7333 2px;
+    background-color: white;
+  }
+  span.icon-bar {
+    background-color: #ed7333;
+  }
+  div#bs-example-navbar-collapse-1 {
+    background-color: #3e3e3e;
+  }
+  .nav > li > a:hover, .nav > li > a:focus {
+    color: #ed7333;
+  }
+  .col-xs-12.col-md-7.col-lg-6.text-center {
+    padding-top: 1.5em;
+  }
 }
 
 /*!
